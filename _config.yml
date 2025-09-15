@@ -1,0 +1,64 @@
+title: "AskSurgeons.com"
+description: >-
+  Hyderabad’s trusted platform for surgical guidance and second opinions.
+  Read expert medical blogs from our doctors, then book consultations at
+  app.asksurgeons.com.
+url: "https://www.asksurgeons.com"   # your custom domain
+baseurl: ""                          # leave blank for root domain
+
+# Theme
+remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: default       # you can try: "air", "contrast", etc.
+
+# Author default
+author_profile: true
+
+# Pagination
+paginate: 5
+paginate_path: /page:num/
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+
+# Collections
+collections:
+  authors:
+    output: true
+    permalink: /doctors/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false
+      share: true
+  - scope:
+      path: ""
+      type: authors
+    values:
+      layout: author
+
+# Site-wide variables (you can use these in includes/HTML)
+theme_color: "#007bbf"
+contact_number: "08062182411"
+contact_email: "asksurgeons@gmail.com"
+address: "Hyderabad"
+
+# Plugins supported by GitHub Pages
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude these from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
