@@ -4,25 +4,32 @@ scripts/generate_authors.py
 Generates _authors/<slug>.md files from _data/doctors.json
 Designed for GitHub Actions.
 """
-
 import json
-import os
 import re
 from pathlib import Path
 from datetime import datetime
 import sys
-import html
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_FILE = ROOT / "_data" / "doctors.json"
 AUTHORS_DIR = ROOT / "_authors"
+IMAGE_DIR = ROOT / "doctors" / "images"
 
-# Helper: make a clean slug
+# Helper: make a clean slug (strip honorifics, cut off at MD/MS/MCh/DM)
 def slugify(s: str) -> str:
-    s = s.lower().strip()
-    # replace spaces, slashes, commas with hyphen
-    s = re.sub(r"[^\w\s-]", "", s)
-    s = re.sub(r"\s+", "-", s)
+    if not s:
+        return ""
+    s = s.strip()
+    # remove parenthetical notes e.g. (Osmania)
+    s = re.sub(r"\([^)]*\)", "", s)
+    # remove honorifics at start
+    s = re.sub(r"^(dr\.?|doctor|prof\.?|mr\.?|mrs\.?|ms\.?)\s+", "", s, flags=re.I)
+    # cut off at MD, MS, MCh, DM (keep only part before these tokens)
+    s = re.split(r"\b(md|ms|mch|dm)\b", s, flags=re.I)[0]
+    # remove trailing commas/extra whitespace
+    s = s.strip(" ,")
+    # replace non-alphanumeric with hyphen and collapse multiple hyphens
+    s = re.sub(r"[^a-z0-9]+", "-", s.lower())
     s = re.sub(r"-{2,}", "-", s)
     return s.strip("-")
 
@@ -41,35 +48,59 @@ with DATA_FILE.open("r", encoding="utf-8") as f:
 AUTHORS_DIR.mkdir(parents=True, exist_ok=True)
 
 def safe_yaml_string(s: str) -> str:
-    # escape quotes and preserve newlines
     if s is None:
         return ""
     s = str(s)
-    s = s.replace('"""', '\\"\\\"\\"')  # avoid triple quote conflicts
-    # prefer using "|" block scalar for longer bios
+    s = s.replace('"""', '\\"\\\"\\"')
     return s
 
 written = []
 
 for doc in doctors:
-    # Map common fields (adjust keys if your JSON differs)
+    # Map fields
     name = doc.get("name") or doc.get("full_name") or "Unknown"
     speciality = doc.get("speciality") or doc.get("role") or doc.get("department") or ""
-    avatar = doc.get("image") or doc.get("avatar") or ""
-    # ensure avatar path is absolute-style (starts with /) for site links
-    if avatar and not avatar.startswith("/"):
-        avatar = avatar.lstrip("/")
-        avatar = f"/{avatar}"
+    avatar_field = (doc.get("image") or doc.get("avatar") or "").strip()
     bio = doc.get("bio") or doc.get("description") or ""
     department = doc.get("department") or speciality or ""
-    # build slug from name
+
+    # build slug from name (for filename & permalink)
     slug = slugify(name)
     if not slug:
         slug = f"doctor-{int(datetime.utcnow().timestamp())}"
 
+    # Build author filename
     filename = AUTHORS_DIR / f"{slug}.md"
 
-    # Build front matter (use YAML block scalar for bio if long)
+    # Normalize avatar to absolute site path if possible.
+    avatar = ""
+    if avatar_field:
+        # if already an absolute path (/doctors/images/...), keep as-is
+        if avatar_field.startswith("/"):
+            avatar = avatar_field
+        else:
+            # if it's just a filename (dr-foo.webp) or relative path, use /doctors/images/<basename>
+            basename = Path(avatar_field).name
+            avatar = f"/doctors/images/{basename}"
+    else:
+        # If no avatar provided, attempt to predict filename from slug
+        # (we don't create files, just set the expected path)
+        avatar = f"/doctors/images/dr-{slug}.webp"
+
+    # If image file actually exists in repo, ensure avatar points to that existing filename
+    try:
+        # if avatar is like /doctors/images/<name>, check for file existence
+        if avatar.startswith("/doctors/images/"):
+            candidate = IMAGE_DIR / Path(avatar).name
+            if candidate.exists():
+                avatar = f"/doctors/images/{candidate.name}"
+            else:
+                # if not found, leave avatar as the expected path (so templates can use it later)
+                pass
+    except Exception:
+        pass
+
+    # Build front matter (use YAML block scalar for bio)
     fm_lines = [
         "---",
         f'name: "{name}"',
@@ -78,20 +109,21 @@ for doc in doctors:
     ]
     if avatar:
         fm_lines.append(f'avatar: "{avatar}"')
-    # Use a block scalar for bio to preserve newlines and special characters
+
     if bio:
-        # indent the block content properly
         fm_lines.append("bio: |")
-        for line in bio.splitlines():
+        for line in str(bio).splitlines():
             fm_lines.append(f"  {line}")
     if department:
         fm_lines.append(f'department: "{department}"')
+
     fm_lines.append(f'permalink: "/doctors/{slug}/"')
     fm_lines.append("---")
     fm_lines.append("")  # final newline
 
     content = "\n".join(fm_lines)
-    # Only write if changed (minimizes git noise)
+
+    # Only write if changed
     write_file = True
     if filename.exists():
         old = filename.read_text(encoding="utf-8")
