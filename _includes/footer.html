@@ -2,35 +2,38 @@
 <footer role="contentinfo">
   <div class="container footer-inner footer">
     <div class="footer-grid">
+      <!-- Contact (hard-coded) -->
       <div>
         <h4>Contact</h4>
-        <div class="muted">Phone (Primary): <span id="as-phone-primary"></span></div>
-        <div class="muted">Clinic Number: <span id="as-phone-clinic"></span></div>
-        <div class="muted">Email: <a id="as-email" href="#"></a></div>
-        <div class="muted">Address: <span id="as-address"></span></div>
+        <div class="muted">Phone (Primary): +91 8062182411</div>
+        <div class="muted">Clinic Number: +91 79896 76770</div>
+        <div class="muted">Email: <a href="mailto:asksurgeons@gmail.com">asksurgeons@gmail.com</a></div>
+        <div class="muted">Address: Hyderabad</div>
       </div>
 
+      <!-- Quick Links (hard-coded paths for your GitHub Pages project) -->
       <div>
         <h4>Quick Links</h4>
-        <a href="{{ site.baseurl }}/">Home</a><br/>
-        <a href="{{ site.baseurl }}/about/">About</a><br/>
-        <a href="{{ site.baseurl }}/services/">Services</a><br/>
-        <a href="{{ site.baseurl }}/blog/">Blog</a><br/>
-        <a href="{{ site.baseurl }}/doctors/">Doctors</a><br/>
+        <a href="/asksurgeons-site/">Home</a><br/>
+        <a href="/asksurgeons-site/about/">About</a><br/>
+        <a href="/asksurgeons-site/services/">Services</a><br/>
+        <a href="/asksurgeons-site/blog/">Blog</a><br/>
+        <a href="/asksurgeons-site/doctors/">Doctors</a><br/>
         <a href="https://app.asksurgeons.com">Book Appointment</a>
       </div>
 
+      <!-- Doctors scroller (data-driven) -->
       <div>
         <h4>Our Specialists</h4>
-        <div id="as-docs-scroller">
+        <div id="as-docs-scroller" tabindex="0" aria-label="Doctors list (scroll horizontally)">
           <div id="as-docs-track">
             {%- assign doctors = site.data.doctors -%}
             {%- for d in doctors -%}
             <div class="doc-card">
               <img loading="lazy"
-                   src="{{ d.image | prepend: site.baseurl }}"
+                   src="{{ d.image | prepend: '/asksurgeons-site' }}"
                    alt="{{ d.name }}"
-                   onerror="this.src='{{ site.baseurl }}/assets/images/site-images/doctor-placeholder.webp'">
+                   onerror="this.src='/asksurgeons-site/assets/images/site-images/doctor-placeholder.webp'">
               <div class="meta">
                 <div class="name">{{ d.name }}</div>
                 <div class="qual">{{ d.bio }}</div>
@@ -41,9 +44,9 @@
             {%- for d in doctors -%}
             <div class="doc-card">
               <img loading="lazy"
-                   src="{{ d.image | prepend: site.baseurl }}"
+                   src="{{ d.image | prepend: '/asksurgeons-site' }}"
                    alt="{{ d.name }}"
-                   onerror="this.src='{{ site.baseurl }}/assets/images/site-images/doctor-placeholder.webp'">
+                   onerror="this.src='/asksurgeons-site/assets/images/site-images/doctor-placeholder.webp'">
               <div class="meta">
                 <div class="name">{{ d.name }}</div>
                 <div class="qual">{{ d.bio }}</div>
@@ -56,7 +59,62 @@
       </div>
     </div>
 
-    <div class="muted" style="margin-top:14px;">© <span id="as-year"></span> AskSurgeons.com • Hyderabad</div>
+    <div class="muted" style="margin-top:14px;">© <span id="as-year">2025</span> AskSurgeons.com • Hyderabad</div>
   </div>
 
+  <!-- tiny helper to auto-scroll the doctors strip -->
+  <script>
+    (function () {
+      const scroller = document.getElementById('as-docs-scroller');
+      const track = document.getElementById('as-docs-track');
+      const yearEl = document.getElementById('as-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      if (!scroller || !track) return;
+
+      let rafId = null;
+      let pos = 0;
+      const SPEED = 0.6; // pixels per frame; reduce to slow down, increase to speed up
+
+      function step() {
+        pos += SPEED;
+        scroller.scrollLeft = pos;
+        // loop when we reach halfway (we duplicated the list)
+        if (pos >= track.scrollWidth / 2) pos = 0;
+        rafId = requestAnimationFrame(step);
+      }
+
+      function start() {
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(step);
+      }
+      function stop() {
+        cancelAnimationFrame(rafId);
+      }
+
+      // Start auto-scroll
+      start();
+
+      // Pause on hover/focus/touch; resume on leave/blur/end
+      scroller.addEventListener('mouseenter', stop);
+      scroller.addEventListener('mouseleave', start);
+      scroller.addEventListener('focusin', stop);
+      scroller.addEventListener('focusout', start);
+      scroller.addEventListener('touchstart', stop, { passive: true });
+      scroller.addEventListener('touchend', start,   { passive: true });
+
+      // Allow wheel horizontal scroll (shift+wheel not needed on many mobiles)
+      scroller.addEventListener('wheel', function(e){
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+          stop();
+          pos = scroller.scrollLeft + e.deltaX;
+          scroller.scrollLeft = pos;
+          // resume a bit later to avoid fighting user scroll
+          clearTimeout(scroller.__resumeTimer);
+          scroller.__resumeTimer = setTimeout(start, 800);
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
+  </script>
 </footer>
