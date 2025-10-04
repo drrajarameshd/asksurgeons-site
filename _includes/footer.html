@@ -9,6 +9,7 @@
         <div class="muted">Email: <a id="as-email" href="#"></a></div>
         <div class="muted">Address: <span id="as-address"></span></div>
       </div>
+
       <div>
         <h4>Quick Links</h4>
         <a href="/">Home</a><br/>
@@ -18,15 +19,47 @@
         <a href="/doctors/">Doctors</a><br/>
         <a href="https://app.asksurgeons.com">Book Appointment</a>
       </div>
+
       <div>
         <h4>Our Specialists</h4>
         <div id="as-docs-scroller">
-          <div id="as-docs-track"></div>
+          <div id="as-docs-track">
+            {%- assign doctors = site.data.doctors.doctors -%}
+            {%- for d in doctors -%}
+            <div class="doc-card">
+              <img loading="lazy"
+                   src="{{ d.image }}"
+                   alt="{{ d.name }}"
+                   onerror="this.src='/assets/images/site-images/doctor-placeholder.webp'">
+              <div class="meta">
+                <div class="name">{{ d.name }}</div>
+                <div class="qual">{{ d.bio }}</div>
+                <div class="dept">{{ d.department }}</div>
+              </div>
+            </div>
+            {%- endfor -%}
+            {#-- duplicate once for seamless scroll --#}
+            {%- for d in doctors -%}
+            <div class="doc-card">
+              <img loading="lazy"
+                   src="{{ d.image }}"
+                   alt="{{ d.name }}"
+                   onerror="this.src='/assets/images/site-images/doctor-placeholder.webp'">
+              <div class="meta">
+                <div class="name">{{ d.name }}</div>
+                <div class="qual">{{ d.bio }}</div>
+                <div class="dept">{{ d.department }}</div>
+              </div>
+            </div>
+            {%- endfor -%}
+          </div>
         </div>
       </div>
     </div>
+
     <div class="muted" style="margin-top:14px;">© <span id="as-year"></span> AskSurgeons.com • Hyderabad</div>
   </div>
+
   <script>
     // Populate contact fields from SITE_CONFIG
     (function(){
@@ -40,4 +73,3 @@
     })();
   </script>
 </footer>
-
