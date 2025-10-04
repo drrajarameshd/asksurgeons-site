@@ -55,7 +55,7 @@ a:hover{ text-decoration:underline; }
 .as-banner{
   position: relative;
   height: 48vh; min-height: 320px; max-height: 520px;
-  background: url('/assets/images/site-images/ask-surgeons-banner.jpg') center/cover no-repeat fixed;
+  background: url('asksurgeons-site/assets/images/site-images/ask-surgeons-banner.jpeg') center/cover no-repeat fixed;
   display:flex; align-items:center;
 }
 .as-banner .shade{ position:absolute; inset:0; background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.25)); }
