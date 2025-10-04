@@ -95,22 +95,86 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
 .footer a{ color:#dbeafe; }
 .footer .muted{ color:#94a3b8; font-size:14px; }
 
-/* Doctor scroller */
-#as-docs-scroller{ overflow-x:auto; white-space:nowrap; scrollbar-width:none; -ms-overflow-style:none; }
-#as-docs-scroller::-webkit-scrollbar{ display:none; }
-#as-docs-track{ display:flex; gap:12px; padding: 12px 0 4px; }
-.doc-card{
-  background:#0b1222; border:1px solid #12223d; border-radius:14px; overflow:hidden;
-  width: 260px; min-width: 220px; color:#cbd5e1;
-  display:flex; gap:12px; align-items:center; padding:10px;
+/* ───────────────────────────────────────
+   Doctor Auto-scroll Strip (Option C)
+   ─────────────────────────────────────── */
+#as-docs-scroller {
+  overflow: hidden;            /* prevents page-level scroll */
+  position: relative;
+  padding: 10px 0;
 }
-.doc-card img{ width:64px; height:64px; border-radius:12px; object-fit:cover; background:#0e1a30; }
-.doc-card .meta{ display:flex; flex-direction:column; gap:2px; min-width:0; }
-.doc-card .name{ font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.doc-card .qual, .doc-card .dept{ font-size:12px; color:#9fb3cc; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-#as-docs-track{ display:flex; gap:12px; padding:12px 0 4px; flex-wrap:nowrap; }
-.doc-card{ flex: 0 0 auto; } /* don't let cards shrink; keeps horizontal width */
+#as-docs-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* Each doctor card */
+.doc-card {
+  flex: 0 0 auto; /* don’t let cards shrink */
+  width: 260px;
+  min-width: 220px;
+  background: #0b1222;
+  border: 1px solid #12223d;
+  border-radius: 14px;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.doc-card img {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #0e1a30;
+}
+
+.doc-card .meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.doc-card .name {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-card .qual,
+.doc-card .dept {
+  font-size: 12px;
+  color: #9fb3cc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Optional: fade on edges to hint scrollable */
+#as-docs-scroller {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+}
 
 /* =========================
    Breakpoints
