@@ -12,11 +12,11 @@
 
       <div>
         <h4>Quick Links</h4>
-        <a href="/">Home</a><br/>
-        <a href="/about/">About</a><br/>
-        <a href="/services/">Services</a><br/>
-        <a href="/blog/">Blog</a><br/>
-        <a href="/doctors/">Doctors</a><br/>
+        <a href="{{ site.baseurl }}/">Home</a><br/>
+        <a href="{{ site.baseurl }}/about/">About</a><br/>
+        <a href="{{ site.baseurl }}/services/">Services</a><br/>
+        <a href="{{ site.baseurl }}/blog/">Blog</a><br/>
+        <a href="{{ site.baseurl }}/doctors/">Doctors</a><br/>
         <a href="https://app.asksurgeons.com">Book Appointment</a>
       </div>
 
@@ -28,9 +28,9 @@
             {%- for d in doctors -%}
             <div class="doc-card">
               <img loading="lazy"
-                   src="{{ d.image }}"
+                   src="{{ d.image | prepend: site.baseurl }}"
                    alt="{{ d.name }}"
-                   onerror="this.src='/assets/images/site-images/doctor-placeholder.webp'">
+                   onerror="this.src='{{ site.baseurl }}/assets/images/site-images/doctor-placeholder.webp'">
               <div class="meta">
                 <div class="name">{{ d.name }}</div>
                 <div class="qual">{{ d.bio }}</div>
@@ -38,13 +38,12 @@
               </div>
             </div>
             {%- endfor -%}
-            {#-- duplicate once for seamless scroll --#}
             {%- for d in doctors -%}
             <div class="doc-card">
               <img loading="lazy"
-                   src="{{ d.image }}"
+                   src="{{ d.image | prepend: site.baseurl }}"
                    alt="{{ d.name }}"
-                   onerror="this.src='/assets/images/site-images/doctor-placeholder.webp'">
+                   onerror="this.src='{{ site.baseurl }}/assets/images/site-images/doctor-placeholder.webp'">
               <div class="meta">
                 <div class="name">{{ d.name }}</div>
                 <div class="qual">{{ d.bio }}</div>
@@ -64,7 +63,17 @@
     // Populate contact fields from SITE_CONFIG
     (function(){
       const C = window.SITE_CONFIG || {};
-      const set = (id, val) => { var el = document.getElementById(id); if(el){ (id==='as-email') ? (el.textContent=val, el.href='mailto:'+val) : (el.textContent = val); } };
+      const set = (id, val) => {
+        var el = document.getElementById(id);
+        if(el){
+          if (id === 'as-email') {
+            el.textContent = val;
+            el.href = 'mailto:' + val;
+          } else {
+            el.textContent = val;
+          }
+        }
+      };
       set('as-phone-primary', C.phonePrimary || '');
       set('as-phone-clinic', C.phoneClinic || '');
       set('as-email', C.email || '');

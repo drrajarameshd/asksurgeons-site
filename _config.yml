@@ -7,7 +7,7 @@ description: >-
   Read expert medical blogs from our doctors, then book consultations at
   app.asksurgeons.com.
 url: "https://www.asksurgeons.com"   # full domain with protocol
-baseurl: ""                          # root
+baseurl: "/asksurgeons-site"                          # root
 timezone: "Asia/Kolkata"
 lang: "en-IN"
 

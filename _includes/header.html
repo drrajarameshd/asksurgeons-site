@@ -3,16 +3,16 @@
   <div class="container as-header-inner">
     <div class="brand">
       <button id="as-menu-button" class="icon-btn mobile-only" aria-label="Open menu" aria-controls="as-drawer" aria-expanded="false">☰</button>
-      <img src="/assets/images/site-images/favicon.png" alt="Ask Surgeons logo" onerror="this.style.display='none'">
-      <a href="/" class="brand-name" aria-label="Ask Surgeons Home">Ask Surgeons</a>
+      <img src="{{ site.baseurl }}/assets/images/site-images/favicon.png" alt="Ask Surgeons logo" onerror="this.style.display='none'">
+      <a href="{{ site.baseurl }}/" class="brand-name" aria-label="Ask Surgeons Home">Ask Surgeons</a>
     </div>
 
     <nav class="nav-desktop" aria-label="Primary navigation">
-      <a href="/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/services/">Services</a>
-      <a href="/blog/">Blog</a>
-      <a href="/doctors/">Doctors</a>
+      <a href="{{ site.baseurl }}/">Home</a>
+      <a href="{{ site.baseurl }}/about/">About</a>
+      <a href="{{ site.baseurl }}/services/">Services</a>
+      <a href="{{ site.baseurl }}/blog/">Blog</a>
+      <a href="{{ site.baseurl }}/doctors/">Doctors</a>
       <a class="cta" href="https://app.asksurgeons.com">Book Appointment</a>
     </nav>
 
@@ -34,6 +34,7 @@
     <div style="font-weight:800">Menu</div>
     <button id="as-drawer-close" class="icon-btn" aria-label="Close menu">✕</button>
   </div>
-  <ul id="as-drawer-nav" class="drawer-nav" role="menu"></ul>
+  <ul id="as-drawer-nav" class="drawer-nav" role="menu">
+    <!-- items injected via JS -->
+  </ul>
 </aside>
-
