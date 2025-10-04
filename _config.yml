@@ -1,26 +1,32 @@
+# Site basics
 title: "AskSurgeons.com"
 description: >-
   Hyderabad’s trusted platform for surgical guidance and second opinions.
   Read expert medical blogs from our doctors, then book consultations at
   app.asksurgeons.com.
-url: "https://www.asksurgeons.com"   # your custom domain
-baseurl: ""                          # leave blank for root domain
+url: "https://www.asksurgeons.com"   # full domain with protocol
+baseurl: ""                          # root
+timezone: "Asia/Kolkata"
+lang: "en-IN"
 
 # Theme
 remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: default       # you can try: "air", "contrast", etc.
-
-# Author default
-author_profile: true
-
-# Pagination
-paginate: 5
-paginate_path: /page:num/
+minimal_mistakes_skin: "default"     # try: "air", "contrast", etc.
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 permalink: /:categories/:title/
+sass:
+  style: compressed
+
+# Search (client-side, no plugin needed)
+search: true
+search_full_content: true
+
+# Pagination
+paginate: 5
+paginate_path: "/page:num/"
 
 # Collections
 collections:
@@ -28,6 +34,7 @@ collections:
     output: true
     permalink: /doctors/:path/
 
+# Defaults
 defaults:
   - scope:
       path: ""
@@ -38,27 +45,57 @@ defaults:
       read_time: true
       comments: false
       share: true
+      toc: true
+      toc_sticky: true
+      related: true
   - scope:
       path: ""
       type: authors
     values:
       layout: author
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: false
 
-# Site-wide variables (you can use these in includes/HTML)
+# Site-wide variables (used in includes/HTML)
 theme_color: "#007bbf"
-contact_number: "08062182411"
+contact_number: "+91 8062182411"      # update if you prefer a different format
 contact_email: "asksurgeons@gmail.com"
+clinic_number: "+91 79896 76770"      # optional: second line number
 address: "Hyderabad"
+brand:
+  logo: /assets/images/logo.png       # add your logo file
+  social_image: /assets/images/og.jpg # used for link previews
 
-# Plugins supported by GitHub Pages
+# Social (used by jekyll-seo-tag)
+social:
+  name: "AskSurgeons"
+  links:
+    - https://app.asksurgeons.com
+    # - https://www.instagram.com/<your-handle>
+    # - https://x.com/<your-handle>
+    # - https://www.facebook.com/<your-page>
+
+# Navigation (point this to _data/navigation.yml)
+collections_dir: ""
+include:
+  - _pages
+
+# Plugins (GitHub Pages–safe)
 plugins:
   - jekyll-paginate
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-include-cache
 
-# Exclude these from build
+# Exclude from build
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
+  - README.md
