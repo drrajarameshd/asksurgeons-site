@@ -1,0 +1,15 @@
+# _data/navigation.yml
+main:
+  - label: "Home"
+    url: "/"
+  - label: "About"
+    url: "/about/"
+  - label: "Services"
+    url: "/services/"
+  - label: "Blog"
+    url: "/blog/"
+  - label: "Doctors"
+    url: "/doctors/"
+  - label: "Book Appointment"
+    url: "https://app.asksurgeons.com"
+    external: true
