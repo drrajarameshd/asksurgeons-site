@@ -1,1 +1,39 @@
+<!-- _includes/header.html -->
+<header class="as-header" role="banner" aria-label="Site header">
+  <div class="container as-header-inner">
+    <div class="brand">
+      <button id="as-menu-button" class="icon-btn mobile-only" aria-label="Open menu" aria-controls="as-drawer" aria-expanded="false">☰</button>
+      <img src="/assets/images/site-images/favicon.png" alt="Ask Surgeons logo" onerror="this.style.display='none'">
+      <a href="/" class="brand-name" aria-label="Ask Surgeons Home">Ask Surgeons</a>
+    </div>
+
+    <nav class="nav-desktop" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/services/">Services</a>
+      <a href="/blog/">Blog</a>
+      <a href="/doctors/">Doctors</a>
+      <a class="cta" href="https://app.asksurgeons.com">Book Appointment</a>
+    </nav>
+
+    <div class="controls">
+      <button id="as-search-button" class="icon-btn" aria-label="Toggle search">🔎</button>
+    </div>
+  </div>
+
+  <!-- expanding search box -->
+  <div id="as-search-box" class="container" role="search">
+    <input id="as-search-input" type="search" placeholder="Search site..." aria-label="Search site" />
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div id="as-overlay"></div>
+<aside id="as-drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <div style="font-weight:800">Menu</div>
+    <button id="as-drawer-close" class="icon-btn" aria-label="Close menu">✕</button>
+  </div>
+  <ul id="as-drawer-nav" class="drawer-nav" role="menu"></ul>
+</aside>
 
