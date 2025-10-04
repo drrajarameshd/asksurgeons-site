@@ -1,1 +1,64 @@
+<!-- _layouts/default.html -->
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: "AskSurgeons — Surgical Guidance & Second Opinions" }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | default: 'Hyderabad’s trusted platform for surgical guidance and second opinions.' }}">
+  <meta name="keywords" content="doctors, surgeons, ask surgeons, Attapur, Hyderabad, second opinions">
+  <meta name="theme-color" content="#007BBF">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page.title | default: 'AskSurgeons — Surgical Guidance & Second Opinions' }}">
+  <meta property="og:description" content="{{ page.excerpt | default: site.description }}">
+  <meta property="og:image" content="/assets/images/site-images/ask-surgeons-banner.jpg">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title | default: 'AskSurgeons — Surgical Guidance & Second Opinions' }}">
+  <meta name="twitter:description" content="{{ page.excerpt | default: site.description }}">
+  <meta name="twitter:image" content="/assets/images/site-images/ask-surgeons-banner.jpg">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"AskSurgeons",
+    "url":"https://www.asksurgeons.com",
+    "logo":"https://www.asksurgeons.com/assets/images/site-images/ask-surgeons-banner.jpg",
+    "sameAs":[ "https://app.asksurgeons.com" ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "url":"https://www.asksurgeons.com",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://www.asksurgeons.com/search?q={query}",
+      "query-input":"required name=query"
+    }
+  }
+  </script>
+
+  <link rel="preload" as="image" href="/assets/images/site-images/ask-surgeons-banner.jpg">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/site.config.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body>
+  {% include header.html %}
+
+  <main id="content" role="main">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+</body>
+</html>
 
