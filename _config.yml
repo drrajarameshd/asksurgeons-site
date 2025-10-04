@@ -1,4 +1,6 @@
+# ─────────────────────────────────────────────────────────────
 # Site basics
+# ─────────────────────────────────────────────────────────────
 title: "AskSurgeons.com"
 description: >-
   Hyderabad’s trusted platform for surgical guidance and second opinions.
@@ -9,93 +11,87 @@ baseurl: ""                          # root
 timezone: "Asia/Kolkata"
 lang: "en-IN"
 
-# Theme
-remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "default"     # try: "air", "contrast", etc.
-
+# ─────────────────────────────────────────────────────────────
 # Build settings
+# ─────────────────────────────────────────────────────────────
 markdown: kramdown
 highlighter: rouge
 permalink: /:categories/:title/
 sass:
   style: compressed
 
-# Search (client-side, no plugin needed)
-search: true
-search_full_content: true
-
-# Pagination
+# Pagination (optional; used if you add a blog index)
 paginate: 5
 paginate_path: "/page:num/"
 
-# Collections
-collections:
-  authors:
-    output: true
-    permalink: /doctors/:path/
+# Include additional folders (e.g., standalone pages in _pages/)
+include:
+  - _pages
 
-# Defaults
+# ─────────────────────────────────────────────────────────────
+# Defaults (use our custom layouts/includes)
+# ─────────────────────────────────────────────────────────────
 defaults:
   - scope:
       path: ""
       type: posts
     values:
-      layout: single
-      author_profile: true
-      read_time: true
+      layout: default        # we use our own _layouts/default.html
+      author_profile: false   # not using theme profiles
+      read_time: false
       comments: false
-      share: true
-      toc: true
-      toc_sticky: true
-      related: true
-  - scope:
-      path: ""
-      type: authors
-    values:
-      layout: author
+      share: false
+      toc: false
+      related: false
   - scope:
       path: ""
       type: pages
     values:
-      layout: single
-      author_profile: false
+      layout: default
 
-# Site-wide variables (used in includes/HTML)
+# ─────────────────────────────────────────────────────────────
+# Site-wide variables (used in our includes/JS)
+# ─────────────────────────────────────────────────────────────
 theme_color: "#007bbf"
-contact_number: "+91 8062182411"      # update if you prefer a different format
+contact_number: "+91 8062182411"
 contact_email: "asksurgeons@gmail.com"
-clinic_number: "+91 79896 76770"      # optional: second line number
+clinic_number: "+91 79896 76770"
 address: "Hyderabad"
 brand:
-  logo: /assets/images/logo.png       # add your logo file
-  social_image: /assets/images/og.jpg # used for link previews
+  logo: /assets/images/logo.png
+  social_image: /assets/images/og.jpg
 
-# Social (used by jekyll-seo-tag)
+# Social (consumed by jekyll-seo-tag and your templates)
 social:
   name: "AskSurgeons"
   links:
     - https://app.asksurgeons.com
-    # - https://www.instagram.com/<your-handle>
-    # - https://x.com/<your-handle>
-    # - https://www.facebook.com/<your-page>
 
-# Navigation (point this to _data/navigation.yml)
-collections_dir: ""
-include:
-  - _pages
-
+# ─────────────────────────────────────────────────────────────
 # Plugins (GitHub Pages–safe)
+# ─────────────────────────────────────────────────────────────
 plugins:
   - jekyll-paginate
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-include-cache
 
+# ─────────────────────────────────────────────────────────────
+# Collections (remove if unused)
+# ─────────────────────────────────────────────────────────────
+# If you later add a doctors profile collection, uncomment and create layouts.
+# collections:
+#   doctors:
+#     output: true
+#     permalink: /doctors/:path/
+
+# ─────────────────────────────────────────────────────────────
 # Exclude from build
+# ─────────────────────────────────────────────────────────────
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
   - README.md
+
