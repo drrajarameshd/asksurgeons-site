@@ -7,13 +7,13 @@ title: "Our Doctors"
   <div class="container">
     <h2>Our Doctors</h2>
     <div class="grid">
-      {%- assign doctors = site.data.doctors.doctors -%}
+      {%- assign doctors = site.data.doctors-%}
       {%- for d in doctors -%}
       <article class="card">
         <div style="display:flex; gap:12px; align-items:center;">
-          <img src="{{ d.image }}" alt="{{ d.name }}" width="72" height="72"
+          <img src="{{ d.image | prepend: site.baseurl }}" alt="{{ d.name }}" width="72" height="72"
                style="border-radius:12px; object-fit:cover;"
-               onerror="this.src='/assets/images/site-images/doctor-placeholder.webp'">
+               onerror="this.src='{{ site.baseurl }}/assets/images/site-images/doctor-placeholder.webp'">
           <div>
             <h3 style="margin:0 0 6px;">{{ d.name }}</h3>
             <div style="color:#5c6470; font-size:14px;">{{ d.speciality }} • {{ d.department }}</div>
