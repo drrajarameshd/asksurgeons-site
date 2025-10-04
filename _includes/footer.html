@@ -63,60 +63,44 @@
   </div>
 
   <!-- tiny helper to auto-scroll the doctors strip -->
-  <script>
-(function () {
+<script>
+(function(){
   const scroller = document.getElementById('as-docs-scroller');
-  const track = document.getElementById('as-docs-track');
-  const yearEl = document.getElementById('as-year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-  if (!scroller || !track) return;
+  const track    = document.getElementById('as-docs-track');
+  if(!scroller || !track) return;
 
-  // iOS smooth momentum scroll
-  scroller.style.webkitOverflowScrolling = 'touch';
+  // Ensure single row
+  track.style.display = 'flex';
+  track.style.flexWrap = 'nowrap';
 
-  // If there aren't enough cards to scroll, bail early
-  if (track.scrollWidth <= scroller.clientWidth) return;
-
+  let x = 0;
   let rafId = null;
-  let pos = scroller.scrollLeft || 0;
-  const SPEED = 0.6; // px per frame
+  const SPEED = 0.35; // px per frame (tweak)
+  const half = () => track.scrollWidth / 2; // list duplicated once
 
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function frame() {
-    const loopWidth = Math.max(1, track.scrollWidth / 2); // list is duplicated once
-    pos = (pos + SPEED) % loopWidth;
-    scroller.scrollLeft = pos;
+  function frame(){
+    x -= SPEED;
+    if (-x >= half()) x = 0;           // loop at halfway point
+    track.style.transform = `translate3d(${x}px,0,0)`; // GPU-accelerated
     rafId = requestAnimationFrame(frame);
   }
-  function start() { if (!prefersReduced) { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(frame); } }
-  function stop()  { cancelAnimationFrame(rafId); }
 
-  // Start
-  start();
+  function start(){ cancelAnimationFrame(rafId); rafId = requestAnimationFrame(frame); }
+  function stop(){  cancelAnimationFrame(rafId); }
+
+  // Respect reduced motion
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) start();
 
   // Pause on hover/touch/focus
   scroller.addEventListener('mouseenter', stop);
   scroller.addEventListener('mouseleave', start);
-  scroller.addEventListener('focusin',  stop);
-  scroller.addEventListener('focusout', start);
-  scroller.addEventListener('touchstart', stop, { passive: true });
-  scroller.addEventListener('touchend',   start, { passive: true });
-
-  // Pause when user wheels horizontally, resume after a moment
-  scroller.addEventListener('wheel', function (e) {
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      stop();
-      scroller.scrollLeft += e.deltaX;
-      clearTimeout(scroller.__resumeTimer);
-      scroller.__resumeTimer = setTimeout(start, 800);
-      e.preventDefault();
-    }
-  }, { passive: false });
-
-  // Save battery: pause when tab is hidden
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stop(); else start();
-  });
+  scroller.addEventListener('touchstart', stop, {passive:true});
+  scroller.addEventListener('touchend', start,   {passive:true});
+  document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
 })();
+
+  
 </script>
+
+  
 </footer>
