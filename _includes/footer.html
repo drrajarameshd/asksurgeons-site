@@ -63,44 +63,110 @@
   </div>
 
   <!-- tiny helper to auto-scroll the doctors strip -->
+
 <script>
 (function(){
   const scroller = document.getElementById('as-docs-scroller');
   const track    = document.getElementById('as-docs-track');
-  if(!scroller || !track) return;
+  const yearEl   = document.getElementById('as-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  if (!scroller || !track) return;
 
   // Ensure single row
   track.style.display = 'flex';
   track.style.flexWrap = 'nowrap';
 
-  let x = 0;
-  let rafId = null;
-  const SPEED = 0.35; // px per frame (tweak)
-  const half = () => track.scrollWidth / 2; // list duplicated once
+  // If not wide enough to scroll, bail out
+  if (track.scrollWidth <= scroller.clientWidth) return;
 
-  function frame(){
-    x -= SPEED;
-    if (-x >= half()) x = 0;           // loop at halfway point
-    track.style.transform = `translate3d(${x}px,0,0)`; // GPU-accelerated
-    rafId = requestAnimationFrame(frame);
+  let x = 0;                // current translateX
+  let rafId = null;
+  const SPEED = 0.35;       // px/frame for auto-scroll (tweak as you like)
+  const halfWidth = () => track.scrollWidth / 2; // list duplicated once
+
+  function render() {
+    // loop at half track width for a seamless cycle
+    if (-x >= halfWidth()) x = 0;
+    track.style.transform = `translate3d(${x}px,0,0)`;
   }
 
-  function start(){ cancelAnimationFrame(rafId); rafId = requestAnimationFrame(frame); }
+  // ---- Auto-scroll ----
+  const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function frame(){
+    x -= SPEED;
+    render();
+    rafId = requestAnimationFrame(frame);
+  }
+  function start(){ if (!prefersReduced) { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(frame); } }
   function stop(){  cancelAnimationFrame(rafId); }
 
-  // Respect reduced motion
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+  // Start auto-scroll
+  start();
 
-  // Pause on hover/touch/focus
+  // ---- Drag to scroll (touch/mouse/pointer) ----
+  let isDragging = false;
+  let startClientX = 0;
+  let startX = 0;          // x at drag start
+  let resumeTimer = null;
+
+  function onPointerDown(e){
+    // only primary button
+    if (e.button !== undefined && e.button !== 0) return;
+    isDragging = true;
+    scroller.classList.add('dragging');
+    stop();                          // pause auto-scroll
+    startClientX = e.clientX ?? (e.touches && e.touches[0].clientX);
+    startX = x;
+    // capture pointer to keep receiving move events
+    if (scroller.setPointerCapture && e.pointerId !== undefined) {
+      scroller.setPointerCapture(e.pointerId);
+    }
+  }
+
+  function onPointerMove(e){
+    if (!isDragging) return;
+    const clientX = e.clientX ?? (e.touches && e.touches[0].clientX);
+    if (clientX == null) return;
+    const delta = clientX - startClientX;
+    x = startX + delta;              // drag = translate the track
+    // Wrap x within [-halfWidth, 0) to keep it seamless
+    const hw = halfWidth();
+    if (-x >= hw) x += hw;           // dragged past loop end → wrap
+    if (x > 0) x -= hw;              // dragged past start → wrap from left
+    render();
+    e.preventDefault();
+  }
+
+  function onPointerUp(){
+    if (!isDragging) return;
+    isDragging = false;
+    scroller.classList.remove('dragging');
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(start, 800); // resume auto-scroll after idle
+  }
+
+  // Pointer events (modern browsers)
+  if (window.PointerEvent){
+    scroller.addEventListener('pointerdown', onPointerDown, {passive:false});
+    window.addEventListener('pointermove', onPointerMove, {passive:false});
+    window.addEventListener('pointerup',   onPointerUp,   {passive:true});
+    window.addEventListener('pointercancel', onPointerUp, {passive:true});
+  } else {
+    // Fallback: touch + mouse
+    scroller.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup',   onPointerUp);
+    scroller.addEventListener('touchstart', onPointerDown, {passive:false});
+    window.addEventListener('touchmove',  onPointerMove,  {passive:false});
+    window.addEventListener('touchend',   onPointerUp,    {passive:true});
+    window.addEventListener('touchcancel',onPointerUp,    {passive:true});
+  }
+
+  // Pause on hover (desktop) and when tab is hidden
   scroller.addEventListener('mouseenter', stop);
-  scroller.addEventListener('mouseleave', start);
-  scroller.addEventListener('touchstart', stop, {passive:true});
-  scroller.addEventListener('touchend', start,   {passive:true});
-  document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
+  scroller.addEventListener('mouseleave', () => { if (!isDragging) start(); });
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : (!isDragging && start()));
 })();
-
-  
 </script>
-
   
 </footer>
