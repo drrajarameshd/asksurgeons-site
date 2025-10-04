@@ -109,6 +109,9 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
 .doc-card .name{ font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .doc-card .qual, .doc-card .dept{ font-size:12px; color:#9fb3cc; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
+#as-docs-track{ display:flex; gap:12px; padding:12px 0 4px; flex-wrap:nowrap; }
+.doc-card{ flex: 0 0 auto; } /* don't let cards shrink; keeps horizontal width */
+
 /* =========================
    Breakpoints
    ========================= */
