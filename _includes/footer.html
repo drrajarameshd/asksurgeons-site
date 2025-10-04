@@ -24,7 +24,7 @@
         <h4>Our Specialists</h4>
         <div id="as-docs-scroller">
           <div id="as-docs-track">
-            {%- assign doctors = site.data.doctors.doctors -%}
+            {%- assign doctors = site.data.doctors -%}
             {%- for d in doctors -%}
             <div class="doc-card">
               <img loading="lazy"
@@ -59,26 +59,4 @@
     <div class="muted" style="margin-top:14px;">© <span id="as-year"></span> AskSurgeons.com • Hyderabad</div>
   </div>
 
-  <script>
-    // Populate contact fields from SITE_CONFIG
-    (function(){
-      const C = window.SITE_CONFIG || {};
-      const set = (id, val) => {
-        var el = document.getElementById(id);
-        if(el){
-          if (id === 'as-email') {
-            el.textContent = val;
-            el.href = 'mailto:' + val;
-          } else {
-            el.textContent = val;
-          }
-        }
-      };
-      set('as-phone-primary', C.phonePrimary || '');
-      set('as-phone-clinic', C.phoneClinic || '');
-      set('as-email', C.email || '');
-      set('as-address', C.address || '');
-      document.getElementById('as-year').textContent = new Date().getFullYear();
-    })();
-  </script>
 </footer>
