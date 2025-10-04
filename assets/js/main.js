@@ -1,8 +1,8 @@
-// assets/js/main.js
+// assets/js/main.js/
 (function(){
   const $ = (sel, ctx=document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 
-  // Theme color from config
   document.documentElement.style.setProperty('--theme', (window.SITE_CONFIG?.themeColor) || '#007BBF');
 
   // Mobile menu toggle (left slide-in)
@@ -23,8 +23,8 @@
   overlay?.addEventListener('click', closeDrawer);
   $('#as-drawer-close')?.addEventListener('click', closeDrawer);
 
-  // Build mobile nav from config (kept in JS)
-  const navList = document.querySelector('#as-drawer-nav');
+  // Build mobile nav from config
+  const navList = $('#as-drawer-nav');
   if (navList && window.SITE_CONFIG?.nav) {
     navList.innerHTML = window.SITE_CONFIG.nav.map(i => `<li><a href="${i.href}">${i.label}</a></li>`).join('');
   }
@@ -34,11 +34,11 @@
   const searchBox = $('#as-search-box');
   searchBtn?.addEventListener('click', () => {
     searchBox?.classList.toggle('show');
-    document.querySelector('#as-search-input')?.focus();
+    $('#as-search-input')?.focus();
   });
 
-  // Parallax-like banner effect (mobile only; desktop uses background-attachment: fixed)
-  const banner = document.querySelector('.as-banner');
+  // Parallax-like banner effect
+  const banner = $('.as-banner');
   if (banner) {
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
@@ -48,24 +48,43 @@
     }, { passive: true });
   }
 
-  // Footer doctor scroller: auto-scroll existing (server-rendered) items
+  // Footer: doctor scroller
+  function renderDoctorScroller() {
+    const track = $('#as-docs-track');
+    if (!track || !window.SITE_CONFIG?.doctors) return;
+    const items = window.SITE_CONFIG.doctors.map(d => `
+      <div class="doc-card">
+        <img loading="lazy" src="${d.image}" alt="${d.name}" onerror="this.src='/assets/images/site-images/doctor-placeholder.webp'"/>
+        <div class="meta">
+          <div class="name">${d.name}</div>
+          <div class="qual">${d.bio}</div>
+          <div class="dept">${d.department}</div>
+        </div>
+      </div>
+    `).join('');
+    track.innerHTML = items + items; // duplicate for seamless loop
+  }
+  renderDoctorScroller();
+
+  // Auto-scroll animation
   let animId = null;
   function startScroll() {
     const container = $('#as-docs-scroller');
-    const track = document.querySelector('#as-docs-track');
-    if (!container || !track) return;
-    let pos = container.scrollLeft || 0;
+    if (!container) return;
+    let pos = 0;
     const speed = 0.6; // px per frame
     function step() {
       pos += speed;
       container.scrollLeft = pos;
-      if (pos >= track.scrollWidth / 2) pos = 0; // loop when hitting mid (we duplicated the list)
+      const track = $('#as-docs-track');
+      if (track && pos >= track.scrollWidth / 2) pos = 0;
       animId = requestAnimationFrame(step);
     }
     cancelAnimationFrame(animId);
     animId = requestAnimationFrame(step);
   }
   startScroll();
-  document.querySelector('#as-docs-scroller')?.addEventListener('mouseenter', () => cancelAnimationFrame(animId));
-  document.querySelector('#as-docs-scroller')?.addEventListener('mouseleave', startScroll);
+  $('#as-docs-scroller')?.addEventListener('mouseenter', () => cancelAnimationFrame(animId));
+  $('#as-docs-scroller')?.addEventListener('mouseleave', startScroll);
 })();
+
