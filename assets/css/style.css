@@ -9,6 +9,12 @@
   --bg-soft:#f6f8fb;
   --maxw: 1200px;
   --header-h: 64px;
+  --bottom-nav-height: 64px;
+  --nav-height: 64px;
+  --footer-bg-start: #f6f9fe;
+  --footer-bg-end: #eaf0fc;
+  --bottom-nav-start:#3368c6;
+  --bottom-nav-end:#5b9bd5;   
 }
 
 *{ box-sizing: border-box; }
@@ -186,6 +192,149 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
     transparent
   );
 }
+
+
+/* ========= BOTTOM NAV ========= */
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;height:var(--bottom-nav-height);background:linear-gradient(90deg,var(--bottom-nav-start),var(--bottom-nav-end));display:flex;justify-content:space-around;align-items:center;z-index:9999;box-shadow:0 -6px 20px rgba(0,0,0,.12);border-top:1px solid rgba(0,0,0,.08);padding-top:6px;padding-bottom:calc(env(safe-area-inset-bottom,0px)+6px)}
+.bottom-nav a{flex:1 1 0;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;text-decoration:none;font-size:.78rem;padding-top:5px;padding-left:6px;padding-right:6px;transition:background .2s ease}
+.bottom-nav a svg{width:22px;height:22px;margin-bottom:4px;fill:#fff;display:block}
+.bottom-nav a.whatsapp-big svg{width:32px;height:32px;margin-bottom:2px}
+.bottom-nav a.active{font-weight:600;background:rgba(255,255,255,0.15);border-radius:6px}
+.bottom-nav a:active{transform:translateY(1px)}
+@media (min-width:992px){.bottom-nav{display:none}}
+
+/* =========================
+   Base Pill-Style Button
+   ========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.55rem 1.4rem;
+  border-radius: 999px !important;
+
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  text-decoration: none;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  cursor: pointer;
+
+  box-shadow: 0 4px 14px rgba(51, 104, 198, 0.18);
+  transition: transform 0.15s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+/* Text wrapping support */
+.btn.allow-wrap {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* Hover */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(51, 104, 198, 0.25);
+}
+
+/* Active */
+.btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(51, 104, 198, 0.2);
+}
+
+/* Disabled */
+.btn.disabled,
+.btn:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =========================
+   Button Variants
+   ========================= */
+
+/* Outline */
+.btn.outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  box-shadow: none;
+}
+
+.btn.outline:hover {
+  background: var(--primary-100);
+}
+
+/* Danger */
+.btn.danger {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+}
+
+.btn.danger:hover {
+  background: #c82333;
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.25);
+}
+
+/* Outline Danger */
+.btn.outline-danger {
+  background: transparent;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  box-shadow: none;
+}
+
+.btn.outline-danger:hover {
+  background: rgba(220, 53, 69, 0.1);
+}
+
+/* Gradient */
+.btn.gradient {
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  color: #fff;
+  border: none;
+}
+
+.btn.gradient:hover {
+  box-shadow: 0 6px 22px rgba(51, 104, 198, 0.35);
+}
+
+/* Muted / Neutral */
+.btn.muted {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  box-shadow: none;
+}
+
+.btn.muted:hover {
+  background: #e5e7eb;
+}
+
+/* Ghost (transparent text button) */
+.btn.ghost {
+  background: transparent;
+  color: var(--primary);
+  border: none;
+  box-shadow: none;
+}
+
+.btn.ghost:hover {
+  background: var(--primary-100);
+}
+
 
 /* =========================
    Breakpoints
