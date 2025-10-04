@@ -98,18 +98,22 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
 /* ───────────────────────────────────────
    Doctor Auto-scroll Strip (Option C)
    ─────────────────────────────────────── */
-#as-docs-scroller {
-  overflow: hidden;            /* prevents page-level scroll */
+#as-docs-scroller{
+  overflow: hidden;
   position: relative;
   padding: 10px 0;
+  touch-action: pan-y;     /* allow vertical page scroll, we handle horizontal drag */
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
+#as-docs-scroller.dragging{ cursor: grabbing; }
 
 #as-docs-track {
   display: flex;
   flex-wrap: nowrap;
   gap: 12px;
   will-change: transform;
-  transition: transform 0.1s linear;
 }
 
 /* Each doctor card */
