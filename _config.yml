@@ -6,8 +6,8 @@ description: >-
   Attapur | Hyderabad’s trusted platform for surgical guidance and second opinions.
   Read expert medical blogs from our doctors, then book consultations at
   app.asksurgeons.com.
-url: "https://www.asksurgeons.com"   # full domain with protocol
-baseurl: "/asksurgeons-site"                          # root
+url: "https://www.asksurgeons.com"
+baseurl: "/asksurgeons-site"   # if deploying at a subpath; set "" when deploying at root
 timezone: "Asia/Kolkata"
 lang: "en-IN"
 
@@ -20,37 +20,52 @@ permalink: /:categories/:title/
 sass:
   style: compressed
 
-# Pagination (optional; used if you add a blog index)
+# Pagination for posts (index page only)
 paginate: 5
 paginate_path: "/page:num/"
 
-# Include additional folders (e.g., standalone pages in _pages/)
+# Include additional folders
 include:
   - _pages
 
 # ─────────────────────────────────────────────────────────────
-# Defaults (use our custom layouts/includes)
+# Collections
+# ─────────────────────────────────────────────────────────────
+collections:
+  doctors:
+    output: true
+    permalink: /doctors/:slug/
+
+# ─────────────────────────────────────────────────────────────
+# Defaults (merged into a single array)
 # ─────────────────────────────────────────────────────────────
 defaults:
   - scope:
       path: ""
       type: posts
     values:
-      layout: default        # we use our own _layouts/default.html
-      author_profile: false   # not using theme profiles
+      layout: post            # Ensure _layouts/post.html exists; else use "default"
+      author_profile: false
       read_time: false
       comments: false
       share: false
       toc: false
       related: false
+
   - scope:
       path: ""
       type: pages
     values:
       layout: default
 
+  - scope:
+      path: ""
+      type: doctors
+    values:
+      layout: doctor          # Ensure _layouts/doctor.html exists
+
 # ─────────────────────────────────────────────────────────────
-# Site-wide variables (used in our includes/JS)
+# Site-wide variables
 # ─────────────────────────────────────────────────────────────
 theme_color: "#007bbf"
 contact_number: "+91 8062182411"
@@ -61,7 +76,6 @@ brand:
   logo: /assets/images/site-images/logo.webp
   social_image: /assets/images/og.jpg
 
-# Social (consumed by jekyll-seo-tag and your templates)
 social:
   name: "AskSurgeons"
   links:
@@ -69,27 +83,12 @@ social:
 
 # ─────────────────────────────────────────────────────────────
 # Plugins (GitHub Pages–safe)
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 plugins:
   - jekyll-paginate
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-
-# ─────────────────────────────────────────────────────────────
-# Collections (remove if unused)
-# ─────────────────────────────────────────────────────────────
-collections:
-  doctors:
-    output: true
-    permalink: /doctors/:slug/
-defaults:
-  - scope:
-      path: ""
-      type: doctors
-    values:
-      layout: doctor
-
 
 # ─────────────────────────────────────────────────────────────
 # Exclude from build
@@ -100,4 +99,3 @@ exclude:
   - node_modules
   - vendor
   - README.md
-
