@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────
 title: "AskSurgeons.com"
 description: >-
-  Hyderabad’s trusted platform for surgical guidance and second opinions.
+  Attapur | Hyderabad’s trusted platform for surgical guidance and second opinions.
   Read expert medical blogs from our doctors, then book consultations at
   app.asksurgeons.com.
 url: "https://www.asksurgeons.com"   # full domain with protocol
@@ -55,10 +55,10 @@ defaults:
 theme_color: "#007bbf"
 contact_number: "+91 8062182411"
 contact_email: "asksurgeons@gmail.com"
-clinic_number: "+91 79896 76770"
-address: "Hyderabad"
+clinic_number: "+91 7989676770"
+address: "Attapur | Hyderabad"
 brand:
-  logo: /assets/images/logo.png
+  logo: /assets/images/site-images/logo.webp
   social_image: /assets/images/og.jpg
 
 # Social (consumed by jekyll-seo-tag and your templates)
