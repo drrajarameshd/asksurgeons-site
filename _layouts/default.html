@@ -1,35 +1,18 @@
 <!doctype html>
 <html lang="{{ page.lang | default: site.lang }}">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {%- seo -%}
-  <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}">
-  <link rel="preload" as="image" href="{{ site.brand.logo | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
-  
+  {% include head.html %}
 </head>
 <body>
-  <header class="site-header">
-    <a href="{{ '/' | relative_url }}" class="brand">
-      <img src="{{ site.brand.logo | relative_url }}" alt="AskSurgeons logo" width="180" height="48">
-    </a>
-    <nav class="site-nav">
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <a href="{{ '/doctors/' | relative_url }}">Doctors</a>
-      <a href="{{ '/blog/' | relative_url }}">Blog</a>
-      <a href="https://app.asksurgeons.com">Book</a>
-    </nav>
-  </header>
+  {% include header.html %}
 
   <main class="site-main">
     {{ content }}
   </main>
 
-  <footer class="site-footer">
-    <p>{{ site.address }} · {{ site.contact_number }}</p>
-  </footer>
+  {% include bottom-nav.html %}
+  {% include footer.html %}
 </body>
 </html>
+
 
