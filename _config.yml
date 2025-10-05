@@ -7,7 +7,7 @@ description: >-
   Read expert medical blogs from our doctors, then book consultations at
   app.asksurgeons.com.
 url: "https://www.asksurgeons.com"
-baseurl: "/asksurgeons-site"   # if deploying at a subpath; set "" when deploying at root
+baseurl: ""   # if deploying at a subpath; set "" when deploying at root
 timezone: "Asia/Kolkata"
 lang: "en-IN"
 
