@@ -1,0 +1,23 @@
+---
+layout: null
+permalink: /search.json
+---
+{
+  "title": {{ site.title | jsonify }},
+  "count": {{ site.posts | size }},
+  "docs": [
+    {% assign posts = site.posts | where_exp:'p','p.draft != true' %}
+    {% for post in posts %}
+    {
+      "id": {{ forloop.index0 }},
+      "url": {{ post.url | relative_url | jsonify }},
+      "title": {{ post.title | jsonify }},
+      "date": {{ post.date | date_to_xmlschema | jsonify }},
+      "tags": {{ post.tags | jsonify }},
+      "excerpt": {{ post.excerpt | strip_html | strip_newlines | truncate: 280 | jsonify }},
+      "content": {{ post.content | strip_html | replace: '\n', ' ' | truncate: 2000 | jsonify }},
+      "thumbnail": {{ post.thumbnail | default: '' | relative_url | jsonify }}
+    }{% if forloop.last == false %},{% endif %}
+    {% endfor %}
+  ]
+}
