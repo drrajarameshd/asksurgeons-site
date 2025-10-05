@@ -79,11 +79,17 @@ plugins:
 # ─────────────────────────────────────────────────────────────
 # Collections (remove if unused)
 # ─────────────────────────────────────────────────────────────
-# If you later add a doctors profile collection, uncomment and create layouts.
-# collections:
-#   doctors:
-#     output: true
-#     permalink: /doctors/:path/
+collections:
+  doctors:
+    output: true
+    permalink: /doctors/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: doctors
+    values:
+      layout: doctor        # use our custom layout below
 
 # ─────────────────────────────────────────────────────────────
 # Exclude from build
