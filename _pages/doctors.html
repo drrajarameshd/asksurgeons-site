@@ -1,0 +1,21 @@
+---
+title: "Our Doctors"
+permalink: /doctors/
+layout: default
+---
+
+<h1>Our Doctors</h1>
+
+<ul class="doctor-grid">
+  {%- assign sorted = site.doctors | sort: "title" -%}
+  {%- for doc in sorted -%}
+    <li class="doctor-card">
+      {%- assign p = doc.image | default: '/assets/images/doctors/' | append: doc.slug | append: '.webp' -%}
+      <a href="{{ doc.url | relative_url }}">
+        <img src="{{ p | relative_url }}" alt="{{ doc.name | default: doc.title }}">
+        <h2>{{ doc.name | default: doc.title }}</h2>
+        <p>{{ doc.speciality }}{%- if doc.department %} · {{ doc.department }}{%- endif -%}</p>
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
