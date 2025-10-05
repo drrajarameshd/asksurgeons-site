@@ -342,6 +342,81 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
   background: var(--primary-100);
 }
 
+/* =========================
+   Doctor Page Header + Sections
+   ========================= */
+.doc-hero{
+  background: var(--bg-soft);
+  border-bottom: 1px solid #eef2f7;
+  padding: 18px 0;
+}
+.doc-hero__inner{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: center;
+}
+.doc-avatar{
+  width: 88px; height: 88px;
+  border-radius: 16px; object-fit: cover; background:#fff;
+  border: 1px solid #e6edf6; box-shadow: 0 4px 16px rgba(16,24,40,.08);
+}
+.doc-meta{ min-width: 0; }
+.doc-title{ margin:0 0 4px; font-size: clamp(18px, 3.6vw, 28px); line-height:1.2; }
+.doc-sub{ color: var(--muted); display:flex; align-items:center; gap:8px; font-size:14px; flex-wrap:wrap; }
+.doc-dot{ opacity:.5; }
+.doc-actions{ margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; }
+
+/* Detail sections */
+.doc-sections{ display:grid; gap: 16px; }
+.doc-section{
+  background:#fff; border:1px solid #e9eef6; border-radius:16px; padding:16px 16px 14px;
+  box-shadow: 0 8px 24px rgba(16,24,40,.04);
+}
+.doc-section__head{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.doc-section__head h2{ margin:0; font-size:18px; }
+.doc-section__head svg{ color: var(--primary); }
+.doc-section__body{ color:#334155; }
+.doc-section__body ul{ margin:0; padding-left:18px; }
+
+/* Inline icon helper */
+.icon-inline{
+  display:inline-flex; vertical-align:middle; line-height:0; margin-right:6px;
+}
+.icon-inline svg{ width:1em; height:1em; }
+
+/* Responsive refinements for doctor header */
+@media (min-width: 768px){
+  .doc-avatar{ width: 96px; height: 96px; border-radius: 18px; }
+  .doc-title{ font-size: 30px; }
+}
+
+/* =========================
+   Bottom-nav safe area padding (mobile)
+   ========================= */
+@media (max-width: 991.98px){
+  body{ padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* =========================
+   Optional: make .cta look like your pill button
+   (replace your existing .cta block with this if you want)
+   ========================= */
+.cta{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  color:#fff; font-weight:600; text-decoration:none;
+  box-shadow: 0 4px 14px rgba(51,104,198,.18);
+  transition: transform .15s ease, box-shadow .3s ease, opacity .2s ease;
+}
+.cta:hover{ text-decoration:none; transform: translateY(-2px); box-shadow: 0 6px 22px rgba(51,104,198,.28); }
+.cta:active{ transform: translateY(0); }
+
+/* If you place SVG inside .btn or .cta */
+.btn svg, .cta svg{ margin-right:8px; }
+
 
 /* =========================
    Breakpoints
