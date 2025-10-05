@@ -1,0 +1,70 @@
+---
+---
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ page.title | escape }} | {{ site.title }}</title>
+    {% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  </head>
+  <body class="page-doctor">
+    {% include header.html %}
+
+    <section class="doctor-hero">
+      <div class="container">
+        <div class="doctor-card">
+          {% if page.image %}
+            <img class="avatar" src="{{ page.image | relative_url }}" alt="{{ page.name | escape }}">
+          {% endif %}
+
+          <div class="meta">
+            <h1 class="name">{{ page.name }}</h1>
+            {% if page.degrees %}
+              <p class="degrees">{{ page.degrees }}</p>
+            {% endif %}
+
+            {% if page.areas_of_expertise %}
+              <ul class="chips">
+                {% for area in page.areas_of_expertise %}
+                  <li class="chip">{{ area }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+
+            <p class="loc">
+              {% if page.practice_locations %}
+                <strong>Practice:</strong>
+                {{ page.practice_locations | join: " • " }}
+              {% endif %}
+            </p>
+
+            <p class="cta">
+              <a class="btn gradient" href="https://app.asksurgeons.com" rel="nofollow">Book on app.asksurgeons.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="container doctor-body">
+      {% if page.bio %}
+        <h2>About {{ page.name }}</h2>
+        <p>{{ page.bio }}</p>
+      {% endif %}
+
+      {{ content }}
+
+      {% if page.tags %}
+        <div class="post-tags">
+          {% for tag in page.tags %}
+            <a class="post-tag" href="{{ '/search/' | relative_url }}?q={{ tag | uri_escape }}">{{ tag }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </main>
+
+    {% include footer.html %}
+  </body>
+</html>
