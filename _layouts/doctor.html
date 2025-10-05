@@ -1,70 +1,119 @@
----
----
 <!doctype html>
 <html lang="en-IN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{{ page.title | escape }} | {{ site.title }}</title>
-    {% seo %}
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  </head>
-  <body class="page-doctor">
-    {% include header.html %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+</head>
+<body>
+  {% include header.html %}
 
-    <section class="doctor-hero">
-      <div class="container">
-        <div class="doctor-card">
-          {% if page.image %}
-            <img class="avatar" src="{{ page.image | relative_url }}" alt="{{ page.name | escape }}">
-          {% endif %}
+  <main id="content" role="main">
+    <!-- Compute helpers -->
+    {%- assign _slug = page.slug | default: page.title | slugify -%}
+    {%- assign _image = page.image | default: site.baseurl | append: '/doctors/images/' | append: _slug | append: '.webp' -%}
+    {%- assign _degrees = page.education | first | default: page.department -%}
+    {%- assign _spec = page.speciality | default: "" -%}
 
-          <div class="meta">
-            <h1 class="name">{{ page.name }}</h1>
-            {% if page.degrees %}
-              <p class="degrees">{{ page.degrees }}</p>
-            {% endif %}
+    <!-- Doctor header -->
+    <section class="doc-hero">
+      <div class="container doc-hero__inner">
+        <img class="doc-avatar"
+             src="{{ _image }}"
+             alt="{{ page.name | default: page.title }}"
+             onerror="this.src='{{ site.baseurl }}/assets/images/site-images/doctor-placeholder.webp'">
 
-            {% if page.areas_of_expertise %}
-              <ul class="chips">
-                {% for area in page.areas_of_expertise %}
-                  <li class="chip">{{ area }}</li>
-                {% endfor %}
-              </ul>
-            {% endif %}
+        <div class="doc-meta">
+          <h1 class="doc-title">{{ page.name | default: page.title }}</h1>
+          <div class="doc-sub">
+            <span class="doc-dept">{{ _degrees }}</span>
+            {%- if _spec != "" -%}
+            <span class="doc-dot">•</span>
+            <span class="doc-spec">{{ _spec }}</span>
+            {%- endif -%}
+          </div>
 
-            <p class="loc">
-              {% if page.practice_locations %}
-                <strong>Practice:</strong>
-                {{ page.practice_locations | join: " • " }}
-              {% endif %}
-            </p>
-
-            <p class="cta">
-              <a class="btn gradient" href="https://app.asksurgeons.com" rel="nofollow">Book on app.asksurgeons.com</a>
-            </p>
+          <div class="doc-actions">
+            <a class="btn btn-primary" href="https://app.asksurgeons.com" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2zm13 8H6v10h14V10zM6 8h14V6H6v2z"/></svg>
+              Book appointment
+            </a>
+            <a class="btn btn-outline" href="mailto:{{ page.email | default: site.contact_email }}">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v1l10 6l10-6V6a2 2 0 0 0-2-2zm0 6.236l-8 4.8l-8-4.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10.236z"/></svg>
+              Contact
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <main class="container doctor-body">
-      {% if page.bio %}
-        <h2>About {{ page.name }}</h2>
-        <p>{{ page.bio }}</p>
-      {% endif %}
-
-      {{ content }}
-
-      {% if page.tags %}
-        <div class="post-tags">
-          {% for tag in page.tags %}
-            <a class="post-tag" href="{{ '/search/' | relative_url }}?q={{ tag | uri_escape }}">{{ tag }}</a>
-          {% endfor %}
+    <!-- Sections -->
+    <section class="section">
+      <div class="container doc-sections">
+        <!-- Education -->
+        {% if page.education %}
+        <div class="doc-section">
+          <div class="doc-section__head">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3L1 9l11 6l9-4.909V17h2V9zM7 13v4l5 3l5-3v-4l-5 2.727z"/></svg>
+            <h2>Education</h2>
+          </div>
+          <div class="doc-section__body">
+            <ul>
+              {% for edu in page.education %}<li>{{ edu }}</li>{% endfor %}
+            </ul>
+          </div>
         </div>
-      {% endif %}
-    </main>
+        {% endif %}
 
-    {% include footer.html %}
-  </body>
+        <!-- Areas of Expertise -->
+        {% if page.expertise %}
+        <div class="doc-section">
+          <div class="doc-section__head">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10.012 10.012 0 0 0 12 2Zm1 15h-2v-2h2Zm0-4h-2V7h2Z"/></svg>
+            <h2>Areas of Expertise</h2>
+          </div>
+          <div class="doc-section__body">
+            <ul>
+              {% for item in page.expertise %}<li>{{ item }}</li>{% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Bio -->
+        {% if content or page.bio %}
+        <div class="doc-section">
+          <div class="doc-section__head">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5zm0 2c-5 0-9 2.5-9 5.5V22h18v-2.5c0-3-4-5.5-9-5.5z"/></svg>
+            <h2>Bio</h2>
+          </div>
+          <div class="doc-section__body">
+            {{ page.bio | default: content | markdownify }}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Practice Locations -->
+        {% if page.locations %}
+        <div class="doc-section">
+          <div class="doc-section__head">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9A2.5 2.5 0 0 1 12 11.5Z"/></svg>
+            <h2>Practice Locations</h2>
+          </div>
+          <div class="doc-section__body">
+            <ul>
+              {% for loc in page.locations %}<li>{{ loc }}</li>{% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+
+  {% include footer.html %}
+</body>
 </html>
+
