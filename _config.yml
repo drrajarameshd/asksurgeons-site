@@ -82,14 +82,14 @@ plugins:
 collections:
   doctors:
     output: true
-    permalink: /doctors/:path/
-
+    permalink: /doctors/:slug/
 defaults:
   - scope:
       path: ""
       type: doctors
     values:
-      layout: doctor        # use our custom layout below
+      layout: doctor
+
 
 # ─────────────────────────────────────────────────────────────
 # Exclude from build
