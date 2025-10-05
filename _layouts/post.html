@@ -4,6 +4,8 @@
 {% include head.html %}
 
 <body>
+  {% include header.html %}
+
   <main class="content post-layout-root" id="main">
     <div class="wrap">
       <article class="post single-post" itemscope itemtype="http://schema.org/Article">
@@ -69,7 +71,7 @@
     })();
   </script>
 
-
+  <script src="{{ '/assets/script/script.js' | relative_url }}"></script>
 </body>
 
 </html>
