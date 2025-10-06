@@ -1,101 +1,64 @@
-# ─────────────────────────────────────────────────────────────
-# Site basics
-# ─────────────────────────────────────────────────────────────
-title: "AskSurgeons.com"
-description: >-
-  Attapur | Hyderabad’s trusted platform for surgical guidance and second opinions.
-  Read expert medical blogs from our doctors, then book consultations at
-  app.asksurgeons.com.
-url: "https://www.asksurgeons.com"
-baseurl: ""   # if deploying at a subpath; set "" when deploying at root
-timezone: "Asia/Kolkata"
-lang: "en-IN"
+# ---- Site basics ----
+title: "Ask Surgeons"
+tagline: "Clear answers • Trusted care"
+description: "Hyderabad-based doctors directory, blog, and appointment info."
+url: "https://asksurgeons.com"     # Change if needed
+baseurl: "/asksurgeons-site"       # Keep in sync with your repo/project path
 
-# ─────────────────────────────────────────────────────────────
-# Build settings
-# ─────────────────────────────────────────────────────────────
+# ---- Author (used by seo tag in head.html) ----
+author:
+  name: "Ask Surgeons"
+
+# ---- Build settings ----
 markdown: kramdown
-highlighter: rouge
-permalink: /:categories/:title/
+theme: null
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Atom/RSS (jekyll-feed)
+feed:
+  path: atom.xml
+
+# Sitemap
 sass:
   style: compressed
 
-# Pagination for posts (index page only)
-paginate: 5
-paginate_path: "/page:num/"
+# ---- Permalinks ----
+permalink: /:categories/:title/
 
-# Include additional folders
-include:
-  - _pages
+# ---- Collections (optional future) ----
+# If later you create real profile pages in `_doctors/`
+# collections:
+#   doctors:
+#     output: true
+#     permalink: /doctors/:name/
 
-# ─────────────────────────────────────────────────────────────
-# Collections
-# ─────────────────────────────────────────────────────────────
-collections:
-  doctors:
-    output: true
-    permalink: /doctors/:slug/
-
-# ─────────────────────────────────────────────────────────────
-# Defaults (merged into a single array)
-# ─────────────────────────────────────────────────────────────
+# ---- Defaults ----
 defaults:
   - scope:
       path: ""
-      type: posts
+      type: "pages"
     values:
-      layout: post            # Ensure _layouts/post.html exists; else use "default"
-      author_profile: false
-      read_time: false
+      layout: "default"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
       comments: false
-      share: false
-      toc: false
-      related: false
 
-  - scope:
-      path: ""
-      type: pages
-    values:
-      layout: default
-
-  - scope:
-      path: ""
-      type: doctors
-    values:
-      layout: doctor          # Ensure _layouts/doctor.html exists
-
-# ─────────────────────────────────────────────────────────────
-# Site-wide variables
-# ─────────────────────────────────────────────────────────────
-theme_color: "#007bbf"
-contact_number: "+91 8062182411"
-contact_email: "asksurgeons@gmail.com"
-clinic_number: "+91 7989676770"
-address: "Attapur | Hyderabad"
-brand:
-  logo: /assets/images/site-images/logo.webp
-  social_image: /assets/images/og.jpg
-
-social:
-  name: "AskSurgeons"
-  links:
-    - https://app.asksurgeons.com
-
-# ─────────────────────────────────────────────────────────────
-# Plugins (GitHub Pages–safe)
-# ─────────────────────────────────────────────
-plugins:
-  - jekyll-paginate
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-
-# ─────────────────────────────────────────────────────────────
-# Exclude from build
-# ─────────────────────────────────────────────────────────────
+# ---- Excludes (tidy builds) ----
 exclude:
+  - README.md
+  - node_modules
+  - package.json
+  - package-lock.json
   - Gemfile
   - Gemfile.lock
-  - node_modules
-  - vendor
-  - README.md
+
+# ---- Data references ----
+# You already have:
+# _data/navigation.yml
+# _data/doctors.yml
