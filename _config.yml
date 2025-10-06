@@ -3,7 +3,7 @@ title: "Ask Surgeons"
 tagline: "Clear answers • Trusted care"
 description: "Hyderabad-based doctors directory, blog, and appointment info."
 url: "https://asksurgeons.com"     # Change if needed
-baseurl: "/asksurgeons-site"       # Keep in sync with your repo/project path
+baseurl: ""       # Keep in sync with your repo/project path
 
 # ---- Author (used by seo tag in head.html) ----
 author:
