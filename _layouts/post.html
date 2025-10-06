@@ -1,0 +1,77 @@
+<!-- _layouts/post.html — Responsive, accessible, SEO-friendly Jekyll post layout -->
+<!doctype html>
+<html lang="en-IN">
+{% include head.html %}
+
+<body>
+  {% include header.html %}
+
+  <main class="content post-layout-root" id="main">
+    <div class="wrap">
+      <article class="post single-post" itemscope itemtype="http://schema.org/Article">
+        <header class="post-header">
+          <h1 itemprop="headline">{{ page.title }}</h1>
+          <p class="meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+              {{ page.date | date: "%B %-d, %Y" }}
+            </time>
+            {%- if page.author or site.author.name -%}
+            • <span itemprop="author">{{ page.author | default: site.author.name }}</span>
+            {%- endif -%}
+          </p>
+        </header>
+
+        <div class="post-body" itemprop="articleBody">
+          {{ content }}
+        </div>
+
+        <div class="post-actions wrap">
+          <a class="btn btn--primary" href="#" onclick="
+  if (navigator.share) {
+    navigator.share({
+      title: '{{ page.title | escape }}',
+      text: 'Check this out:',
+      url: '{{ page.url | absolute_url }}'
+    }).catch((error) => console.log('Error sharing:', error));
+  } else {
+    // Fallback: Copy URL to clipboard
+    navigator.clipboard.writeText('{{ page.url | absolute_url }}')
+      .then(() => {
+        alert('🔗 Link copied to clipboard!');
+      })
+      .catch(() => {
+        alert('Could not copy link. Please try manually.');
+      });
+  }
+  return false;
+">Share</a>
+          <a class="btn btn--primary" href="{{ '/contact.html' | relative_url }}">Appointment</a>
+        </div>
+
+        <hr />
+        <div class="post-footer wrap">
+          <p><a class="back-link" href="{{ '/' | relative_url }}">← Back to blog</a></p>
+          <p class="meta">© <span id="year"></span> {{ site.title }}</p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  {% include footer.html %}
+  {% include bottom-nav.html %}
+
+  <script>
+    // Accessibility: make first heading focusable; set copyright year
+    (function () {
+      var h = document.querySelector('.post-header h1');
+      if (h) h.setAttribute('tabindex', '-1');
+
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+
+  <script src="{{ '/assets/script/script.js' | relative_url }}"></script>
+</body>
+
+</html>
