@@ -34,7 +34,7 @@ permalink: /
     <div class="card">
       <h3>Book Appointment</h3>
       <p>Quick WhatsApp connect or online booking (when available).</p>
-      <p style="margin-top:10px"><a class="btn" href="https://app.asksurgeons.com" rel="noopener">Book Now</a></p>
+      <p style="margin-top:10px"><a class="btn" href="https://asksurgeons.com/appointment" rel="noopener">Book Now</a></p>
     </div>
   </div>
 </section>
@@ -47,7 +47,7 @@ permalink: /
     {%- for post in posts -%}
     <li class="post-item" itemscope itemtype="http://schema.org/BlogPosting">
       <a class="thumb" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">
-        {% assign thumb = post.thumbnail | default: '/assets/images/posts/thumbs/thumbnail.webp' %}
+        {% assign thumb = post.thumbnail | default: '/assets/images/post-images/thumbs/thumbnail.webp' %}
         <img src="{{ thumb | relative_url }}" alt="" loading="lazy" width="200" height="120">
       </a>
       <div class="post-meta">
