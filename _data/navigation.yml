@@ -11,5 +11,5 @@ main:
   - label: "Doctors"
     url: "/doctors/"
   - label: "Book Appointment"
-    url: "https://app.asksurgeons.com"
-    external: true
+    url: "/appointment/"
+
