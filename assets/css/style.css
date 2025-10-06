@@ -81,7 +81,7 @@ button, input, select { font: inherit; }
 .as-banner{
   position: relative;
   height: 48vh; min-height: 320px; max-height: 520px;
-  background: url('/asksurgeons-site/assets/images/site-images/ask-surgeons-banner.jpeg') center/cover no-repeat fixed;
+  background: url('/assets/images/site-images/ask-surgeons-banner.jpeg') center/cover no-repeat fixed;
   display:flex; align-items:center;
   will-change: transform;
 }
