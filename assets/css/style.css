@@ -280,6 +280,16 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
 .btn.outline:hover {
   background: var(--primary-100);
 }
+.btn.white {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  box-shadow: none;
+}
+
+.btn.white:hover {
+  background: var(--primary-100);
+}
 
 /* Danger */
 .btn.danger {
