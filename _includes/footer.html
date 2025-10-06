@@ -12,33 +12,34 @@
             {%- for d in doctors -%}
             <div class="doc-card">
               <img loading="lazy"
-                   src="{{ d.image | prepend: '/asksurgeons-site' }}"
+                   src="{{ d.image | relative_url }}"
                    alt="{{ d.name }}"
-                   onerror="this.src='/asksurgeons-site/assets/images/site-images/doctor-placeholder.webp'">
+                   onerror="this.src='{{ '/assets/images/site-images/doctor-placeholder.webp' | relative_url }}'">
               <div class="meta">
                 <div class="name">{{ d.name }}</div>
                 <div class="qual">{{ d.bio }}</div>
-                <div class="dept">{{ d.department }}</div>
+                <div class="dept">{{ d.speciality }}</div>
               </div>
             </div>
             {%- endfor -%}
             {%- for d in doctors -%}
             <div class="doc-card">
               <img loading="lazy"
-                   src="{{ d.image | prepend: '/asksurgeons-site' }}"
+                   src="{{ d.image | relative_url }}"
                    alt="{{ d.name }}"
-                   onerror="this.src='/asksurgeons-site/assets/images/site-images/doctor-placeholder.webp'">
+                   onerror="this.src='{{ '/assets/images/site-images/doctor-placeholder.webp' | relative_url }}'">
               <div class="meta">
                 <div class="name">{{ d.name }}</div>
                 <div class="qual">{{ d.bio }}</div>
-                <div class="dept">{{ d.department }}</div>
+                <div class="dept">{{ d.speciality }}</div>
               </div>
             </div>
             {%- endfor -%}
           </div>
         </div>
       </div>
-      <!-- Contact (hard-coded) -->
+
+      <!-- Contact -->
       <div>
         <h4>Contact</h4>
         <div class="muted">Phone (Primary): +91 8062182411</div>
@@ -47,22 +48,20 @@
         <div class="muted">Address: Hyderabad</div>
       </div>
 
-      <!-- Quick Links (hard-coded paths for your GitHub Pages project) -->
+      <!-- Quick Links -->
       <div>
         <h4>Quick Links</h4>
-        <a href="/asksurgeons-site/">Home</a><br/>
-        <a href="/asksurgeons-site/about/">About</a><br/>
-        <a href="/asksurgeons-site/services/">Services</a><br/>
-        <a href="/asksurgeons-site/blog/">Blog</a><br/>
-        <a href="/asksurgeons-site/doctors/">Doctors</a><br/>
+        <a href="{{ '/' | relative_url }}">Home</a><br/>
+        <a href="{{ '/about/' | relative_url }}">About</a><br/>
+        <a href="{{ '/services/' | relative_url }}">Services</a><br/>
+        <a href="{{ '/blog/' | relative_url }}">Blog</a><br/>
+        <a href="{{ '/doctors/' | relative_url }}">Doctors</a><br/>
         <a href="https://app.asksurgeons.com">Book Appointment</a>
       </div>
     </div>
 
     <div class="muted" style="margin-top:14px;">© <span id="as-year">2025</span> AskSurgeons.com • Hyderabad</div>
   </div>
-
-  <!-- tiny helper to auto-scroll the doctors strip -->
 
 <script>
 (function(){
@@ -72,82 +71,45 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
   if (!scroller || !track) return;
 
-  // CONFIG
-  const SPEED = 0.35;                 // px/frame
-  const RESPECT_REDUCED_MOTION = false; // set to true to disable auto-scroll if OS prefers-reduced-motion
+  const SPEED = 0.35;
+  const RESPECT_REDUCED_MOTION = false;
 
-  // Ensure single row
   track.style.display = 'flex';
   track.style.flexWrap = 'nowrap';
 
-  // Helper: ensure we have enough width to scroll; if not, duplicate once
   function ensureWidth() {
-    // If total track width is <= container, duplicate once
     if (track.scrollWidth <= scroller.clientWidth) {
       track.innerHTML = track.innerHTML + track.innerHTML;
     }
   }
 
-  // Init after images load (so scrollWidth is correct)
   function onReady(fn){
     if (document.readyState === 'complete') fn();
     else window.addEventListener('load', fn, { once:true });
   }
-
   onReady(init);
 
   function init(){
     ensureWidth();
-
-    let x = 0;                // current translateX
-    let rafId = null;
-
+    let x = 0, rafId = null;
     const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const honorReduced = RESPECT_REDUCED_MOTION && prefersReduced;
-
-    function halfWidth(){ return track.scrollWidth / 2; } // because list is duplicated once
-
-    function render(){
-      // loop at half track width for seamless cycle
-      if (-x >= halfWidth()) x = 0;
-      track.style.transform = `translate3d(${x}px,0,0)`;
-    }
-
-    function frame(){
-      x -= SPEED;
-      render();
-      rafId = requestAnimationFrame(frame);
-    }
-    function start(){
-      if (!honorReduced) {
-        cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(frame);
-      }
-    }
+    function halfWidth(){ return track.scrollWidth / 2; }
+    function render(){ if (-x >= halfWidth()) x = 0; track.style.transform = `translate3d(${x}px,0,0)`; }
+    function frame(){ x -= SPEED; render(); rafId = requestAnimationFrame(frame); }
+    function start(){ if (!honorReduced){ cancelAnimationFrame(rafId); rafId = requestAnimationFrame(frame);} }
     function stop(){ cancelAnimationFrame(rafId); }
-
-    // Start auto-scroll
     start();
 
-    // ---- Drag to scroll (touch/mouse/pointer) ----
-    let isDragging = false;
-    let startClientX = 0;
-    let startX = 0;          // x at drag start
-    let resumeTimer = null;
-
+    let isDragging = false, startClientX = 0, startX = 0, resumeTimer = null;
     function onPointerDown(e){
-      if (e.button !== undefined && e.button !== 0) return; // only primary button
-      isDragging = true;
-      scroller.classList.add('dragging');
-      stop();
+      if (e.button !== undefined && e.button !== 0) return;
+      isDragging = true; scroller.classList.add('dragging'); stop();
       startClientX = (e.clientX != null) ? e.clientX : (e.touches && e.touches[0].clientX);
       startX = x;
-      if (scroller.setPointerCapture && e.pointerId !== undefined) {
-        scroller.setPointerCapture(e.pointerId);
-      }
+      if (scroller.setPointerCapture && e.pointerId !== undefined) scroller.setPointerCapture(e.pointerId);
       e.preventDefault();
     }
-
     function onPointerMove(e){
       if (!isDragging) return;
       const clientX = (e.clientX != null) ? e.clientX : (e.touches && e.touches[0].clientX);
@@ -155,28 +117,22 @@
       const delta = clientX - startClientX;
       x = startX + delta;
       const hw = halfWidth();
-      if (-x >= hw) x += hw; // wrap right edge
-      if (x > 0) x -= hw;    // wrap left edge
-      render();
-      e.preventDefault();
+      if (-x >= hw) x += hw;
+      if (x > 0) x -= hw;
+      render(); e.preventDefault();
     }
-
     function onPointerUp(){
       if (!isDragging) return;
-      isDragging = false;
-      scroller.classList.remove('dragging');
-      clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(start, 800); // resume auto-scroll after idle
+      isDragging = false; scroller.classList.remove('dragging');
+      clearTimeout(resumeTimer); resumeTimer = setTimeout(start, 800);
     }
 
-    // Pointer events preferred
     if (window.PointerEvent){
       scroller.addEventListener('pointerdown', onPointerDown, {passive:false});
       window.addEventListener('pointermove',  onPointerMove,  {passive:false});
       window.addEventListener('pointerup',    onPointerUp,    {passive:true});
       window.addEventListener('pointercancel',onPointerUp,    {passive:true});
     } else {
-      // Fallback: mouse + touch
       scroller.addEventListener('mousedown', onPointerDown);
       window.addEventListener('mousemove',   onPointerMove);
       window.addEventListener('mouseup',     onPointerUp);
@@ -186,12 +142,10 @@
       window.addEventListener('touchcancel', onPointerUp,     {passive:true});
     }
 
-    // Pause on hover (desktop) and when tab is hidden
     scroller.addEventListener('mouseenter', stop);
     scroller.addEventListener('mouseleave', () => { if (!isDragging) start(); });
     document.addEventListener('visibilitychange', () => document.hidden ? stop() : (!isDragging && start()));
   }
 })();
 </script>
-  
 </footer>
