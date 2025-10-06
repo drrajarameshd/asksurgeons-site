@@ -13,7 +13,7 @@
         {%- if item.external -%}
           <a href="{{ item.url }}" {% if item.label contains 'Book' %}class="cta"{% endif %} rel="noopener"> {{ item.label }} </a>
         {%- else -%}
-          <a href="{{ item.url | prepend: site.baseurl }}" {% if item.label contains 'Book' %}class="btn"{% endif %}> {{ item.label }} </a>
+          <a href="{{ item.url | prepend: site.baseurl }}" {% if item.label contains 'Book' %}class="btn outline"{% endif %}> {{ item.label }} </a>
         {%- endif -%}
       {%- endfor -%}
     </nav>
