@@ -4,15 +4,15 @@ title: "Mosquito Breeding Near Musi — Dengue & Chikungunya Risks in Attapur an
 date: 2025-09-25 10:00:00 +0530
 excerpt: "Every monsoon, Attapur and Musi river belt areas face rising cases of dengue and chikungunya. Learn how mosquitoes spread, common symptoms, and real patient experiences from local practice."
 tags: [dengue, chikungunya, arthritis, mosquitoes, Attapur, Hyderabad, Musi]
-image: /assets/images/posts/2025-09-25-dengue-chikungunya.webp
-thumbnail: /assets/images/posts/thumbs/2025-09-25-dengue-chikungunya.webp
+image: /assets/images/post-images/2025-09-25-dengue-chikungunya.webp
+thumbnail: /assets/images/post-images/thumbs/2025-09-25-dengue-chikungunya.webp
 ---
 
 Attapur and surrounding colonies near the **Musi river** — like Rajendranagar, Aramghar, PVNR Expressway belt, Hyderguda, and Mehdipatnam outskirts — face a common challenge every monsoon. Stagnant water pockets left after rains become ideal breeding grounds for mosquitoes.  
 
 These mosquitoes are not just a nuisance — they carry **dengue and chikungunya viruses**, which cause fever, severe joint pain, and sometimes life-threatening complications.
 
-![Mosquito Breeding Near Musi](/assets/images/posts/2025-09-25-dengue-chikungunya.webp)
+![Mosquito Breeding Near Musi](/assets/images/post-images/2025-09-25-dengue-chikungunya.webp)
 
 ---
 
@@ -21,7 +21,7 @@ These mosquitoes are not just a nuisance — they carry **dengue and chikungunya
 - These mosquitoes bite during **daytime**, making protection even harder.  
 - Once infected, they spread viruses rapidly across entire neighborhoods.
 
-![Stagnant Water Breeding Ground](/assets/images/posts/2025-09-25-mosquito-breeding.webp)
+![Stagnant Water Breeding Ground](/assets/images/post-images/2025-09-25-mosquito-breeding.webp)
 
 ---
 
@@ -50,7 +50,7 @@ While chikungunya causes long-lasting joint pain, **dengue can be deadly**.
 
 **Early identification and hospital care save lives.** Platelet monitoring and timely transfusion can prevent complications.
 
-![Dengue Rash](/assets/images/posts/2025-09-25-dengue-rash.webp)
+![Dengue Rash](/assets/images/post-images/2025-09-25-dengue-rash.webp)
 
 ---
 
