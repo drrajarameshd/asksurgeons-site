@@ -6,9 +6,7 @@
 .post-layout-root *{box-sizing:border-box}
 .post-layout-root .site-header{position:sticky;top:0;backdrop-filter: blur(6px);background:rgba(255,255,255,0.7);border-bottom:1px solid rgba(15,23,42,0.04);z-index:40}
 .post-layout-root .wrap{max-width:var(--max-width);margin:0 auto;padding:0 var(--container-pad)}
-.post-layout-root .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-.post-layout-root .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
-.post-layout-root .brand .logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(180deg,var(--primary),#2f5fb7);display:inline-flex;align-items:center;justify-content:center;color:white;font-weight:700}
+
 .post-layout-root .site-title{font-weight:600}
 .post-layout-root main.content{padding:28px 0}
 .post-layout-root article.post{background:linear-gradient(180deg, rgba(255,255,255,0.99), rgba(255,255,255,0.98));border-radius:var(--radius);box-shadow:var(--card-shadow);overflow:hidden;padding:18px}
@@ -24,8 +22,7 @@
 .post-layout-root .post-body table{width:100%;border-collapse:collapse;margin:1rem 0}
 .post-layout-root .post-body table th,.post-layout-root .post-body table td{border:1px solid #e6e9ef;padding:8px;text-align:left}
 .post-layout-root .post-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:12px}
-.post-layout-root .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);background:white;text-decoration:none;color:inherit;font-weight:600;font-size:0.95rem}
-.post-layout-root .btn--primary{background:var(--primary);color:white;border:none}
+
 .post-layout-root .post-footer{padding-top:12px;border-top:1px dashed rgba(15,23,42,0.04);display:flex;justify-content:space-between;align-items:center}
 .post-layout-root .back-link{font-size:0.95rem;text-decoration:none;color:var(--primary)}
 .post-layout-root .bottom-nav{position:fixed;left:0;right:0;bottom:12px;display:flex;justify-content:center;pointer-events:none}
