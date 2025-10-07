@@ -1,27 +1,28 @@
 ---
 layout: default
-title: Appointment Enquiry
-permalink: /blog/
+title: Blog
+permalink: /blog.html
 ---
-<!-- ===== Blog listing (placed just before footer as requested) ===== -->
-<section class="blog-list container" aria-label="Latest posts">
+
+<section class="blog-list container post-layout-root" aria-label="All Blog Posts">
   <div class="wrap">
     <header class="page-header">
-      <h2>Latest posts</h2>
+      <h2>All Blog Posts</h2>
+
       <form action="{{ '/search/' | relative_url }}" method="get" role="search" class="search-form">
-    <input id="q" name="q" type="search" placeholder="Search diabetes, thyroid, fever…" value="{{ page.q | default: '' }}" class="input" />
-    <button class="btn gradient" type="submit">Search</button>
-    </form>
+        <input id="q" name="q" type="search" placeholder="Search diabetes, thyroid, fever…" value="{{ page.q | default: '' }}" class="input" />
+        <button class="btn gradient" type="submit">Search</button>
+      </form>
 
-
-      <p class="page-description">Helpful articles and patient guides from AskSurgeons .</p>
+      <p class="page-description">Browse helpful articles and guides from AskSurgeons.</p>
     </header>
 
-    {% if paginator.posts == empty %}
-      <p>No posts found yet. Check that your posts are in <code>_posts/</code> and not future-dated.</p>
+    {% assign sorted_posts = site.posts | where_exp:'p','p.draft != true' %}
+    {% if sorted_posts == empty %}
+      <p>No posts available yet. Add some in <code>_posts/</code>.</p>
     {% else %}
       <article class="post-list" aria-live="polite">
-        {% for post in paginator.posts %}
+        {% for post in sorted_posts %}
           <article class="post-item" itemscope itemtype="http://schema.org/BlogPosting">
             {% if post.thumbnail %}
               <a class="thumb" href="{{ post.url | relative_url }}" itemprop="url" aria-hidden="true">
@@ -35,17 +36,17 @@ permalink: /blog/
               </h3>
 
               <div class="meta">
-               <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-                {{ post.date | date: "%B %-d, %Y" }}
-               </time>
+                <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+                  {{ post.date | date: "%B %-d, %Y" }}
+                </time>
 
-               {% if post.tags and post.tags.size > 0 %}
-           <div class="post-tags">
-               {% for tag in post.tags %}
-             <a class="post-tag" href="{{ '/search/' | relative_url }}?q={{ tag | uri_escape }}">{{ tag }}</a>
-              {% endfor %}
-               </div>
-               {% endif %}
+                {% if post.tags and post.tags.size > 0 %}
+                  <div class="post-tags">
+                    {% for tag in post.tags %}
+                      <a class="post-tag" href="{{ '/search/' | relative_url }}?q={{ tag | uri_escape }}">{{ tag }}</a>
+                    {% endfor %}
+                  </div>
+                {% endif %}
               </div>
 
               {% if post.excerpt %}
@@ -57,18 +58,6 @@ permalink: /blog/
           </article>
         {% endfor %}
       </article>
-
-      {% if paginator.total_pages > 1 %}
-        <nav class="pagination" role="navigation" aria-label="Pagination">
-          {% if paginator.previous_page %}
-            <a class="btn" href="{{ paginator.previous_page_path | relative_url }}">← Newer</a>
-          {% endif %}
-          <span aria-hidden="true" style="margin:0 .5rem;color:var(--muted)">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-          {% if paginator.next_page %}
-            <a class="btn" href="{{ paginator.next_page_path | relative_url }}">Older →</a>
-          {% endif %}
-        </nav>
-      {% endif %}
     {% endif %}
   </div>
 </section>
