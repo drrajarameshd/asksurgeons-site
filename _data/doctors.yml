@@ -1,7 +1,8 @@
+# _data/doctors.yml
+
 - id: GM-1
   name: Dr. D. Raja Ramesh
-  degree:
-    - MD (Osmania)
+  degree: [MD (Osmania)]
   speciality: General Medicine
   department: General Medicine
   image: /assets/images/doctor-images/dr-d-raja-ramesh.webp
@@ -20,29 +21,12 @@
   gender: male
   experience: 10
   languages: [Telugu, English, Hindi]
-  tags:
-    - assessment
-    - cardiac
-    - diabetes
-    - ecg
-    - fever
-    - general medicine
-    - hypertension
-    - lipid
-    - management
-    - md (osmania)
-    - preventive
-    - risk
-    - thyroid
-  profile_links:
-    profile_url: /doctors/dr-d-raja-ramesh
-    whatsapp: ''
+  tags: [assessment, cardiac, diabetes, ecg, fever, general medicine, hypertension, lipid, management, md (osmania), preventive, risk, thyroid]
+  profile_url: /doctors/dr-d-raja-ramesh
 
 - id: TR-1
   name: Dr. Karthik
-  degree:
-    - MS
-    - MCh (PGI)
+  degree: [MS, MCh (PGI)]
   speciality: Transplant Surgery
   department: Transplant Surgery
   image: /assets/images/doctor-images/dr-karthik.webp
@@ -64,32 +48,12 @@
   gender: male
   experience: 10
   languages: [Telugu, English, Hindi]
-  tags:
-    - access
-    - counselling
-    - evaluation
-    - follow-up
-    - kidney
-    - mch (pgi)
-    - ms
-    - opinions
-    - optimization
-    - pancreas
-    - post-transplant
-    - pre-transplant
-    - second
-    - surgery
-    - transplant
-    - transplant surgery
-    - vascular
-  profile_links:
-    profile_url: /doctors/dr-karthik
-    whatsapp: ''
+  tags: [access, counselling, evaluation, follow-up, kidney, mch (pgi), ms, opinions, optimization, pancreas, post-transplant, pre-transplant, second, surgery, transplant, transplant surgery, vascular]
+  profile_url: /doctors/dr-karthik
 
 - id: GP-1
   name: Dr. D. Lakshmi Prasanna
-  degree:
-    - MBBS
+  degree: [MBBS]
   speciality: General Practitioner
   department: General Practice
   image: /assets/images/doctor-images/dr-d-lakshmi-prasanna-mbbs.webp
@@ -108,26 +72,12 @@
   gender: female
   experience: 10
   languages: [Telugu, English, Hindi]
-  tags:
-    - ailments
-    - coordination
-    - counselling
-    - general practitioner
-    - immunizations
-    - mbbs
-    - primary
-    - referrals
-    - screening
-    - wellness
-    - women’s
-  profile_links:
-    profile_url: /doctors/dr-d-lakshmi-prasanna
-    whatsapp: ''
+  tags: [ailments, coordination, counselling, general practitioner, immunizations, mbbs, primary, referrals, screening, wellness, women’s]
+  profile_url: /doctors/dr-d-lakshmi-prasanna
 
 - id: PATH-1
   name: Dr. P. A. Sanjuktha
-  degree:
-    - MD
+  degree: [MD]
   speciality: Pathology
   department: Pathology
   image: /assets/images/doctor-images/dr-p-a-sanjuktha.webp
@@ -146,29 +96,12 @@
   gender: female
   experience: 10
   languages: [Telugu, English, Hindi]
-  tags:
-    - cbc
-    - biopsy
-    - cancer
-    - cytology
-    - lab
-    - lft
-    - md
-    - pathology
-    - quality-assured
-    - report
-    - rft
-    - screening
-    - second
-    - verification
-  profile_links:
-    profile_url: /doctors/dr-p-a-sanjuktha
-    whatsapp: ''
+  tags: [cbc, biopsy, cancer, cytology, lab, lft, md, pathology, quality-assured, report, rft, screening, second, verification]
+  profile_url: /doctors/dr-p-a-sanjuktha
 
 - id: ENT-1
   name: Dr. G. V. Nagarjuna Reddy
-  degree:
-    - MS (PGI)
+  degree: [MS (PGI)]
   speciality: ENT
   department: ENT
   image: /assets/images/doctor-images/dr-g-v-nagarjuna-reddy.webp
@@ -187,25 +120,12 @@
   gender: male
   experience: 10
   languages: [Telugu, English, Hindi]
-  tags:
-    - allergy
-    - ent
-    - infections
-    - ms (pgi)
-    - nasal
-    - sinusitis
-    - swallowing
-    - tumor
-    - voice
-    - wax
-  profile_links:
-    profile_url: /doctors/dr-g-v-nagarjuna-reddy
-    whatsapp: ''
+  tags: [allergy, ent, infections, ms (pgi), nasal, sinusitis, swallowing, tumor, voice, wax]
+  profile_url: /doctors/dr-g-v-nagarjuna-reddy
 
 - id: ORTHO-1
   name: Dr. B. Sudhakar
-  degree:
-    - MS (Osmania)
+  degree: [MS (Osmania)]
   speciality: Orthopedics & Joint Replacement
   department: Orthopedics
   image: /assets/images/doctor-images/dr-b-sudhakar.webp
@@ -224,24 +144,12 @@
   gender: male
   experience: 10
   languages: [Telugu, English, Hindi]
-  tags:
-    - arthritis
-    - fracture
-    - joint replacement
-    - orthopedics
-    - sports injuries
-    - spine
-    - trauma
-  profile_links:
-    profile_url: /doctors/dr-b-sudhakar
-    whatsapp: ''
+  tags: [arthritis, fracture, joint replacement, orthopedics, sports injuries, spine, trauma]
+  profile_url: /doctors/dr-b-sudhakar
 
 - id: OBG-1
   name: Dr. Pyreddy Pavani
-  degree:
-    - MBBS
-    - DGO
-    - DNB
+  degree: [MBBS, DGO, DNB]
   speciality: Obstetrics & Gynecology
   department: Obstetrics & Gynecology
   image: /assets/images/doctor-images/dr-pyreddy-pavani-mbbs-dgo-dnb.webp
@@ -266,28 +174,12 @@
   gender: female
   experience: 10
   languages: [Telugu, English, Hindi]
-  tags:
-    - antenatal
-    - contraception
-    - dgo
-    - dnb
-    - fertility
-    - high-risk
-    - mbbs
-    - menopausal
-    - obstetrics & gynecology
-    - pcos
-    - pregnancy
-    - scans
-  profile_links:
-    profile_url: /doctors/dr-pyreddy-pavani
-    whatsapp: ''
+  tags: [antenatal, contraception, dgo, dnb, fertility, high-risk, mbbs, menopausal, obstetrics & gynecology, pcos, pregnancy, scans]
+  profile_url: /doctors/dr-pyreddy-pavani
 
 - id: URO-1
   name: Dr. Vinay
-  degree:
-    - MS
-    - MCh (NIMS)
+  degree: [MS, MCh (NIMS)]
   speciality: Urology & Kidney Surgery
   department: Urology
   image: /assets/images/doctor-images/dr-vinay.webp
@@ -309,24 +201,12 @@
   gender: male
   experience: 10
   languages: [Telugu, English, Hindi]
-  tags:
-    - endoscopic
-    - infertility
-    - kidney
-    - mch (nims)
-    - ms
-    - prostate
-    - urinary
-    - urology
-    - uti
-  profile_links:
-    profile_url: /doctors/dr-vinay
-    whatsapp: ''
+  tags: [endoscopic, infertility, kidney, mch (nims), ms, prostate, urinary, urology, uti]
+  profile_url: /doctors/dr-vinay
 
 - id: NS-1
   name: Dr. B. Naresh
-  degree:
-    - MCh (Osmania)
+  degree: [MCh (Osmania)]
   speciality: Neurosurgery
   department: Neurosurgery
   image: /assets/images/doctor-images/dr-b-naresh.webp
@@ -345,21 +225,5 @@
   gender: male
   experience: 10
   languages: [Telugu, English, Hindi]
-  tags:
-    - back
-    - brain
-    - endoscopic
-    - evaluation
-    - injury
-    - management
-    - mch (osmania)
-    - microsurgical
-    - mri ct
-    - neurosurgery
-    - pain
-    - sciatica
-    - spine
-    - trauma
-  profile_links:
-    profile_url: /doctors/dr-b-naresh
-    whatsapp: ''
+  tags: [back, brain, endoscopic, evaluation, injury, management, mch (osmania), microsurgical, mri ct, neurosurgery, pain, sciatica, spine, trauma]
+  profile_url: /doctors/dr-b-naresh
