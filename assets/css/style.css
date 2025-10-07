@@ -11,13 +11,17 @@
   --header-h: 64px;
   --bottom-nav-height: 64px;
   --nav-height: 64px;
-
+   
   --primary: #007BBF;
-  --primary-dark: #D63A3A;
+  --primary-dark: #005a99;
   --primary-600: #2f5fb7;
-  --primary-100: rgba(51,104,198,0.08);
-  --primary-150: rgba(51,104,198,0.15);
+  --primary-100: rgba(0, 123, 191, 0.08);
+  --primary-150: rgba(0, 123, 191, 0.15);
+
   --secondary: #c82333;
+  --secondary-dark: #a71d2a;
+  --secondary-light: #f8d7da;
+  
   --bottom-nav-start: #007BBF;
   --bottom-nav-end: #004F85;   
 }
