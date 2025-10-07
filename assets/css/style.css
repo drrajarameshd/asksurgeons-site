@@ -441,11 +441,23 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
   .doc-card img{ width:68px; height:68px; }
 }
 
-/* ≥640px (sm): 2-column footer grid; widen doc cards a bit */
+/* ≥640px (sm): Footer layout changes */
 @media (min-width: 640px){
-  .footer-grid{ grid-template-columns: 1fr 1fr; }
-  .doc-card{ width: 260px; min-width: 240px; }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;   /* 2 columns for Contact + Links */
+    align-items: start;
+  }
+
+  .footer-grid > :first-child {
+    grid-column: 1 / -1;              /* Make scroller full width */
+  }
+
+  .doc-card {
+    width: 260px;
+    min-width: 240px;
+  }
 }
+
 
 /* ≥768px (md): adjust section padding; grid denser */
 @media (min-width: 768px){
@@ -462,9 +474,17 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
   .footer-grid{ grid-template-columns: 1.2fr 1fr 1fr; }
   .doc-card{ width: 280px; min-width: 280px; }
   .doc-card img{ width:72px; height:72px; }
+     .footer-grid{
+    grid-template-columns: 1fr 1fr;    /* 2 cols below */
+    align-items: start;
+  }
+  .footer-grid > :first-child{
+    grid-column: 1 / -1;               /* scroller full width */
+  }
 }
 
 /* ≥1280px (xl): loosen container padding slightly */
 @media (min-width: 1280px){
   .container{ padding: 0 20px; }
+
 }
