@@ -1,0 +1,93 @@
+/* ===== AskSurgeons — Modern Patient Form ===== */
+#patientForm {
+  --field-bg: #fff;
+  --field-br: #e7edf5;
+  --ring: rgba(51,104,198,0.25); /* matches --primary in site theme */
+  display: grid;
+  gap: 14px;
+  background: var(--bg, #fff);
+  border: 1px solid #e9eef6;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+}
+
+/* Labels */
+#patientForm > label {
+  font-weight: 700;
+  color: var(--text, #0f172a);
+  font-size: .95rem;
+  margin-top: 2px;
+}
+
+/* Input + Textarea styles */
+#patientForm input[type="text"],
+#patientForm input[type="tel"],
+#patientForm input[type="email"],
+#patientForm textarea {
+  width: 100%;
+  border: 1px solid var(--field-br);
+  background: var(--field-bg);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--text, #0f172a);
+  transition: border-color 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03) inset;
+}
+
+#patientForm input::placeholder,
+#patientForm textarea::placeholder {
+  color: #9aa4b2;
+}
+
+#patientForm textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Focus Ring */
+#patientForm input:focus,
+#patientForm textarea:focus {
+  border-color: var(--primary-600, #2f5fb7);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* Error Text (default hidden) */
+#patientForm .error-text {
+  display: none;
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+/* Show error when field is invalid */
+#name.invalid ~ #nameError,
+#phone.invalid ~ #phoneError,
+#email.invalid ~ #emailError,
+#message.invalid ~ #messageError {
+  display: block;
+}
+
+/* Optional native validation styling */
+#patientForm input:invalid:focus,
+#patientForm textarea:invalid:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 4px rgba(220,38,38,0.15);
+}
+
+/* Submit button (uses your existing .btn style) */
+#patientForm #submitBtn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* Small screen tweaks */
+@media (max-width: 420px) {
+  #patientForm {
+    padding: 14px;
+    border-radius: 14px;
+    gap: 12px;
+  }
+}
