@@ -27,7 +27,7 @@
 }
 
 .sticky-gap {
-  height: calc(var(--header-h, 64px)); /* adjust height as needed */
+  height: 20px;
   width: 100%;
   display: block;
 }
