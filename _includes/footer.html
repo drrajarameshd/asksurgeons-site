@@ -23,14 +23,15 @@
             </div>
             {%- endfor -%}
             {%- for d in doctors -%}
-            <div class="doc-card">
+            
+             <div class="doc-card">
               <img loading="lazy"
                    src="{{ d.image | relative_url }}"
                    alt="{{ d.name }}"
                    onerror="this.src='{{ '/assets/images/site-images/doctor-placeholder.webp' | relative_url }}'">
               <div class="meta">
                 <div class="name">{{ d.name }}</div>
-                <div class="qual">{{ d.bio }}</div>
+                <div class="qual">{{ d.degree}}</div>
                 <div class="dept">{{ d.speciality }}</div>
               </div>
             </div>
