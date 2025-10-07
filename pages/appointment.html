@@ -1,0 +1,37 @@
+---
+layout: default
+title: Appointment Enquiry
+permalink: /appointment/
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/form.css' | relative_url }}">
+
+<main class="as-appointment-page" id="main">
+  <section class="as-appointment" aria-labelledby="appt-title">
+    <h1 id="appt-title">Appointment Enquiry</h1>
+
+    <form id="patientForm" novalidate>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+      <div id="nameError" class="error-text">Name is required.</div>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required>
+      <div id="phoneError" class="error-text">Enter a valid 10-digit Indian phone number.</div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email">
+      <div id="emailError" class="error-text">Please enter a valid email address.</div>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+      <div id="messageError" class="error-text">Message is required.</div>
+
+      <button type="submit" id="submitBtn">Send Enquiry</button>
+    </form>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+  </section>
+</main>
+
+<script defer src="{{ '/assets/js/form.js' | relative_url }}"></script>
