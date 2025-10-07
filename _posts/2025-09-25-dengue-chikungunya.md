@@ -88,8 +88,4 @@ While **chikungunya leaves behind arthritis**, **dengue can take lives**. Recogn
 
 ---
 
-### About the Author
-**Dr. Raja Ramesh, MD (Osmania)**  
-Consultant Physician & Diabetologist in Attapur, Hyderabad  
-Available at **Germanten Hospital (10am–5pm)** & **Care Clinic Attapur (5pm–8pm)**.  
-📞 Call **+91 7989676770** for appointments.
+{% include doctor-card.html id:"GM-1"}
