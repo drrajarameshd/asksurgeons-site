@@ -5,15 +5,15 @@ permalink: /blog.html
 ---
 
 <section class="blog-list container post-layout-root" aria-label="All Blog Posts">
-  <div class="wrap">
-    <header class="page-header">
-      <h2>All Blog Posts</h2>
-
-      <form action="{{ '/search/' | relative_url }}" method="get" role="search" class="search-form">
+  
+  <form action="{{ '/search/' | relative_url }}" method="get" role="search" class="search-form">
         <input id="q" name="q" type="search" placeholder="Search diabetes, thyroid, fever…" value="{{ page.q | default: '' }}" class="input" />
         <button class="btn gradient" type="submit">Search</button>
-      </form>
-
+  </form>
+  
+  <div class="wrap">
+    <header class="page-header">
+      <h2>Blog Posts</h2>
       <p class="page-description">Browse helpful articles and guides from AskSurgeons.</p>
     </header>
 
