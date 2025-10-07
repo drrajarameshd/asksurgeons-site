@@ -18,7 +18,7 @@ permalink: /doctors/
   <div id="doctorsGrid" class="dd-grid">
     {% assign docs = site.data.doctors | sort_natural: "id" %}
     {% for d in docs %}
-      <a class="dd-card" href="{{ d.profile_links.profile_url }}" data-dept="{{ d.department | escape }}">
+      <a class="dd-card" href="{{ d.profile_url }}" data-dept="{{ d.department | escape }}">
         <div class="dd-img-wrapper">
           <img src="{{ d.image }}" alt="{{ d.name }}" class="dd-img">
         </div>
