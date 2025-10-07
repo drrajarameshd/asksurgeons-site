@@ -1,0 +1,96 @@
+{%- assign _id = include.id | to_s -%}
+{%- assign d = site.data.doctors | where: "id", _id | first -%}
+{%- if d -%}
+  {%- assign img = d.image | default: '/assets/images/site-images/doctor-placeholder.webp' | relative_url -%}
+  {%- assign degree_text = d.degree -%}
+  {%- if d.degree and d.degree.first -%}{%- assign degree_text = d.degree | join: ", " -%}{%- endif -%}
+
+  {%- assign phone_global = site.site_phone | default: site.phone -%}
+  {%- assign wa_global = site.site_whatsapp | default: phone_global -%}
+  {%- assign wa_link = wa_global | replace: '+','' | replace: ' ',''
+      | prepend: 'https://wa.me/' -%}
+
+  {%- if include.layout == "full" -%}
+  <section class="doc-hero">
+    <div class="container doc-hero__inner">
+      <img class="doc-avatar"
+           src="{{ img }}"
+           alt="{{ d.name }}"
+           loading="lazy"
+           onerror="this.src='{{ '/assets/images/site-images/doctor-placeholder.webp' | relative_url }}'">
+      <div class="doc-meta">
+        <h2 class="doc-title">
+          {%- if d.profile_url -%}
+            <a href="{{ d.profile_url | relative_url }}">{{ d.name }}</a>
+          {%- else -%}
+            {{ d.name }}
+          {%- endif -%}
+        </h2>
+        <div class="doc-sub">
+          <span>{{ degree_text }}</span>
+          <span class="doc-dot">•</span>
+          <span>{{ d.speciality }}</span>
+          {%- if d.location %}<span class="doc-dot">•</span><span>{{ d.location }}</span>{% endif -%}
+        </div>
+        <div class="doc-actions">
+          {%- if phone_global %}<a class="btn" href="tel:{{ phone_global | replace:' ',''
+            }}">{{ phone_global }}</a>{% endif -%}
+          {%- if wa_global %}<a class="btn outline" href="{{ wa_link }}" target="_blank" rel="noopener">WhatsApp</a>{% endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- if d.bio -%}
+  <section class="container doc-sections" style="margin-top:14px;">
+    <div class="doc-section">
+      <div class="doc-section__head"><h2>About {{ d.name }}</h2></div>
+      <div class="doc-section__body">{{ d.bio }}</div>
+    </div>
+
+    {%- if d.services -%}
+    <div class="doc-section">
+      <div class="doc-section__head"><h2>Services</h2></div>
+      <div class="doc-section__body">
+        <ul>{%- for s in d.services -%}<li>{{ s }}</li>{%- endfor -%}</ul>
+      </div>
+    </div>
+    {%- endif -%}
+  </section>
+  {%- else -%}
+
+  <div class="doc-card">
+    {%- if d.profile_url -%}
+      <a class="doc-card__imglink" href="{{ d.profile_url | relative_url }}">
+        <img loading="lazy" src="{{ img }}" alt="{{ d.name }}"
+             onerror="this.src='{{ '/assets/images/site-images/doctor-placeholder.webp' | relative_url }}'">
+      </a>
+    {%- else -%}
+      <img loading="lazy" src="{{ img }}" alt="{{ d.name }}"
+           onerror="this.src='{{ '/assets/images/site-images/doctor-placeholder.webp' | relative_url }}'">
+    {%- endif -%}
+
+    <div class="meta">
+      <div class="name">
+        {%- if d.profile_url -%}
+          <a href="{{ d.profile_url | relative_url }}">{{ d.name }}</a>
+        {%- else -%}
+          {{ d.name }}
+        {%- endif -%}
+      </div>
+      <div class="qual">{{ degree_text }}</div>
+      <div class="dept">{{ d.speciality }}</div>
+      {%- if d.location %}<div class="loc">{{ d.location }}</div>{% endif -%}
+
+      <div class="actions">
+        {%- if phone_global %}<a class="btn" href="tel:{{ phone_global | replace:' ',''
+          }}">{{ phone_global }}</a>{% endif -%}
+        {%- if wa_global %}<a class="btn outline" href="{{ wa_link }}" target="_blank" rel="noopener">WhatsApp</a>{% endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- endif -%}
+{%- else -%}
+  <div class="post-item" role="note">Doctor not found for id: <code>{{ include.id }}</code></div>
+{%- endif -%}
