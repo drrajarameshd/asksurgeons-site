@@ -13,13 +13,13 @@
   --nav-height: 64px;
 
   --primary: #007BBF;
-  --primary-dark: #264a94;
+  --primary-dark: #D63A3A;
   --primary-600: #2f5fb7;
   --primary-100: rgba(51,104,198,0.08);
   --primary-150: rgba(51,104,198,0.15);
    
-  --bottom-nav-start:#3368c6;
-  --bottom-nav-end:#5b9bd5;   
+  --bottom-nav-start: #007BBF;
+  --bottom-nav-end: #004F85;   
 }
 
 *{ box-sizing: border-box; }
