@@ -68,4 +68,4 @@ We discharged her in two days, with simple post-operative care advice — light 
 
 ---
 
-{% include doctor.html id="GS-2" layout='full' %}
+{% include doctor-card.html id="GS-2" layout='full' %}
