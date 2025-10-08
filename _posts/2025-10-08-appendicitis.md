@@ -6,8 +6,9 @@ author: "Dr. Nilofer"
 excerpt: "A storytelling insight by Dr. Nilofer about Ayesha, a 22-year-old woman with appendicitis — from her first symptoms to a successful surgery."
 tags: [appendicitis, emergency, abdominal pain, surgery, Dr. Nilofer]
 image: /assets/images/post-images/2025-10-08-appendicitis.webp
-thumbnail: /assets/images/post-images/thumbs/2025-10-08-appendicitis.webp
+thumbnail: /assets/images/post-images/thumbs/2025-10-08-appendicitis-thumb.webp
 ---
+![Appendicitis — Inflammation of Appendix](/assets/images/post-images/2025-10-08-appendicitis.webp)
 
 ### **Signs, Symptoms, and Treatment of Appendicitis**  
 *By Dr. Nilofer, General Surgeon*
