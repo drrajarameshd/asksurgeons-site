@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Understanding Transplant Surgery — Kidney and Pancreas Transplants Explained"
-date: 2025-10-08 09:30:00 +0530
+date: 2025-10-08 08:30:00 +0530
 excerpt: "Transplant surgery offers life-changing hope for patients with kidney failure or severe diabetes. Dr. Karthik, Transplant Surgeon (MS, MCh PGI), explains the benefits, eligibility, post-transplant care, and how surgical expertise ensures long-term success."
 tags: [transplant, kidney, pancreas, dialysis, diabetes, Hyderabad, DrKarthik]
 image: /assets/images/post-images/2025-10-08-transplant-surgery.webp
