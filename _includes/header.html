@@ -23,10 +23,13 @@
     </div>
   </div>
 
-  <!-- expanding search box -->
-  <div id="as-search-box" class="container" role="search">
-    <input id="as-search-input" type="search" placeholder="Search site..." aria-label="Search site" />
-  </div>
+ <!-- expanding search box -->
+<div id="as-search-box" class="container" role="search">
+  <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
+    <input id="q" name="q" type="search" placeholder="Search diabetes, thyroid, fever…" aria-label="Search site" class="input" />
+    <button class="btn gradient" type="submit">Search</button>
+  </form>
+</div>
 </header>
 
 <!-- mobile drawer -->
