@@ -69,6 +69,29 @@ button, input, select { font: inherit; }
 /* Mobile header controls */
 .controls{ display:flex; align-items:center; gap:10px; }
 .icon-btn{ height:36px; width:36px; display:grid; place-items:center; border-radius:10px; border:1px solid #e7edf5; background:#fff; }
+/* Instagram-style icon button */
+.icon-btn.instagram {
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  border: none;
+  color: #fff;              /* makes the SVG/icon white */
+  transition: transform .2s ease, box-shadow .3s ease;
+}
+
+.icon-btn.instagram svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;       /* ensures SVG inherits the white color */
+}
+
+.icon-btn.instagram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(221, 42, 123, 0.35);
+}
+
+.icon-btn.instagram:active {
+  transform: scale(0.96);
+  box-shadow: 0 3px 10px rgba(221, 42, 123, 0.25);
+}
 
 
 /* Drawer */
