@@ -279,3 +279,38 @@
   languages: [Telugu, English, Hindi]
   tags: [abdomen, appendix, fiages, gallbladder, general surgery, hernia, laparoscopic, ms, thyroid, women, surgery]
   profile_url: /doctors/dr-ashfa-neelofer
+
+  - id: dr-aditya
+  name: Dr. Aditya Sunder Goparaju
+  degree: [MBBS, MS, DNB (Ortho), "ASSI Spine Fellowship"]
+  speciality: Spine Surgery
+  department: Orthopedics
+  image: /assets/images/doctor-images/dr-aditya.webp
+  bio: Consultant spine surgeon with expertise in open & minimally invasive spine surgery, navigation & robotic-assisted procedures, and complex deformity and trauma care.
+  education:
+    - degree: MBBS
+      institute: ''
+      year: ''
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: DNB (Ortho)
+      institute: ''
+      year: ''
+    - degree: ASSI Spine Fellowship
+      institute: ISIC Delhi
+      year: ''
+  services:
+    - Open and minimally invasive spine surgery
+    - Interventional pain management procedures
+    - Navigation and robotic spine surgery
+    - Complex adult and pediatric spine deformity correction
+    - Traumatic spine conditions management
+    - Regenerative spine interventions
+    - Chronic cervical and low back pain management
+  location: Attapur
+  gender: male
+  experience: 9
+  languages: [English, Telugu, Hindi, Tamil]
+  tags: [spine, minimally invasive, robotic surgery, pain management, deformity, trauma, regenerative]
+  profile_url: /doctors/dr-aditya
