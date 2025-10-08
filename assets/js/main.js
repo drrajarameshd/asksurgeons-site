@@ -1,4 +1,4 @@
-// assets/js/main.js
+// assets/js/main.js — trimmed
 (function(){
   const $ = (sel, ctx=document) => ctx.querySelector(sel);
 
@@ -11,6 +11,7 @@
   const menuBtn = $('#as-menu-button');
   const drawer = $('#as-drawer');
   const overlay = $('#as-overlay');
+
   const closeDrawer = () => {
     drawer?.classList.remove('open');
     overlay?.classList.remove('show');
@@ -21,17 +22,10 @@
     overlay?.classList.add('show');
     document.body.classList.add('no-scroll');
   };
+
   menuBtn?.addEventListener('click', openDrawer);
   overlay?.addEventListener('click', closeDrawer);
   $('#as-drawer-close')?.addEventListener('click', closeDrawer);
-
-  // Search button (toggle an input; actual search to be wired later)
-  const searchBtn = $('#as-search-button');
-  const searchBox = $('#as-search-box');
-  searchBtn?.addEventListener('click', () => {
-    searchBox?.classList.toggle('show');
-    document.querySelector('#as-search-input')?.focus();
-  });
 
   // Parallax-like banner effect (mobile only; desktop uses background-attachment: fixed)
   const banner = document.querySelector('.as-banner');
@@ -62,6 +56,9 @@
     animId = requestAnimationFrame(step);
   }
   startScroll();
+
+  // Pause on hover / resume on leave
   document.querySelector('#as-docs-scroller')?.addEventListener('mouseenter', () => cancelAnimationFrame(animId));
   document.querySelector('#as-docs-scroller')?.addEventListener('mouseleave', startScroll);
 })();
+
