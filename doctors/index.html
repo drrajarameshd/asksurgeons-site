@@ -26,7 +26,7 @@ image: /assets/images/site-images/as-doctors.webp
           <img src="{{ d.image }}" alt="{{ d.name }}" class="dd-img">
         </div>
         <div class="dd-info">
-          <div class="dd-name">{{ d.name }}</div>
+          <div class="dd-name">{{ d.name }}{% if d.degree %}, {{ d.degree }}{% endif %}</div>
           <div class="dd-speciality">{{ d.speciality }}</div>
           <div class="dd-meta">
             <span class="dd-chip dd-chip-dept">{{ d.department }}</span>
