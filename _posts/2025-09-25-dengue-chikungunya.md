@@ -88,4 +88,4 @@ While **chikungunya leaves behind arthritis**, **dengue can take lives**. Recogn
 
 ---
 
-{% include doctor-card.html id='GM-1' %}
+{% include doctor-card.html id='GM-1' layout ='full'%}
