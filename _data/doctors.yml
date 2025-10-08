@@ -1,12 +1,10 @@
-# _data/doctors.yml
-
 - id: GM-1
   name: Dr. D. Raja Ramesh
   degree: [MD (Osmania)]
   speciality: General Medicine
   department: General Medicine
   image: /assets/images/doctor-images/dr-d-raja-ramesh.webp
-  bio: Trusted general physician focused on clear communication, evidence‑based care, and long‑term follow‑up for conditions like diabetes, thyroid, and hypertension.
+  bio: Trusted general physician focused on clear communication, evidence-based care, and long-term follow-up for conditions like diabetes, thyroid, and hypertension.
   education:
     - degree: MD (Osmania)
       institute: ''
@@ -30,7 +28,7 @@
   speciality: Transplant Surgery
   department: Transplant Surgery
   image: /assets/images/doctor-images/dr-karthik.webp
-  bio: Transplant surgeon dedicated to safe surgeries, meticulous follow‑up, and patient‑family counselling throughout the journey.
+  bio: Transplant surgeon dedicated to safe surgeries, meticulous follow-up, and patient-family counselling throughout the journey.
   education:
     - degree: MS
       institute: ''
@@ -41,8 +39,8 @@
   services:
     - Kidney & pancreas transplant evaluation
     - Access surgery & vascular care
-    - Pre‑transplant optimization
-    - Post‑transplant follow‑up
+    - Pre-transplant optimization
+    - Post-transplant follow-up
     - Second opinions & counselling
   location: Attapur
   gender: male
@@ -57,7 +55,7 @@
   speciality: General Practitioner
   department: General Practice
   image: /assets/images/doctor-images/dr-d-lakshmi-prasanna-mbbs.webp
-  bio: Compassionate family doctor providing first‑contact, continuous care and guidance for you and your family.
+  bio: Compassionate family doctor providing first-contact, continuous care and guidance for you and your family.
   education:
     - degree: MBBS
       institute: ''
@@ -81,7 +79,7 @@
   speciality: Pathology
   department: Pathology
   image: /assets/images/doctor-images/dr-p-a-sanjuktha.webp
-  bio: Detail‑oriented pathologist ensuring accurate, timely reports to guide your treatment decisions.
+  bio: Detail-oriented pathologist ensuring accurate, timely reports to guide your treatment decisions.
   education:
     - degree: MD
       institute: ''
@@ -90,7 +88,7 @@
     - Biopsy & cytology reporting
     - Cancer screening panels
     - Clinical pathology (CBC, LFT, RFT)
-    - Quality‑assured lab services
+    - Quality-assured lab services
     - Report verification & second opinion
   location: Attapur
   gender: female
@@ -105,7 +103,7 @@
   speciality: ENT
   department: ENT
   image: /assets/images/doctor-images/dr-g-v-nagarjuna-reddy.webp
-  bio: ENT specialist offering gentle, thorough care for ear, nose, throat and head‑neck concerns.
+  bio: ENT specialist offering gentle, thorough care for ear, nose, throat and head-neck concerns.
   education:
     - degree: MS (PGI)
       institute: ''
@@ -153,7 +151,7 @@
   speciality: Obstetrics & Gynecology
   department: Obstetrics & Gynecology
   image: /assets/images/doctor-images/dr-pyreddy-pavani-mbbs-dgo-dnb.webp
-  bio: Caring obstetrician‑gynecologist supporting women through every stage—from adolescence to motherhood and beyond.
+  bio: Caring obstetrician-gynecologist supporting women through every stage—from adolescence to motherhood and beyond.
   education:
     - degree: MBBS
       institute: ''
@@ -165,8 +163,8 @@
       institute: ''
       year: ''
   services:
-    - Antenatal check‑ups & scans review
-    - Normal & high‑risk pregnancy care
+    - Antenatal check-ups & scans review
+    - Normal & high-risk pregnancy care
     - PCOS & fertility counselling
     - Menstrual & menopausal health
     - Family planning & contraception
@@ -227,3 +225,57 @@
   languages: [Telugu, English, Hindi]
   tags: [back, brain, endoscopic, evaluation, injury, management, mch (osmania), microsurgical, mri ct, neurosurgery, pain, sciatica, spine, trauma]
   profile_url: /doctors/dr-b-naresh
+
+- id: GS-1
+  name: Dr. Abdullah Umayr
+  degree: [MS, FMAS]
+  speciality: General Surgery
+  department: General Surgery & Laparoscopic Surgery
+  image: /assets/images/doctor-images/dr-abdullah-umayr.webp
+  bio: Experienced General & Laparoscopic Surgeon skilled in advanced surgical techniques, committed to patient-centered care and optimal outcomes.
+  education:
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: FMAS
+      institute: ''
+      year: ''
+  services:
+    - Laparoscopic gallbladder & hernia surgery
+    - Appendix & abdominal procedures
+    - Diabetic foot & wound care
+    - Minor surgical procedures
+    - Second opinions & postoperative care
+  location: Attapur
+  gender: male
+  experience: 10
+  languages: [Telugu, English, Hindi]
+  tags: [abdomen, appendix, diabetic foot, fmas, general surgery, hernia, laparoscopic, ms, postoperative, wound, care, surgery]
+  profile_url: /doctors/dr-abdullah-umayr
+
+- id: GS-2
+  name: Dr. Ashfa Neelofer
+  degree: [MS, FIAGES]
+  speciality: General Surgery
+  department: General Surgery & Laparoscopic Surgery
+  image: /assets/images/doctor-images/dr-ashfa-neelofer.webp
+  bio: Experienced General & Laparoscopic Surgeon skilled in advanced surgical techniques, committed to patient-centered care and optimal outcomes.
+  education:
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: FIAGES
+      institute: ''
+      year: ''
+  services:
+    - Laparoscopic gallbladder & hernia surgery
+    - Appendix & abdominal procedures
+    - Breast & thyroid surgery
+    - Minor surgical procedures
+    - Women’s surgical consultation
+  location: Attapur
+  gender: female
+  experience: 10
+  languages: [Telugu, English, Hindi]
+  tags: [abdomen, appendix, fiages, gallbladder, general surgery, hernia, laparoscopic, ms, thyroid, women, surgery]
+  profile_url: /doctors/dr-ashfa-neelofer
