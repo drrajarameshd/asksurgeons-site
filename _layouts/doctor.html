@@ -15,7 +15,7 @@ layout: default
         <img src="{{ doc.image }}" alt="{{ doc.name }}" class="d-image">
       </div>
       <div class="d-meta">
-        <div class="d-name">{{ doc.name }}</div>
+        <div class="d-name">{{ doc.name }}{% if doc.degree %}, {{ doc.degree | join: ", " }}{% endif %}</div>
         <div class="d-speciality">{{ doc.speciality }}</div>
         <div class="d-chips">
           <span class="d-chip d-chip-dept">{{ doc.department }}</span>
