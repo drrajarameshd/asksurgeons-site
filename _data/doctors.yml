@@ -279,8 +279,8 @@
   languages: [Telugu, English, Hindi]
   tags: [abdomen, appendix, fiages, gallbladder, general surgery, hernia, laparoscopic, ms, thyroid, women, surgery]
   profile_url: /doctors/dr-ashfa-neelofer
-
-  - id: dr-aditya
+  
+- id: dr-aditya
   name: Dr. Aditya Sunder Goparaju
   degree: [MBBS, MS, DNB (Ortho), "ASSI Spine Fellowship"]
   speciality: Spine Surgery
@@ -314,3 +314,4 @@
   languages: [English, Telugu, Hindi, Tamil]
   tags: [spine, minimally invasive, robotic surgery, pain management, deformity, trauma, regenerative]
   profile_url: /doctors/dr-aditya
+
