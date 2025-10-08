@@ -144,51 +144,74 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
   will-change: transform;
 }
 
-/* Each doctor card */
+/* Base structure (common to both) */
+
 .doc-card {
-  flex: 0 0 auto; /* don’t let cards shrink */
+  flex: 0 0 auto;
   width: 260px;
   min-width: 220px;
-  background: #0b1222;
-  border: 1px solid #12223d;
   border-radius: 14px;
-  color: #cbd5e1;
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-
 .doc-card img {
   width: 64px;
   height: 64px;
   border-radius: 12px;
   object-fit: cover;
-  background: #0e1a30;
 }
-
 .doc-card .meta {
   display: flex;
   flex-direction: column;
   gap: 2px;
   min-width: 0;
 }
-
 .doc-card .name {
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .doc-card .qual,
 .doc-card .dept {
   font-size: 12px;
-  color: #9fb3cc;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* 🌙 Dark version */
+.doc-card.dark {
+  background: #0b1222;
+  border: 1px solid #12223d;
+  color: #cbd5e1;
+}
+.doc-card.dark img {
+  background: #0e1a30;
+}
+.doc-card.dark .name { color: #f1f5f9; }
+.doc-card.dark .qual,
+.doc-card.dark .dept { color: #9fb3cc; }
+
+/* ☀️ Light version */
+.doc-card.light {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+.doc-card.light:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+.doc-card.light img { background: #f1f5f9; }
+.doc-card.light .name { color: #0f172a; }
+.doc-card.light .qual,
+.doc-card.light .dept { color: #475569; }
+
 
 /* Optional: fade on edges to hint scrollable */
 #as-docs-scroller {
