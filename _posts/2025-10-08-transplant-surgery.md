@@ -6,11 +6,6 @@ excerpt: "Transplant surgery offers life-changing hope for patients with kidney 
 tags: [transplant, kidney, pancreas, dialysis, diabetes, Hyderabad, DrKarthik]
 image: /assets/images/post-images/2025-10-08-transplant-surgery.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-08-transplant-surgery.webp
-author:
-  id: TR-1
-  name: Dr. Karthik
-  degree: [MS, MCh (PGI)]
-  speciality: Transplant Surgery
 ---
 
 Organ transplantation is one of the most advanced and rewarding areas of modern medicine — offering patients not just longer life, but a better quality of life.  
