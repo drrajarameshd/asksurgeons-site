@@ -464,17 +464,6 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
    Optional: make .cta look like your pill button
    (replace your existing .cta block with this if you want)
    ========================= */
-.cta{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding: 0.55rem 1.2rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
-  color:#fff; font-weight:600; text-decoration:none;
-  box-shadow: 0 4px 14px rgba(51,104,198,.18);
-  transition: transform .15s ease, box-shadow .3s ease, opacity .2s ease;
-}
-.cta:hover{ text-decoration:none; transform: translateY(-2px); box-shadow: 0 6px 22px rgba(51,104,198,.28); }
-.cta:active{ transform: translateY(0); }
 
 /* If you place SVG inside .btn or .cta */
 .btn svg, .cta svg{ margin-right:8px; }
