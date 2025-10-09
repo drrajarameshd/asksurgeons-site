@@ -1,10 +1,16 @@
+{%- comment -%}
+_includes/doctor-head.html
+Place this inside the <head> of your default layout or via contentfor head in doctor layout:
+{% include doctor-head.html %}
+{%- endcomment -%}
+
 {%- assign doctor_id = page.id | default: page.doctor_id -%}
 {%- assign doc = site.data.doctors | where: "id", doctor_id | first -%}
 
 {%- if doc -%}
   {%- assign site_name = site.title | default: site.name | default: "AskSurgeons" -%}
-  {%- assign degrees = doc.degree | join: ", " -%}
-  {%- assign services_desc = doc.services | join: ", " -%}
+  {%- assign degrees = doc.degree | default: [] | join: ", " -%}
+  {%- assign services_desc = doc.services | default: [] | join: ", " -%}
 
   {%- assign seo_title = doc.name -%}
   {%- if doc.speciality and doc.speciality != "" -%}
@@ -13,14 +19,18 @@
   {%- assign seo_title = seo_title | append: " | " | append: site_name -%}
 
   {%- assign seo_description = doc.bio | default: services_desc | truncate: 155, "" -%}
-  {%- assign seo_keywords = doc.tags | join: ", " -%}
+  {%- assign seo_keywords = doc.tags | default: [] | join: ", " -%}
 
-  {%- assign canonical = site.url | append: page.url -%}
+  {%- assign canonical = page.canonical | default: (site.url | append: page.url) -%}
 
-  {%- if doc.image contains "http" -%}
-    {%- assign og_image = doc.image -%}
+  {%- if doc.image and doc.image != "" -%}
+    {%- if doc.image contains "http" -%}
+      {%- assign og_image = doc.image -%}
+    {%- else -%}
+      {%- assign og_image = site.url | append: doc.image -%}
+    {%- endif -%}
   {%- else -%}
-    {%- assign og_image = site.url | append: doc.image -%}
+    {%- assign og_image = site.url | append: "/assets/images/default-doctor-share.webp" -%}
   {%- endif -%}
 
   <title>{{ seo_title }}</title>
@@ -51,35 +61,40 @@
     "jobTitle": {{ doc.speciality | jsonify }},
     "description": {{ doc.bio | default: services_desc | truncate: 300 | jsonify }},
     "image": {{ og_image | jsonify }},
+    {%- if doc.location and doc.location != "" -%}
     "address": { "@type": "PostalAddress", "addressLocality": {{ doc.location | jsonify }} },
-    "knowsLanguage": {{ doc.languages | jsonify }},
+    {%- endif -%}
+    "knowsLanguage": {{ doc.languages | default: [] | jsonify }},
     "url": {{ canonical | jsonify }}
   }
   </script>
 {%- endif -%}
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
-  <meta name="theme-color" content="#007BBF" />
+{%- comment -%}
+Common head assets (kept here to ensure doctor pages load their CSS/theme)
+If you already include these globally in default.html, remove duplicates.
+{%- endcomment -%}
 
-  <!-- Favicon / touch icon -->
-  <link rel="icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}" type="image/webp">
-  <link rel="apple-touch-icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
-  {%- comment -%}
-  Optional author/meta fields that are page-specific but not hard-coded —
-  these are still dynamic (from page front matter or site config).
-  {%- endcomment -%}
-  <meta name="author" content="{{ page.author | default: site.author.name }}" />
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
 
-  {%- if page.date -%}
-    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
-  {%- endif -%}
-  {%- if page.last_modified_at -%}
-    <meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}" />
-  {%- endif -%}
+<meta name="theme-color" content="#007BBF" />
 
-  <link rel="alternate" type="application/atom+xml" title="{{ site.title }} - Atom Feed" href="{{ '/atom.xml' | relative_url }}" />
+<!-- Favicon / touch icon -->
+<link rel="icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}" type="image/webp">
+<link rel="apple-touch-icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}">
+
+<meta name="author" content="{{ page.author | default: site.author.name }}" />
+
+{%- if page.date -%}
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
+{%- endif -%}
+{%- if page.last_modified_at -%}
+  <meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}" />
+{%- endif -%}
+
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }} - Atom Feed" href="{{ '/atom.xml' | relative_url }}" />
