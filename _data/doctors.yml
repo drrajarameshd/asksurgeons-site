@@ -68,7 +68,7 @@
     - Referrals & care coordination
   location: Attapur
   gender: female
-  experience: 10
+  experience: 4
   languages: [Telugu, English, Hindi]
   tags: [ailments, coordination, counselling, general practitioner, immunizations, mbbs, primary, referrals, screening, wellness, women’s]
   profile_url: /doctors/dr-d-lakshmi-prasanna
@@ -92,7 +92,7 @@
     - Report verification & second opinion
   location: Attapur
   gender: female
-  experience: 10
+  experience: 7
   languages: [Telugu, English, Hindi]
   tags: [cbc, biopsy, cancer, cytology, lab, lft, md, pathology, quality-assured, report, rft, screening, second, verification]
   profile_url: /doctors/dr-p-a-sanjuktha
@@ -221,7 +221,7 @@
     - Second opinions on MRI/CT
   location: Attapur
   gender: male
-  experience: 10
+  experience: 9
   languages: [Telugu, English, Hindi]
   tags: [back, brain, endoscopic, evaluation, injury, management, mch (osmania), microsurgical, mri ct, neurosurgery, pain, sciatica, spine, trauma]
   profile_url: /doctors/dr-b-naresh
@@ -248,7 +248,7 @@
     - Second opinions & postoperative care
   location: Attapur
   gender: male
-  experience: 10
+  experience: 8
   languages: [Telugu, English, Hindi]
   tags: [abdomen, appendix, diabetic foot, fmas, general surgery, hernia, laparoscopic, ms, postoperative, wound, care, surgery]
   profile_url: /doctors/dr-abdullah-umayr
@@ -275,7 +275,7 @@
     - Women’s surgical consultation
   location: Attapur
   gender: female
-  experience: 10
+  experience: 8
   languages: [Telugu, English, Hindi]
   tags: [abdomen, appendix, fiages, gallbladder, general surgery, hernia, laparoscopic, ms, thyroid, women, surgery]
   profile_url: /doctors/dr-ashfa-neelofer
@@ -315,3 +315,29 @@
   tags: [spine, minimally invasive, robotic surgery, pain management, deformity, trauma, regenerative]
   profile_url: /doctors/dr-aditya
 
+- id: ENT-2
+  name: Dr. D. Mahesh
+  degree: [MBBS, MS]
+  speciality: ENT
+  department: ENT
+  image: /assets/images/doctor-images/dr-d-mahesh.webp
+  bio: Experienced ENT surgeon providing precise diagnosis and advanced treatment for ear, nose, and throat conditions with patient-focused care.
+  education:
+    - degree: MS (ENT)
+      institute: ''
+      year: ''
+    - degree: MBBS
+      institute: ''
+      year: ''
+  services:
+    - Ear pain, infections & wax removal
+    - Hearing loss & tinnitus management
+    - Sinusitis & nasal obstruction treatment
+    - Tonsil & adenoid surgery
+    - Endoscopic and microscopic ENT procedures
+  location: Attapur
+  gender: male
+  experience: 12
+  languages: [Telugu, English, Hindi]
+  tags: [ent, ear, nose, throat, sinusitis, hearing, infections, endoscopic, surgery, wax]
+  profile_url: /doctors/dr-d-mahesh
