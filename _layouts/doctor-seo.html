@@ -1,0 +1,59 @@
+{%- assign doctor_id = page.id | default: page.doctor_id -%}
+{%- assign doc = site.data.doctors | where: "id", doctor_id | first -%}
+
+{%- if doc -%}
+  {%- assign site_name = site.title | default: site.name | default: "AskSurgeons" -%}
+  {%- assign degrees = doc.degree | join: ", " -%}
+  {%- assign services_desc = doc.services | join: ", " -%}
+
+  {%- assign seo_title = doc.name -%}
+  {%- if doc.speciality and doc.speciality != "" -%}
+    {%- assign seo_title = seo_title | append: " — " | append: doc.speciality -%}
+  {%- endif -%}
+  {%- assign seo_title = seo_title | append: " | " | append: site_name -%}
+
+  {%- assign seo_description = doc.bio | default: services_desc | truncate: 155, "" -%}
+  {%- assign seo_keywords = doc.tags | join: ", " -%}
+
+  {%- assign canonical = site.url | append: page.url -%}
+
+  {%- if doc.image contains "http" -%}
+    {%- assign og_image = doc.image -%}
+  {%- else -%}
+    {%- assign og_image = site.url | append: doc.image -%}
+  {%- endif -%}
+
+  <title>{{ seo_title }}</title>
+  <meta name="description" content="{{ seo_description }}">
+  <meta name="keywords" content="{{ seo_keywords }}">
+  <link rel="canonical" href="{{ canonical }}">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="{{ site_name }}">
+  <meta property="og:title" content="{{ seo_title }}">
+  <meta property="og:description" content="{{ seo_description }}">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ og_image }}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo_title }}">
+  <meta name="twitter:description" content="{{ seo_description }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": {{ doc.name | jsonify }},
+    "jobTitle": {{ doc.speciality | jsonify }},
+    "description": {{ doc.bio | default: services_desc | truncate: 300 | jsonify }},
+    "image": {{ og_image | jsonify }},
+    "address": { "@type": "PostalAddress", "addressLocality": {{ doc.location | jsonify }} },
+    "knowsLanguage": {{ doc.languages | jsonify }},
+    "url": {{ canonical | jsonify }}
+  }
+  </script>
+{%- endif -%}
