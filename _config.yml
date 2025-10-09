@@ -1,11 +1,12 @@
 # ---- Site basics ----
-title: "Ask Surgeons"
+title: "Ask Surgeons — Attapur , Hyderabad"
 tagline: "Clear answers • Trusted care"
 description: "Hyderabad-based doctors directory, blog, and appointment info."
 url: "https://asksurgeons.com"     # Change if needed
 baseurl: ""       # Keep in sync with your repo/project path
 site_phone: "+91 8062182411"
 site_whatsapp: "+91 8062182411"
+locale: en_IN
 
 
 # ---- Author (used by seo tag in head.html) ----
