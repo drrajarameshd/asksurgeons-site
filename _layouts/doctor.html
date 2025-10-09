@@ -1,6 +1,11 @@
----
-layout: default
----
+
+<!doctype html>
+<html lang="en-IN">
+<head>
+  {% include head.html %}
+</head>
+<body>
+{% include header.html %}
 
 {% assign doctor_id = page.id | default: page.doctor_id %}
 {% assign doc = site.data.doctors | where: "id", doctor_id | first %}
@@ -71,3 +76,16 @@ layout: default
   <p>Doctor not found. Please check the ID in the page front matter.</p>
 </div>
 {% endif %}
+
+<main id="content" class="content" role="main">
+    {{ content }}
+  </main>
+
+  {% include bottom-nav.html %}
+  {% include footer.html %}
+
+  <!-- Core JS -->
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+</body>
+</html>
+  
