@@ -20,7 +20,7 @@
   experience: 10
   languages: [Telugu, English, Hindi]
   tags: [assessment, cardiac, diabetes, ecg, fever, general medicine, hypertension, lipid, management, md (osmania), preventive, risk, thyroid]
-  profile_url: /doctors/dr-d-raja-ramesh
+  profile_url: /doctors/attapur/dr-d-raja-ramesh
 
 - id: TR-1
   name: Dr. Karthik
@@ -47,7 +47,7 @@
   experience: 10
   languages: [Telugu, English, Hindi]
   tags: [access, counselling, evaluation, follow-up, kidney, mch (pgi), ms, opinions, optimization, pancreas, post-transplant, pre-transplant, second, surgery, transplant, transplant surgery, vascular]
-  profile_url: /doctors/dr-karthik
+  profile_url: /doctors/attapur/dr-karthik
 
 - id: GP-1
   name: Dr. D. Lakshmi Prasanna
@@ -71,7 +71,7 @@
   experience: 4
   languages: [Telugu, English, Hindi]
   tags: [ailments, coordination, counselling, general practitioner, immunizations, mbbs, primary, referrals, screening, wellness, women’s]
-  profile_url: /doctors/dr-d-lakshmi-prasanna
+  profile_url: /doctors/attapur/dr-d-lakshmi-prasanna
 
 - id: PATH-1
   name: Dr. P. A. Sanjuktha
@@ -95,7 +95,7 @@
   experience: 7
   languages: [Telugu, English, Hindi]
   tags: [cbc, biopsy, cancer, cytology, lab, lft, md, pathology, quality-assured, report, rft, screening, second, verification]
-  profile_url: /doctors/dr-p-a-sanjuktha
+  profile_url: /doctors/attapur/dr-p-a-sanjuktha
 
 - id: ENT-1
   name: Dr. G. V. Nagarjuna Reddy
@@ -119,7 +119,7 @@
   experience: 10
   languages: [Telugu, English, Hindi]
   tags: [allergy, ent, infections, ms (pgi), nasal, sinusitis, swallowing, tumor, voice, wax]
-  profile_url: /doctors/dr-g-v-nagarjuna-reddy
+  profile_url: /doctors/attapur/dr-g-v-nagarjuna-reddy
 
 - id: ORTHO-1
   name: Dr. B. Sudhakar
@@ -143,7 +143,7 @@
   experience: 10
   languages: [Telugu, English, Hindi]
   tags: [arthritis, fracture, joint replacement, orthopedics, sports injuries, spine, trauma]
-  profile_url: /doctors/dr-b-sudhakar
+  profile_url: /doctors/attapur/dr-b-sudhakar
 
 - id: OBG-1
   name: Dr. Pyreddy Pavani
@@ -173,7 +173,7 @@
   experience: 10
   languages: [Telugu, English, Hindi]
   tags: [antenatal, contraception, dgo, dnb, fertility, high-risk, mbbs, menopausal, obstetrics & gynecology, pcos, pregnancy, scans]
-  profile_url: /doctors/dr-pyreddy-pavani
+  profile_url: /doctors/attapur/dr-pyreddy-pavani
 
 - id: URO-1
   name: Dr. Vinay
@@ -200,7 +200,7 @@
   experience: 10
   languages: [Telugu, English, Hindi]
   tags: [endoscopic, infertility, kidney, mch (nims), ms, prostate, urinary, urology, uti]
-  profile_url: /doctors/dr-vinay
+  profile_url: /doctors/attapur/dr-vinay
 
 - id: NS-1
   name: Dr. B. Naresh
@@ -224,7 +224,7 @@
   experience: 9
   languages: [Telugu, English, Hindi]
   tags: [back, brain, endoscopic, evaluation, injury, management, mch (osmania), microsurgical, mri ct, neurosurgery, pain, sciatica, spine, trauma]
-  profile_url: /doctors/dr-b-naresh
+  profile_url: /doctors/attapur/dr-b-naresh
 
 - id: GS-1
   name: Dr. Abdullah Umayr
@@ -251,7 +251,7 @@
   experience: 8
   languages: [Telugu, English, Hindi]
   tags: [abdomen, appendix, diabetic foot, fmas, general surgery, hernia, laparoscopic, ms, postoperative, wound, care, surgery]
-  profile_url: /doctors/dr-abdullah-umayr
+  profile_url: /doctors/attapur/dr-abdullah-umayr
 
 - id: GS-2
   name: Dr. Ashfa Neelofer
@@ -278,7 +278,7 @@
   experience: 8
   languages: [Telugu, English, Hindi]
   tags: [abdomen, appendix, fiages, gallbladder, general surgery, hernia, laparoscopic, ms, thyroid, women, surgery]
-  profile_url: /doctors/dr-ashfa-neelofer
+  profile_url: /doctors/attapur/dr-ashfa-neelofer
   
 - id: dr-aditya
   name: Dr. Aditya Sunder Goparaju
@@ -313,7 +313,7 @@
   experience: 9
   languages: [English, Telugu, Hindi, Tamil]
   tags: [spine, minimally invasive, robotic surgery, pain management, deformity, trauma, regenerative]
-  profile_url: /doctors/dr-aditya
+  profile_url: /doctors/attapur/dr-aditya
 
 - id: ENT-2
   name: Dr. D. Mahesh
@@ -340,4 +340,4 @@
   experience: 12
   languages: [Telugu, English, Hindi]
   tags: [ent, ear, nose, throat, sinusitis, hearing, infections, endoscopic, surgery, wax]
-  profile_url: /doctors/dr-d-mahesh
+  profile_url: /doctors/attapur/dr-d-mahesh
