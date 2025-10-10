@@ -1,8 +1,12 @@
-{%- comment -%}
-_includes/doctor-head.html
-→ Include this inside <head> of your default layout
-   or via {% contentfor head %}{% include doctor-head.html %}{% endcontentfor %}
-{%- endcomment -%}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1KNKJJ87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7L1KNKJJ87');
+</script>
 
 {%- assign doctor_id = page.id | default: page.doctor_id -%}
 {%- assign doc = site.data.doctors | where: "id", doctor_id | first -%}
