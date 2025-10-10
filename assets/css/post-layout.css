@@ -9,7 +9,17 @@
 
 .post-layout-root .site-title{font-weight:600}
 .post-layout-root main.content{padding:28px 0}
-.post-layout-root article.post{background:linear-gradient(180deg, rgba(255,255,255,0.99), rgba(255,255,255,0.98));border-radius:var(--radius);box-shadow:var(--card-shadow);overflow:hidden;padding:18px}
+
+.post-layout-root article.post {
+  background: linear-gradient(180deg, rgba(255,255,255,0.99), rgba(255,255,255,0.98));
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  padding: 18px;
+  max-width: 1200px;
+  margin: 0 auto; /* centers it horizontally */
+}
+
 .post-layout-root .post-header{padding:12px 6px 6px}
 .post-layout-root .post-header h1{margin:8px 0 4px;font-size:1.45rem;line-height:1.18}
 .post-layout-root .meta{color:var(--muted);font-size:0.9rem}
