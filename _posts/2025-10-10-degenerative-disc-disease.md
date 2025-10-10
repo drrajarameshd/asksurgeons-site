@@ -12,6 +12,9 @@ thumbnail: /assets/images/post-images/thumbs/2025-10-10-degenerative-disc-diseas
 Back pain has quietly become one of the **most common causes of missed work and poor quality of life** — especially among people who sit long hours or lead sedentary lives.  
 One major cause is **Degenerative Disc Disease (DDD)** — a gradual wear and tear of the spinal discs that act as cushions between vertebrae.
 
+<!-- inline image (same as cover) -->
+![Spine Anatomy — Disc Degeneration and Nerve Compression Illustration](/assets/images/post-images/2025-10-10-degenerative-disc-disease.webp)
+
 ---
 
 ## Spectrum of the Disease
