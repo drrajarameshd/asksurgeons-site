@@ -1,5 +1,5 @@
 ---
 layout: doctor
 id: ENT-2
-permalink: /doctors/dr-d-mahesh
+permalink: /doctors/attapur/dr-d-mahesh
 ---
