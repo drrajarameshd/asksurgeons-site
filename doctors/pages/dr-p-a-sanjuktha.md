@@ -6,5 +6,5 @@ title: "Dr. P. A. Sanjuktha, MD | Pathologist — Attapur, Hyderabad"
 description: "Detail-oriented pathologist in Attapur delivering accurate, timely lab and biopsy reporting to guide clinical decisions."
 image: /assets/images/doctor-images/dr-p-a-sanjuktha.webp
 speciality: "Pathology"
-permalink: /doctors/dr-p-a-sanjuktha
+permalink: /doctors/attapur/dr-p-a-sanjuktha
 ---
