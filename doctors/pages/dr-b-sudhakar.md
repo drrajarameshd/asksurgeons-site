@@ -6,5 +6,5 @@ title: "Dr. B. Sudhakar, MS (Osmania) | Orthopedics & Joint Replacement — Atta
 description: "Orthopedic surgeon in Attapur focusing on joint replacement, fracture & trauma care, sports injuries and arthritis management."
 image: /assets/images/doctor-images/dr-b-sudhakar.webp
 speciality: "Orthopedics & Joint Replacement"
-permalink: /doctors/dr-b-sudhakar
+permalink: /doctors/attapur/dr-b-sudhakar
 ---
