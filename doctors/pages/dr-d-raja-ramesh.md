@@ -6,5 +6,5 @@ title: "Dr. D. Raja Ramesh, MD (Osmania) | General Medicine — Attapur, Hyderab
 description: "Trusted general physician in Attapur, Hyderabad. Expert in diabetes, thyroid, hypertension and preventive health. Clear communication and evidence-based long-term follow-up."
 image: /assets/images/doctor-images/dr-d-raja-ramesh.webp
 speciality: "General Medicine"
-permalink: /doctors/dr-d-raja-ramesh
+permalink: /doctors/attapur/dr-d-raja-ramesh
 ---
