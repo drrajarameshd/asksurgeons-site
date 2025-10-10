@@ -13,6 +13,9 @@ Sinusitis is one of the **most common ENT problems** seen in Hyderabad — yet o
 In simple terms, **sinusitis means inflammation of the air-filled cavities (sinuses)** around the nose and eyes.  
 These sinuses normally produce mucus that drains through small openings into the nose. When blocked, infection develops.
 
+<!-- inline image (same as cover) -->
+![Sinus Cavities and Nasal Pathways — Common Site of Infection](/assets/images/post-images/2025-10-10-sinusitis.webp)
+
 ---
 
 ## Types of Sinusitis
