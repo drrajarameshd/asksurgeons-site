@@ -1,48 +1,29 @@
-<!-- gtag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1KNKJJ87"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<!-- charset & viewport — MUST be first -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
-  gtag('config', 'G-7L1KNKJJ87');
-</script>
-
-  
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-
-{%- comment -%}
-Full override of jekyll-seo-tag include with enriched author for doctors.
-Supports doctor records in _data/doctors.yml with fields like:
-id, name, degree, speciality, department, image, bio, education, services,
-location, gender, experience, languages, tags, profile_url
-
-Usage:
-- Add doctor_id: "OBG-1" to page front matter to use the doctor entry.
-- If no doctor_id, falls back to page.author / site.author.name.
-{%- endcomment -%}
-
-{%- assign meta_title = page.title | default: site.title -%}
-{%- assign meta_description = page.description | default: page.excerpt | default: site.description -%}
-{%- assign meta_image = page.image | default: page.featured_image | default: site.seo_image | default: site.logo -%}
-{%- assign meta_url = page.url | absolute_url -%}
-{%- assign publish_date = page.date | date_to_xmlschema if page.date -%}
-{%- assign modified_date = page.last_modified_at | date_to_xmlschema if page.last_modified_at -%}
-
-{%- comment -%} Basic meta & canonical {%- endcomment -%}
+<!-- title & canonical -->
 <title>{{ meta_title | escape }}</title>
 <link rel="canonical" href="{{ meta_url }}" />
 
+<!-- core meta (description/robots/theme) -->
 {%- if meta_description -%}
 <meta name="description" content="{{ meta_description | strip_html | strip_newlines | truncate:160 | escape }}">
 {%- endif -%}
-
 {%- if page.password_protected or page.noindex or page.sitemap == false or page.disallow_search -%}
 <meta name="robots" content="noindex, nofollow" />
 {%- endif -%}
+<meta name="theme-color" content="#007BBF" />
 
-{%- comment -%} Open Graph {%- endcomment -%}
+<!-- favicons / touch icons -->
+<link rel="icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}" type="image/webp">
+<link rel="apple-touch-icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}">
+
+<!-- feed / alternate -->
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }} - Atom Feed" href="{{ '/atom.xml' | relative_url }}" />
+
+<!-- Open Graph / Twitter meta (you already generate these in the include; keep here if you don't use {% seo %}) -->
 <meta property="og:locale" content="{{ site.lang | default: 'en_US' }}" />
 <meta property="og:site_name" content="{{ site.title | escape }}" />
 <meta property="og:title" content="{{ meta_title | escape }}" />
@@ -53,28 +34,19 @@ Usage:
 {%- if meta_image -%}
 <meta property="og:image" content="{{ meta_image | absolute_url }}" />
 {%- endif -%}
-
-{%- if page.date -%}
-<meta property="og:type" content="article" />
-{%- if publish_date -%}<meta property="article:published_time" content="{{ publish_date }}" />{%- endif -%}
-{%- if modified_date -%}<meta property="article:modified_time" content="{{ modified_date }}" />{%- endif -%}
-{%- if page.categories %}
-  {%- for c in page.categories -%}
-<meta property="article:tag" content="{{ c | escape }}" />
-  {%- endfor -%}
-{%- endif -%}
-{%- else -%}
-<meta property="og:type" content="website" />
-{%- endif -%}
-
-{%- comment -%} Twitter Card {%- endcomment -%}
 <meta name="twitter:card" content="{% if meta_image %}summary_large_image{% else %}summary{% endif %}" />
-{%- if site.twitter_username -%}<meta name="twitter:site" content="@{{ site.twitter_username | replace: '@', '' }}" />{%- endif -%}
+{%- if site.twitter_username -%}
+<meta name="twitter:site" content="@{{ site.twitter_username | replace: '@', '' }}" />
+{%- endif -%}
 <meta name="twitter:title" content="{{ meta_title | escape }}" />
-{%- if meta_description -%}<meta name="twitter:description" content="{{ meta_description | strip_html | strip_newlines | truncate:200 | escape }}" />{%- endif -%}
-{%- if meta_image -%}<meta name="twitter:image" content="{{ meta_image | absolute_url }}" />{%- endif -%}
+{%- if meta_description -%}
+<meta name="twitter:description" content="{{ meta_description | strip_html | strip_newlines | truncate:200 | escape }}" />
+{%- endif -%}
+{%- if meta_image -%}
+<meta name="twitter:image" content="{{ meta_image | absolute_url }}" />
+{%- endif -%}
 
-{%- comment -%} JSON-LD structured data {%- endcomment -%}
+<!-- Structured data (JSON-LD) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -111,11 +83,11 @@ Usage:
   {%- if doctor -%}
   "author": {
     "@type": "Person",
-    "@id": {{ (doctor.profile_url | absolute_url | append: "#author") | jsonify }},
+    "@id": {{ (site.url | append: '/doctors#' | append: doctor.id) | jsonify }},
     "name": {{ doctor.name | jsonify }},
     {%- if doctor.gender %}"gender": {{ doctor.gender | jsonify }},{% endif -%}
     {%- if doctor.speciality %}"jobTitle": {{ doctor.speciality | jsonify }},{% endif -%}
-    {%- comment -%} degrees & department combined into description for clarity {%- endcomment -%}
+    {%- comment -%} description assembly {%- endcomment -%}
     {%- assign desc_parts = "" -%}
     {%- if doctor.degree and doctor.degree.size > 0 -%}
       {%- assign desc_parts = doctor.degree | join: ", " -%}
@@ -193,7 +165,6 @@ Usage:
             }{{ ed_count == doctor.education.size ? "" : "," }}
           {%- endif -%}
         {%- else -%}
-          {%- comment -%} if no institute, output degree only as string object {%- endcomment -%}
           {
             "@type": "EducationalOrganization",
             "name": {{ ed.degree | jsonify }}
@@ -215,7 +186,6 @@ Usage:
     "keywords": {{ doctor.tags | join: ", " | jsonify }},
     {%- endif -%}
 
-    {%- comment -%} affiliation (site or custom) {%- endcomment -%}
     "affiliation": {
       "@type": "MedicalOrganization",
       "name": {{ site.title | default: site.name | jsonify }}
@@ -228,7 +198,6 @@ Usage:
   },
   {%- endif -%}
 
-  {%- comment -%} Publisher {%- endcomment -%}
   "publisher": {
     "@type": "Organization",
     "name": {{ site.title | default: site.name | jsonify }}{%- if site.logo -%},
@@ -240,15 +209,16 @@ Usage:
 }
 </script>
 
+<!-- Analytics: gtag (async) — after core meta and JSON-LD so charset/SEO parsed first -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1KNKJJ87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7L1KNKJJ87');
+</script>
 
-
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
-  <meta name="theme-color" content="#007BBF" />
-
-  <!-- Favicon / touch icon -->
-  <link rel="icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}" type="image/webp">
-  <link rel="apple-touch-icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}">
-
-  <link rel="alternate" type="application/atom+xml" title="{{ site.title }} - Atom Feed" href="{{ '/atom.xml' | relative_url }}" />
+<!-- Stylesheets and other resources -->
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
