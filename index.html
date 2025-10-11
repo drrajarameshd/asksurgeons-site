@@ -75,7 +75,7 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
 
               <div class="meta">
                <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-                {{ post.date | date: "%B %-d, %Y" }} {{post.author}}
+                {{post.author}} | {{ post.date | date: "%B %-d, %Y" }}
                </time>
 
                {% if post.tags and post.tags.size > 0 %}
