@@ -65,7 +65,6 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
             {% if post.thumbnail %}
               <a class="thumb" href="{{ post.url | relative_url }}" itemprop="url" aria-hidden="true">
                 <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title | escape }}" loading="lazy" width="200" height="120">
-                {% include doctor-card.html id=post.id %}
               </a>
             {% endif %}
 
@@ -76,7 +75,7 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
 
               <div class="meta">
                <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-                {{ post.date | date: "%B %-d, %Y" }}
+                {{ post.date | date: "%B %-d, %Y" }} {{post.author}}
                </time>
 
                {% if post.tags and post.tags.size > 0 %}
