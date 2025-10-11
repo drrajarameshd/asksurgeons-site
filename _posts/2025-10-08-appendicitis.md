@@ -8,10 +8,9 @@ tags: [appendicitis, emergency, abdominal pain, surgery, Dr. Nilofer]
 image: /assets/images/post-images/2025-10-08-appendicitis.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-08-appendicitis-thumb.webp
 ---
-![Appendicitis — Inflammation of Appendix](/assets/images/post-images/2025-10-08-appendicitis.webp)
+> {% include doctor-card.html id="GS-2"}
 
-### **Signs, Symptoms, and Treatment of Appendicitis**  
-*By Dr. Nilofer, General Surgeon*
+![Appendicitis — Inflammation of Appendix](/assets/images/post-images/2025-10-08-appendicitis.webp)
 
 It was a typical Monday morning when **Ayesha**, a 22-year-old college student, walked into the emergency room. She looked pale, her hand pressed firmly against the right side of her abdomen.  
 “Doctor,” she whispered, “the pain started near my belly button and now it’s shifted down to the right. I can’t even stand straight.”

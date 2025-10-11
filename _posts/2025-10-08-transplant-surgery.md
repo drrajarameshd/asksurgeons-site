@@ -8,6 +8,7 @@ tags: [transplant, kidney, pancreas, dialysis, diabetes, Hyderabad, DrKarthik]
 image: /assets/images/post-images/2025-10-08-transplant-surgery.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-08-transplant-surgery.webp
 ---
+> {% include doctor-card.html id='TR-1'}
 
 ![Kidney & Pancreas Transplant Surgery](/assets/images/post-images/2025-10-08-transplant-surgery.webp)
 Organ transplantation is one of the most advanced and rewarding areas of modern medicine — offering patients not just longer life, but a better quality of life.  

@@ -8,6 +8,7 @@ tags: [sinusitis, ENT, sinus surgery, nasal congestion, ear nose throat, Dr. G. 
 image: /assets/images/post-images/2025-10-10-sinusitis.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-10-sinusitis.webp
 ---
+> {% include doctor-card.html id='ENT-1' %}
 
 Sinusitis is one of the **most common ENT problems** seen in Hyderabad — yet often ignored until it becomes chronic.  
 In simple terms, **sinusitis means inflammation of the air-filled cavities (sinuses)** around the nose and eyes.  

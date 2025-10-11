@@ -8,6 +8,7 @@ tags: [back pain, degenerative disc disease, spine surgery, physiotherapy, postu
 image: /assets/images/post-images/2025-10-10-degenerative-disc-disease.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-10-degenerative-disc-disease.webp
 ---
+> {% include doctor-card.html id='dr-aditya' %}
 
 Back pain has quietly become one of the **most common causes of missed work and poor quality of life** — especially among people who sit long hours or lead sedentary lives.  
 One major cause is **Degenerative Disc Disease (DDD)** — a gradual wear and tear of the spinal discs that act as cushions between vertebrae.
