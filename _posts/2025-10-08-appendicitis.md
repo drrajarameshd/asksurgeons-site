@@ -8,7 +8,7 @@ tags: [appendicitis, emergency, abdominal pain, surgery, Dr. Nilofer]
 image: /assets/images/post-images/2025-10-08-appendicitis.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-08-appendicitis-thumb.webp
 ---
-> {% include doctor-card.html id="GS-2"}
+> {% include doctor-card.html id="GS-2" %}
 
 ![Appendicitis — Inflammation of Appendix](/assets/images/post-images/2025-10-08-appendicitis.webp)
 
