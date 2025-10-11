@@ -8,7 +8,7 @@ tags: [mental health, stress, counselling, psychiatrist, psychologist, depressio
 image: /assets/images/post-images/2025-10-10-world-mental-health-day.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-10-world-mental-health-day.webp
 ---
-{% include doctor-card.html id='GM-1'%}
+> {% include doctor-card.html id='GM-1'%}
 
 
 Every year, **October 10** is observed as **World Mental Health Day**, a global reminder that *mental well-being is just as important as physical health*.  
