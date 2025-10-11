@@ -1,215 +1,23 @@
-<!-- charset & viewport — MUST be first -->
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+{%- comment -%}
+Simple, SEO-friendly head for Jekyll using jekyll-seo-tag plugin.
+Handles title, description, canonical, OG, Twitter, JSON-LD automatically.
+Add site.title, site.description, site.logo, site.twitter_username in _config.yml
+{%- endcomment -%}
 
-<!-- title & canonical -->
-<title>{{ meta_title | escape }}</title>
-<link rel="canonical" href="{{ meta_url }}" />
+<!-- 1️⃣ Charset & Viewport (always first) -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<!-- core meta (description/robots/theme) -->
-{%- if meta_description -%}
-<meta name="description" content="{{ meta_description | strip_html | strip_newlines | truncate:160 | escape }}">
-{%- endif -%}
-{%- if page.password_protected or page.noindex or page.sitemap == false or page.disallow_search -%}
-<meta name="robots" content="noindex, nofollow" />
-{%- endif -%}
-<meta name="theme-color" content="#007BBF" />
-
-<!-- favicons / touch icons -->
+<!-- 2️⃣ Favicon & Theme Color -->
 <link rel="icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}" type="image/webp">
 <link rel="apple-touch-icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}">
+<meta name="theme-color" content="#007BBF">
 
-<!-- feed / alternate -->
-<link rel="alternate" type="application/atom+xml" title="{{ site.title }} - Atom Feed" href="{{ '/atom.xml' | relative_url }}" />
+<!-- 3️⃣ SEO tag -->
+{% seo %}
 
-<!-- Open Graph / Twitter meta (you already generate these in the include; keep here if you don't use {% seo %}) -->
-<meta property="og:locale" content="{{ site.lang | default: 'en_US' }}" />
-<meta property="og:site_name" content="{{ site.title | escape }}" />
-<meta property="og:title" content="{{ meta_title | escape }}" />
-{%- if meta_description -%}
-<meta property="og:description" content="{{ meta_description | strip_html | strip_newlines | truncate:300 | escape }}" />
-{%- endif -%}
-<meta property="og:url" content="{{ meta_url }}" />
-{%- if meta_image -%}
-<meta property="og:image" content="{{ meta_image | absolute_url }}" />
-{%- endif -%}
-<meta name="twitter:card" content="{% if meta_image %}summary_large_image{% else %}summary{% endif %}" />
-{%- if site.twitter_username -%}
-<meta name="twitter:site" content="@{{ site.twitter_username | replace: '@', '' }}" />
-{%- endif -%}
-<meta name="twitter:title" content="{{ meta_title | escape }}" />
-{%- if meta_description -%}
-<meta name="twitter:description" content="{{ meta_description | strip_html | strip_newlines | truncate:200 | escape }}" />
-{%- endif -%}
-{%- if meta_image -%}
-<meta name="twitter:image" content="{{ meta_image | absolute_url }}" />
-{%- endif -%}
-
-<!-- Structured data (JSON-LD) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  {%- if page.date -%}
-  "@type": "BlogPosting",
-  "headline": {{ meta_title | jsonify }},
-  {%- else -%}
-  "@type": "WebPage",
-  "name": {{ meta_title | jsonify }},
-  {%- endif -%}
-  {%- if meta_description -%}
-  "description": {{ meta_description | strip_html | strip_newlines | truncate:300 | jsonify }},
-  {%- endif -%}
-  "url": {{ meta_url | jsonify }},
-  {%- if meta_image -%}
-  "image": {
-    "@type": "ImageObject",
-    "url": {{ meta_image | absolute_url | jsonify }}
-  },
-  {%- endif -%}
-  {%- if page.date -%}"datePublished": {{ publish_date | jsonify }},{%- endif -%}
-  {%- if page.last_modified_at -%}"dateModified": {{ modified_date | jsonify }},{%- endif -%}
-
-  {%- comment -%} Enriched author (doctor) lookup {%- endcomment -%}
-  {%- assign doctor = nil -%}
-  {%- if page.doctor_id -%}
-    {%- if site.data.doctors[page.doctor_id] -%}
-      {%- assign doctor = site.data.doctors[page.doctor_id] -%}
-    {%- else -%}
-      {%- assign doctor = site.data.doctors | where: "id", page.doctor_id | first -%}
-    {%- endif -%}
-  {%- endif -%}
-
-  {%- if doctor -%}
-  "author": {
-    "@type": "Person",
-    "@id": {{ (site.url | append: '/doctors#' | append: doctor.id) | jsonify }},
-    "name": {{ doctor.name | jsonify }},
-    {%- if doctor.gender %}"gender": {{ doctor.gender | jsonify }},{% endif -%}
-    {%- if doctor.speciality %}"jobTitle": {{ doctor.speciality | jsonify }},{% endif -%}
-    {%- comment -%} description assembly {%- endcomment -%}
-    {%- assign desc_parts = "" -%}
-    {%- if doctor.degree and doctor.degree.size > 0 -%}
-      {%- assign desc_parts = doctor.degree | join: ", " -%}
-    {%- endif -%}
-    {%- if doctor.department -%}
-      {%- if desc_parts != "" -%}
-        {%- assign desc_parts = desc_parts | append: " — " | append: doctor.department -%}
-      {%- else -%}
-        {%- assign desc_parts = doctor.department -%}
-      {%- endif -%}
-    {%- endif -%}
-    {%- if doctor.bio -%}
-      {%- if desc_parts != "" -%}
-        {%- assign desc_parts = desc_parts | append: " — " | append: doctor.bio -%}
-      {%- else -%}
-        {%- assign desc_parts = doctor.bio -%}
-      {%- endif -%}
-    {%- endif -%}
-    {%- if doctor.experience -%}
-      {%- if desc_parts != "" -%}
-        {%- assign desc_parts = desc_parts | append: " — " | append: doctor.experience | append: " years experience" -%}
-      {%- else -%}
-        {%- assign desc_parts = doctor.experience | append: " years experience" -%}
-      {%- endif -%}
-    {%- endif -%}
-    {%- if desc_parts != "" -%}
-    "description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }},
-    {%- endif -%}
-
-    {%- if doctor.image -%}
-    "image": {
-      "@type": "ImageObject",
-      "url": {{ doctor.image | absolute_url | jsonify }}
-    },
-    {%- endif -%}
-
-    {%- if doctor.profile_url -%}
-    "url": {{ doctor.profile_url | absolute_url | jsonify }},
-    {%- endif -%}
-
-    {%- if doctor.speciality -%}
-    "medicalSpecialty": {{ doctor.speciality | jsonify }},
-    {%- endif -%}
-
-    {%- if doctor.location -%}
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": {{ doctor.location | jsonify }}
-    },
-    {%- endif -%}
-
-    {%- if doctor.languages and doctor.languages.size > 0 -%}
-    "knowsLanguage": [
-      {%- for lang in doctor.languages -%}
-        {{ lang | jsonify }}{{ forloop.last ? "" : "," }}
-      {%- endfor -%}
-    ],
-    {%- endif -%}
-
-    {%- if doctor.education and doctor.education.size > 0 -%}
-    "alumniOf": [
-      {%- assign ed_count = 0 -%}
-      {%- for ed in doctor.education -%}
-        {%- assign ed_count = ed_count | plus: 1 -%}
-        {%- if ed.institute and ed.institute != "" -%}
-          {%- if ed.degree and ed.degree != "" -%}
-            {
-              "@type": "EducationalOrganization",
-              "name": {{ (ed.degree | append: " — " | append: ed.institute) | jsonify }}
-            }{{ ed_count == doctor.education.size ? "" : "," }}
-          {%- else -%}
-            {
-              "@type": "EducationalOrganization",
-              "name": {{ ed.institute | jsonify }}
-            }{{ ed_count == doctor.education.size ? "" : "," }}
-          {%- endif -%}
-        {%- else -%}
-          {
-            "@type": "EducationalOrganization",
-            "name": {{ ed.degree | jsonify }}
-          }{{ ed_count == doctor.education.size ? "" : "," }}
-        {%- endif -%}
-      {%- endfor -%}
-    ],
-    {%- endif -%}
-
-    {%- if doctor.services and doctor.services.size > 0 -%}
-    "knowsAbout": [
-      {%- for s in doctor.services -%}
-        {{ s | jsonify }}{{ forloop.last ? "" : "," }}
-      {%- endfor -%}
-    ],
-    {%- endif -%}
-
-    {%- if doctor.tags and doctor.tags.size > 0 -%}
-    "keywords": {{ doctor.tags | join: ", " | jsonify }},
-    {%- endif -%}
-
-    "affiliation": {
-      "@type": "MedicalOrganization",
-      "name": {{ site.title | default: site.name | jsonify }}
-    }
-  },
-  {%- else -%}
-  "author": {
-    "@type": "Person",
-    "name": {{ (page.author | default: site.author.name) | jsonify }}
-  },
-  {%- endif -%}
-
-  "publisher": {
-    "@type": "Organization",
-    "name": {{ site.title | default: site.name | jsonify }}{%- if site.logo -%},
-    "logo": {
-      "@type": "ImageObject",
-      "url": {{ site.logo | absolute_url | jsonify }}
-    }{%- endif -%}
-  }
-}
-</script>
-
-<!-- Analytics: gtag (async) — after core meta and JSON-LD so charset/SEO parsed first -->
+<!-- 4️⃣ Optional: Analytics (Google Tag Manager / gtag) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1KNKJJ87"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -218,7 +26,8 @@
   gtag('config', 'G-7L1KNKJJ87');
 </script>
 
-<!-- Stylesheets and other resources -->
+<!-- 5️⃣ Stylesheets -->
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
+
