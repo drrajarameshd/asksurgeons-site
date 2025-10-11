@@ -7,7 +7,7 @@ tags: [dengue, chikungunya, arthritis, mosquitoes, Attapur, Hyderabad, Musi]
 image: /assets/images/post-images/2025-09-25-dengue-chikungunya.webp
 thumbnail: /assets/images/post-images/thumbs/2025-09-25-dengue-chikungunya.webp
 ---
-> {% include doctor-card.html id='GM-1'}
+> {% include doctor-card.html id='GM-1' %}
 
 Attapur and surrounding colonies near the **Musi river** — like Rajendranagar, Aramghar, PVNR Expressway belt, Hyderguda, and Mehdipatnam outskirts — face a common challenge every monsoon. Stagnant water pockets left after rains become ideal breeding grounds for mosquitoes.  
 
