@@ -1,0 +1,142 @@
+{%- comment -%}
+Head for doctor-authored blog posts.
+Each post has:
+ - layout: post
+ - id: matches doctor.id in _data/doctors.yml (e.g., GM-1)
+ - author: doctor name
+ - date, title, excerpt, tags, image, thumbnail
+Assumes site.url = "https://asksurgeons.com"
+{%- endcomment -%}
+
+<!-- 1️⃣ Essential document metadata -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<!-- 2️⃣ Dynamic title -->
+<title>{{ page.title | escape }}</title>
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- 3️⃣ Description & theme color -->
+<meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate:160 | escape }}">
+<meta name="theme-color" content="#007BBF">
+
+<!-- 4️⃣ Favicons -->
+<link rel="icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}" type="image/webp">
+<link rel="apple-touch-icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}">
+
+<!-- 5️⃣ Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:title" content="{{ page.title | escape }}">
+<meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate:300 | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ page.image | absolute_url }}">
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- if page.last_modified_at -%}
+<meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">
+{%- endif -%}
+{%- if page.tags %}
+  {%- for t in page.tags -%}
+<meta property="article:tag" content="{{ t | escape }}">
+  {%- endfor -%}
+{%- endif -%}
+
+<!-- 6️⃣ Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title | escape }}">
+<meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate:200 | escape }}">
+<meta name="twitter:image" content="{{ page.image | absolute_url }}">
+{%- if site.twitter_username -%}
+<meta name="twitter:site" content="@{{ site.twitter_username | replace: '@', '' }}">
+{%- endif -%}
+
+<!-- 7️⃣ Structured Data (JSON-LD) -->
+{%- assign doctor = site.data.doctors | where: "id", page.id | first -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.excerpt | strip_html | strip_newlines | truncate:300 | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  {%- if page.last_modified_at -%}
+  "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+  {%- endif -%}
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ page.image | absolute_url | jsonify }}
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "{{ site.url }}/doctors#{{ doctor.id }}",
+    "name": {{ doctor.name | jsonify }},
+    "jobTitle": {{ doctor.speciality | jsonify }},
+    "medicalSpecialty": {{ doctor.speciality | jsonify }},
+    {%- if doctor.gender %}"gender": {{ doctor.gender | jsonify }},{% endif -%}
+    "affiliation": {
+      "@type": "MedicalOrganization",
+      "name": {{ site.title | jsonify }}
+    },
+    {%- if doctor.image -%}
+    "image": {
+      "@type": "ImageObject",
+      "url": {{ doctor.image | absolute_url | jsonify }}
+    },
+    {%- endif -%}
+    "url": {{ doctor.profile_url | absolute_url | jsonify }},
+    {%- assign desc_parts = doctor.degree | join: ', ' | append: ' — ' | append: doctor.department | append: ' — ' | append: doctor.bio | append: ' — ' | append: doctor.experience | append: ' years experience' -%}
+    "description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }},
+    {%- if doctor.education and doctor.education.size > 0 -%}
+    "alumniOf": [
+      {%- for ed in doctor.education -%}
+        {
+          "@type": "EducationalOrganization",
+          "name": {{ (ed.degree | append: " — " | append: ed.institute) | jsonify }}
+        }{{ forloop.last ? "" : "," }}
+      {%- endfor -%}
+    ],
+    {%- endif -%}
+    {%- if doctor.services and doctor.services.size > 0 -%}
+    "knowsAbout": [
+      {%- for s in doctor.services -%}
+        {{ s | jsonify }}{{ forloop.last ? "" : "," }}
+      {%- endfor -%}
+    ],
+    {%- endif -%}
+    {%- if doctor.tags and doctor.tags.size > 0 -%}
+    "keywords": {{ doctor.tags | join: ', ' | jsonify }},
+    {%- endif -%}
+    {%- if doctor.languages and doctor.languages.size > 0 -%}
+    "knowsLanguage": [
+      {%- for lang in doctor.languages -%}
+        {{ lang | jsonify }}{{ forloop.last ? "" : "," }}
+      {%- endfor -%}
+    ]
+    {%- endif -%}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.title | jsonify }},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ site.logo | absolute_url | jsonify }}
+    }
+  }
+}
+</script>
+
+<!-- 8️⃣ Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1KNKJJ87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7L1KNKJJ87');
+</script>
+
+<!-- 9️⃣ Styles -->
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
