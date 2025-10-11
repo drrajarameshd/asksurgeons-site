@@ -9,7 +9,7 @@ thumbnail: /assets/images/post-images/thumbs/2025-10-11-vaginal-discharge.webp
 author: "Dr. Pyreddy Pavani"
 ---
 
-{% include doctor-card.html id='OBG-1' %}
+> {% include doctor-card.html id='OBG-1' %}
 
 Many women notice **vaginal discharge** every day — sometimes clear, sometimes cloudy — and often wonder if it’s normal or a sign of infection.  
 Understanding what’s **normal**, what changes with hormones, and what needs medical attention helps maintain good intimate health.
