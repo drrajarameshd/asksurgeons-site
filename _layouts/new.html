@@ -1,0 +1,93 @@
+
+<!doctype html>
+<html lang="en-IN">
+<head>
+  
+  {% include doctor-head.html %}
+  
+</head>
+<body>
+{% include header.html %}
+
+{% assign doctor_id = page.id | default: page.doctor_id %}
+{% assign doc = site.data.doctors | where: "id", doctor_id | first %}
+
+{% if doc %}
+<div class="d-container">
+  <a href="/doctors/" class="d-back-link">← Back to all doctors</a>
+
+  <div class="d-grid">
+    <div class="d-profile">
+      <div class="d-image-wrapper">
+        <img src="{{ doc.image }}" alt="{{ doc.name }}" class="d-image">
+      </div>
+      <div class="d-meta">
+        <div class="d-name">{{ doc.name }}{% if doc.degree %}, {{ doc.degree | join: ", " }}{% endif %}</div>
+        <div class="d-speciality">{{ doc.speciality }}</div>
+        <div class="d-chips">
+          <span class="d-chip d-chip-dept">{{ doc.department }}</span>
+          <span class="d-chip d-chip-exp">Exp: {{ doc.experience }} yrs</span>
+          <span class="d-chip d-chip-location">{{ doc.location }}</span>
+        </div>
+        <div class="d-qual"><strong>Degrees:</strong><br>{{ doc.degree | join: ", " }}</div>
+        <div class="d-lang"><strong>Languages:</strong><br>{{ doc.languages | join: " • " }}</div>
+        {% if doc.profile_links.whatsapp %}
+          <a href="https://wa.me/{{ doc.profile_links.whatsapp | replace: '+','' | replace: ' ',''
+            }}" class="d-whatsapp">WhatsApp</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="d-details">
+      <h1 class="d-heading">{{ doc.name }}</h1>
+      <p class="d-bio">{{ doc.bio }}</p>
+
+      <h2 class="d-subheading">Services</h2>
+      <ul class="d-service-list">
+        {% for s in doc.services %}
+          <li>{{ s }}</li>
+        {% endfor %}
+      </ul>
+
+      {% if doc.education and doc.education.size > 0 %}
+      <h2 class="d-subheading">Education</h2>
+      <ul class="d-edu-list">
+        {% for e in doc.education %}
+          <li>
+            <strong>{{ e.degree }}</strong>
+            {% if e.institute %} — {{ e.institute }}{% endif %}
+            {% if e.year %} ({{ e.year }}){% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if doc.tags and doc.tags.size > 0 %}
+      <h2 class="d-subheading">Tags</h2>
+      <div class="d-tags">
+        {% for t in doc.tags %}
+          <span class="d-tag">{{ t }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="d-container">
+  <p>Doctor not found. Please check the ID in the page front matter.</p>
+</div>
+{% endif %}
+
+<main id="content" class="content" role="main">
+    {{ content }}
+  </main>
+
+  {% include bottom-nav.html %}
+  {% include footer.html %}
+
+  <!-- Core JS -->
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+</body>
+</html>
+  
