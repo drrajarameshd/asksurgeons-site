@@ -65,6 +65,7 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
             {% if post.thumbnail %}
               <a class="thumb" href="{{ post.url | relative_url }}" itemprop="url" aria-hidden="true">
                 <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title | escape }}" loading="lazy" width="200" height="120">
+                {% include doctor-card.html id=post.id %}
               </a>
             {% endif %}
 
