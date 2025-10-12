@@ -3,9 +3,145 @@
 <html lang="en-IN">
 <head>
   
-  {% include post-head.html %}
-  
+ {%- comment -%}
+Head for doctor-authored blog posts (clean, production, uses site.banner as fallback image)
+{%- endcomment -%}
+
+<!-- 1️⃣ Document metadata -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<!-- 2️⃣ Title & Canonical -->
+<title>{{ page.title | escape }}</title>
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- 3️⃣ Description & Theme Color -->
+<meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate:160 | escape }}">
+<meta name="theme-color" content="#007BBF">
+
+<!-- 4️⃣ Favicons -->
+<link rel="icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}" type="image/webp">
+<link rel="apple-touch-icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}">
+
+<!-- 5️⃣ Open Graph -->
+{%- assign article_url_candidate = page.url | default: page.permalink | default: page.path -%}
+{%- assign article_url = article_url_candidate | absolute_url -%}
+{%- assign article_image_candidate = page.image | default: page.thumbnail | default: page.featured_image | default: page.header.image | default: site.banner -%}
+{%- assign article_image = article_image_candidate | absolute_url -%}
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:title" content="{{ page.title | escape }}">
+<meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate:300 | escape }}">
+<meta property="og:url" content="{{ article_url }}">
+<meta property="og:image" content="{{ article_image }}">
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- if page.last_modified_at -%}
+<meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">
+{%- endif -%}
+{%- if page.tags -%}
+  {%- for t in page.tags -%}
+<meta property="article:tag" content="{{ t | escape }}">
+  {%- endfor -%}
+{%- endif -%}
+
+<!-- 6️⃣ Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title | escape }}">
+<meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate:200 | escape }}">
+<meta name="twitter:image" content="{{ article_image }}">
+{%- if site.twitter_username -%}
+<meta name="twitter:site" content="@{{ site.twitter_username | replace: '@', '' }}">
+{%- endif -%}
+
+<!-- 7️⃣ Structured Data (JSON-LD) -->
+{%- assign doctor = site.data.doctors | where: "id", page.author-id | first -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.excerpt | strip_html | strip_newlines | truncate:300 | jsonify }},
+  "url": {{ article_url | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }}{%- if page.last_modified_at -%},
+  "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }}{%- endif -%},
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ article_image | jsonify }}
+  },
+  "author": {
+    "@type": "Person",
+    "@id": {{ (site.url | append: "/doctors#" | append: doctor.id) | jsonify }},
+    "name": {{ doctor.name | jsonify }},
+    "jobTitle": {{ doctor.speciality | jsonify }},
+    "medicalSpecialty": {{ doctor.speciality | jsonify }},
+    {%- if doctor.gender %}"gender": {{ doctor.gender | jsonify }},{% endif -%}
+    "affiliation": {"@type": "MedicalOrganization","name": {{ site.title | jsonify }}},
+    {%- if doctor.image -%}
+    "image": {"@type":"ImageObject","url":{{ doctor.image | absolute_url | jsonify }}},
+    {%- endif -%}
+    "url": {{ doctor.profile_url | absolute_url | jsonify }},
+    {%- assign degree_part = doctor.degree | join: ', ' | default: "" -%}
+    {%- assign dept_part = doctor.department | default: "" -%}
+    {%- assign bio_part = doctor.bio | default: "" -%}
+    {%- assign exp_part = doctor.experience | default: "" -%}
+    {%- assign desc_parts = degree_part -%}
+    {%- if dept_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: dept_part %}{% endif -%}
+    {%- if bio_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: bio_part %}{% endif -%}
+    {%- if exp_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: exp_part | append: " years experience" %}{% endif -%}
+    "description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }},
+    {%- if doctor.education and doctor.education.size > 0 -%}
+    "alumniOf": [
+      {%- for ed in doctor.education -%}
+        {"@type":"EducationalOrganization","name":{{ (ed.degree | append: " — " | append: ed.institute) | jsonify }}}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ],
+    {%- endif -%}
+    {%- if doctor.services and doctor.services.size > 0 -%}
+    "knowsAbout": [
+      {%- for s in doctor.services -%}
+        {{ s | jsonify }}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ],
+    {%- endif -%}
+    {%- if doctor.tags and doctor.tags.size > 0 -%}
+    "keywords": {{ doctor.tags | join: ', ' | jsonify }},
+    {%- endif -%}
+    {%- if doctor.languages and doctor.languages.size > 0 -%}
+    "knowsLanguage": [
+      {%- for lang in doctor.languages -%}
+        {{ lang | jsonify }}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+    {%- endif -%}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.title | jsonify }},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ site.banner | absolute_url | jsonify }}
+    }
+  }
+}
+</script>
+
+<!-- 8️⃣ Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1KNKJJ87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7L1KNKJJ87');
+</script>
+
+<!-- 9️⃣ Styles -->
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
 </head>
+  
 <body>
 {% include header.html %}
 
