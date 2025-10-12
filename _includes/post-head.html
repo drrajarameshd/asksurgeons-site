@@ -52,7 +52,7 @@ Assumes site.url = "https://asksurgeons.com"
 {%- endif -%}
 
 <!-- 7️⃣ Structured Data (JSON-LD) -->
-{%- assign doctor = site.data.doctors | where: "id", page.id | first -%}
+{%- assign doctor = site.data.doctors | where: "id", page.author-id | first -%}
 <script>
   console.log("Page Id:", "{{ page.id | escape }}");
   console.log("Doctor Name:", "{{ doctor.name | escape }}");
