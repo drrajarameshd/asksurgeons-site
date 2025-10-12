@@ -3,7 +3,7 @@ layout: post
 title: "Three Trimesters of Pregnancy — What to Expect, Tests, and When to See Your Doctor"
 date: 2025-10-12 09:00:00 +0530
 author: "Dr. Pyreddy Pavani"
-id: OBG-1
+author-id: OBG-1
 excerpt: "Pregnancy is a beautiful journey divided into three trimesters — each with unique changes in your body and your baby’s growth. Learn what to expect, when to visit your doctor, important tests, and baby’s development milestones at each stage."
 tags: [pregnancy, obstetrics, women health, trimester, baby growth, OBGYN]
 image: /assets/images/post-images/2025-10-12-pregnancy-trimesters.webp
