@@ -75,19 +75,30 @@
 
   <!-- ================== 6. JSON-LD Structured Data ================== -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": {{ doc.name | jsonify }},
-    "jobTitle": {{ doc.speciality | jsonify }},
-    "description": {{ doc.bio | default: services_desc | truncate: 300 | jsonify }},
-    "image": {{ og_image | jsonify }},
-    {% if doc.location and doc.location != "" %}
-    "address": { "@type": "PostalAddress", "addressLocality": {{ doc.location | jsonify }} },
-    {% endif %}
-    "knowsLanguage": {{ doc.languages | default: [] | jsonify }},
-    "url": {{ canonical | jsonify }}
-  }
+ {
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": {{ doc.name | jsonify }},
+  "jobTitle": {{ doc.speciality | jsonify }},
+  "description": {{ doc.bio | default: services_desc | truncate: 300 | jsonify }},
+  "image": {{ og_image | jsonify }},
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": {{ doc.location | default: "Hyderabad" | jsonify }},
+    "addressRegion": "Telangana",
+    "addressCountry": "IN"
+  },
+  "telephone": "+91 8062182411",
+  "areaServed": "Hyderabad",
+  "medicalSpecialty": {{ doc.speciality | jsonify }},
+  "knowsLanguage": {{ doc.languages | default: [] | jsonify }},
+  "url": {{ canonical | jsonify }},
+  "sameAs": [
+    "https://asksurgeons.com",
+    "https://www.instagram.com/asksurgeons/",
+    "https://wa.me/+918062182411"
+  ]
+}
   </script>
 {%- endif -%}
 
