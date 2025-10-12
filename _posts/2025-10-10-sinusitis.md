@@ -3,6 +3,7 @@ layout: post
 title: "Understanding Sinusitis — Causes, Treatment, and When Surgery Is Needed"
 date: 2025-10-10 10:00:00 +0530
 author: "Dr. G. V. Nagarjuna Reddy"
+author-id: ENT-1
 excerpt: "Sinusitis — whether acute or chronic — causes nasal blockage, facial pain, and headaches. Dr. G. V. Nagarjuna Reddy explains medical and surgical options, complications, and the vital link between the ear, nose, and throat."
 tags: [sinusitis, ENT, sinus surgery, nasal congestion, ear nose throat, Dr. G. V. Nagarjuna Reddy]
 image: /assets/images/post-images/2025-10-10-sinusitis.webp
