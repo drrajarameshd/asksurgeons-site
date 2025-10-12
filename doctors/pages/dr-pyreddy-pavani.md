@@ -1,6 +1,6 @@
 ---
 layout: doctor
-id: OBG-1
+doctor-id: OBG-1
 name: "Dr. Pyreddy Pavani"
 title: "Dr. Pyreddy Pavani, MBBS, DGO, DNB | Obstetrics & Gynecology — Attapur, Hyderabad"
 description: "Obstetrician & gynecologist in Attapur supporting women through antenatal care, high-risk pregnancies, PCOS and fertility counselling."
