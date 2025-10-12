@@ -9,7 +9,9 @@ tags: [pregnancy, obstetrics, women health, trimester, baby growth, OBGYN]
 image: /assets/images/post-images/2025-10-12-pregnancy-trimesters.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-12-pregnancy-trimesters.webp
 ---
+
 > {% include doctor-card.html id='OBG-1' %}
+
 Pregnancy is a **journey of transformation** — for both the mother and the growing baby.  
 It’s divided into **three trimesters**, each lasting about 12–13 weeks.  
 Here’s what to expect, when to consult your doctor, and key tests to ensure a healthy pregnancy.
