@@ -1,31 +1,20 @@
 {%- comment -%}
-Head for doctor-authored blog posts.
-Each post has:
- - layout: post
- - id: matches doctor.id in _data/doctors.yml (e.g., GM-1)
- - author: doctor name
- - date, title, excerpt, tags, image, thumbnail
-Assumes site.url = "https://asksurgeons.com"
+Head for doctor-authored blog posts (refined, no new fields added)
 {%- endcomment -%}
 
-<!-- 1️⃣ Essential document metadata -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<!-- 2️⃣ Dynamic title -->
 <title>{{ page.title | escape }}</title>
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 
-<!-- 3️⃣ Description & theme color -->
 <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate:160 | escape }}">
 <meta name="theme-color" content="#007BBF">
 
-<!-- 4️⃣ Favicons -->
 <link rel="icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}" type="image/webp">
 <link rel="apple-touch-icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}">
 
-<!-- 5️⃣ Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="{{ site.title | escape }}">
 <meta property="og:title" content="{{ page.title | escape }}">
@@ -36,13 +25,12 @@ Assumes site.url = "https://asksurgeons.com"
 {%- if page.last_modified_at -%}
 <meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">
 {%- endif -%}
-{%- if page.tags %}
+{%- if page.tags -%}
   {%- for t in page.tags -%}
 <meta property="article:tag" content="{{ t | escape }}">
   {%- endfor -%}
 {%- endif -%}
 
-<!-- 6️⃣ Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ page.title | escape }}">
 <meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate:200 | escape }}">
@@ -51,8 +39,8 @@ Assumes site.url = "https://asksurgeons.com"
 <meta name="twitter:site" content="@{{ site.twitter_username | replace: '@', '' }}">
 {%- endif -%}
 
-<!-- 7️⃣ Structured Data (JSON-LD) -->
 {%- assign doctor = site.data.doctors | where: "id", page.author-id | first -%}
+
 <script>
   console.log("Page Id:", "{{ page.id | escape }}");
   console.log("Doctor Name:", "{{ doctor.name | escape }}");
@@ -66,61 +54,74 @@ Assumes site.url = "https://asksurgeons.com"
   "headline": {{ page.title | jsonify }},
   "description": {{ page.excerpt | strip_html | strip_newlines | truncate:300 | jsonify }},
   "url": {{ page.url | absolute_url | jsonify }},
-  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-  {%- if page.last_modified_at -%}
-  "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
-  {%- endif -%}
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }}{%- if page.last_modified_at -%},
+  "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }}{%- endif -%},
   "image": {
     "@type": "ImageObject",
     "url": {{ page.image | absolute_url | jsonify }}
   },
   "author": {
     "@type": "Person",
-    "@id": "{{ site.url }}/doctors#{{ doctor.id }}",
+    "@id": {{ (site.url | append: "/doctors#" | append: doctor.id) | jsonify }},
     "name": {{ doctor.name | jsonify }},
     "jobTitle": {{ doctor.speciality | jsonify }},
-    "medicalSpecialty": {{ doctor.speciality | jsonify }},
-    {%- if doctor.gender %}"gender": {{ doctor.gender | jsonify }},{% endif -%}
-    "affiliation": {
-      "@type": "MedicalOrganization",
-      "name": {{ site.title | jsonify }}
-    },
+    "medicalSpecialty": {{ doctor.speciality | jsonify }}{%- comment -%}
+    Now append optional author properties safely (no stray/trailing commas)
+    {%- endcomment -%}
+    {%- capture author_props %}{% endcapture -%}
+
+    {%- if doctor.gender -%}
+      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"gender": {{ doctor.gender | jsonify }}{% endcapture -%}
+    {%- endif -%}
+
+    {%- comment -%} affiliation is site title (keeps original behaviour ) {%- endcomment -%}
+    {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"affiliation": {"@type":"MedicalOrganization","name": {{ site.title | jsonify }}}{% endcapture -%}
+
     {%- if doctor.image -%}
-    "image": {
-      "@type": "ImageObject",
-      "url": {{ doctor.image | absolute_url | jsonify }}
-    },
+      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"image":{"@type":"ImageObject","url":{{ doctor.image | absolute_url | jsonify }}}{% endcapture -%}
     {%- endif -%}
-    "url": {{ doctor.profile_url | absolute_url | jsonify }},
-    {%- assign desc_parts = doctor.degree | join: ', ' | append: ' — ' | append: doctor.department | append: ' — ' | append: doctor.bio | append: ' — ' | append: doctor.experience | append: ' years experience' -%}
-    "description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }},
+
+    {%- if doctor.profile_url -%}
+      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"url": {{ doctor.profile_url | absolute_url | jsonify }}{% endcapture -%}
+    {%- endif -%}
+
+    {%- comment -%}
+    Build `description` from existing fields in the YAML (you already had degree, department, bio, experience)
+    Keep the same concatenation but ensure safe output
+    {%- endcomment -%}
+    {%- assign degree_part = doctor.degree | join: ', ' | default: "" -%}
+    {%- assign dept_part = doctor.department | default: "" -%}
+    {%- assign bio_part = doctor.bio | default: "" -%}
+    {%- assign exp_part = doctor.experience | default: "" -%}
+    {%- assign desc_parts = degree_part -%}
+    {%- if dept_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: dept_part %}{% endif -%}
+    {%- if bio_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: bio_part %}{% endif -%}
+    {%- if exp_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: exp_part | append: " years experience" %}{% endif -%}
+
+    {%- if desc_parts != "" -%}
+      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }}{% endcapture -%}
+    {%- endif -%}
+
     {%- if doctor.education and doctor.education.size > 0 -%}
-    "alumniOf": [
-      {%- for ed in doctor.education -%}
-        {
-          "@type": "EducationalOrganization",
-          "name": {{ (ed.degree | append: " — " | append: ed.institute) | jsonify }}
-        }{{ forloop.last ? "" : "," }}
-      {%- endfor -%}
-    ],
+      {%- capture edu_array -%}{% for ed in doctor.education %}{% capture e %}{"@type":"EducationalOrganization","name":{{ (ed.degree | append: " — " | append: ed.institute) | jsonify }}}{% endcapture %}{% if forloop.first %}{{ e }}{% else %},{% endif %}{% endfor %}{% endcapture -%}
+      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"alumniOf": [{{ edu_array }}]{% endcapture -%}
     {%- endif -%}
+
     {%- if doctor.services and doctor.services.size > 0 -%}
-    "knowsAbout": [
-      {%- for s in doctor.services -%}
-        {{ s | jsonify }}{{ forloop.last ? "" : "," }}
-      {%- endfor -%}
-    ],
+      {%- capture services_json -%}{{ doctor.services | jsonify }}{% endcapture -%}
+      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"knowsAbout": {{ services_json }}{% endcapture -%}
     {%- endif -%}
+
     {%- if doctor.tags and doctor.tags.size > 0 -%}
-    "keywords": {{ doctor.tags | join: ', ' | jsonify }},
+      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"keywords": {{ doctor.tags | join: ', ' | jsonify }}{% endcapture -%}
     {%- endif -%}
+
     {%- if doctor.languages and doctor.languages.size > 0 -%}
-    "knowsLanguage": [
-      {%- for lang in doctor.languages -%}
-        {{ lang | jsonify }}{{ forloop.last ? "" : "," }}
-      {%- endfor -%}
-    ]
+      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"knowsLanguage": {{ doctor.languages | jsonify }}{% endcapture -%}
     {%- endif -%}
+
+    {%- if author_props != "" -%},{% endif -%}
+    {{ author_props }}
   },
   "publisher": {
     "@type": "Organization",
@@ -133,7 +134,6 @@ Assumes site.url = "https://asksurgeons.com"
 }
 </script>
 
-<!-- 8️⃣ Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1KNKJJ87"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -142,7 +142,7 @@ Assumes site.url = "https://asksurgeons.com"
   gtag('config', 'G-7L1KNKJJ87');
 </script>
 
-<!-- 9️⃣ Styles -->
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
+
