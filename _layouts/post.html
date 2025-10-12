@@ -121,7 +121,7 @@ Head for doctor-authored blog posts (clean, production, uses site.banner as fall
     "name": {{ site.title | jsonify }},
     "logo": {
       "@type": "ImageObject",
-      "url": {{ site.banner | absolute_url | jsonify }}
+      "url": {{ site.logo | absolute_url | jsonify }}
     }
   }
 }
