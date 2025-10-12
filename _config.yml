@@ -8,6 +8,7 @@ site_phone: "+91 8062182411"
 site_whatsapp: "+91 8062182411"
 locale: en_IN
 logo: /assets/site-images/logo.webp
+banner: /assets/images/site-images/ask-surgeons-banner.jpeg
 
 # ---- Author (used by seo tag in head.html) ----
 author:
