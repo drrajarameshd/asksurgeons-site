@@ -1,6 +1,6 @@
 ---
 layout: doctor
-id: PATH-1
+doctor-id: PATH-1
 name: "Dr. P. A. Sanjuktha"
 title: "Dr. P. A. Sanjuktha, MD | Pathologist — Attapur, Hyderabad"
 description: "Detail-oriented pathologist in Attapur delivering accurate, timely lab and biopsy reporting to guide clinical decisions."
