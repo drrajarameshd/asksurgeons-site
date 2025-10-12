@@ -1,5 +1,5 @@
 ---
 layout: doctor
-id: SPINE-1
+doctor-id: SPINE-1
 permalink: /doctors/attapur/dr-aditya
 ---
