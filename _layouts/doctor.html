@@ -78,6 +78,29 @@
   <meta name="twitter:image" content="{{ og_image }}">
 
   <!-- ================== 6. JSON-LD Structured Data ================== -->
+
+  <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"MedicalOrganization",
+  "@id": {{ site.url | append: "#org" | jsonify }},
+  "name": {{ site.title | jsonify }},
+  "url": {{ site.url | jsonify }},
+  "logo": { "@type":"ImageObject", "url": {{ site.logo | absolute_url | jsonify }} },
+  "sameAs": [ "https://asksurgeons.com", "https://www.instagram.com/asksurgeons/", "https://wa.me/+918062182411" ],
+  "telephone": "+91 8062182411",
+  "contactPoint": [
+    {
+      "@type":"ContactPoint",
+      "telephone":"+91 8062182411",
+      "contactType":"customer service",
+      "areaServed":"IN",
+      "availableLanguage": ["en","te","hi"]
+    }
+  ]
+}
+</script>
+
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
