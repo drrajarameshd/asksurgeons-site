@@ -7,7 +7,7 @@ tags: [vaginal discharge, gynecology, women health, infections, Attapur, Hyderab
 image: /assets/images/post-images/2025-10-11-vaginal-discharge.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-11-vaginal-discharge.webp
 author: "Dr. Pyreddy Pavani"
-id: "OBG-1"
+id: OBG-1
 ---
 
 > {% include doctor-card.html id='OBG-1' %}
