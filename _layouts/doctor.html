@@ -77,114 +77,65 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": {{ article_url | jsonify }}
-  },
-  "headline": {{ page.title | jsonify }},
-  "description": {{ page.excerpt | strip_html | strip_newlines | truncate:300 | jsonify }},
-  "url": {{ article_url | jsonify }},
-  "datePublished": {{ page.date | date_to_xmlschema | jsonify }}{%- if page.last_modified_at -%},
-  "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }}{%- endif -%},
-  "image": {
-    "@type": "ImageObject",
-    "url": {{ article_image | jsonify }}
-  },
-
-  "publisher": {
+  "@type": "Physician",
+  "@id": {{ (doctor.profile_url | default: page.url) | absolute_url | jsonify }},
+  "name": {{ doctor.name | jsonify }},
+  "jobTitle": {{ doctor.speciality | jsonify }},
+  "medicalSpecialty": {{ doctor.speciality | jsonify }},
+  "affiliation": {
     "@type": "MedicalOrganization",
     "name": {{ site.title | jsonify }},
-    "url": {{ site.url | jsonify }},
-    "logo": {
-      "@type": "ImageObject",
-      "url": {{ site.logo | absolute_url | jsonify }}
-    },
-    "sameAs": [
-      "https://asksurgeons.com",
-      "https://www.instagram.com/asksurgeons/",
-      "https://wa.me/+918062182411"
-    ],
-    "telephone": "+91 8062182411",
-    "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "telephone": "+91 8062182411",
-        "contactType": "customer service",
-        "areaServed": "IN",
-        "availableLanguage": ["en", "te"]
-      }
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Hyderabad",
-      "addressRegion": "Telangana",
-      "addressCountry": "IN"
-    }
+    "url": {{ site.url | jsonify }}
   },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": {{ doctor.location | default: "Hyderabad" | jsonify }},
+    "addressRegion": "Telangana",
+    "addressCountry": "IN"
+  }{% assign props = "" %}
 
-  "author": {
-    "@type": "Physician",
-    "@id": {{ (site.url | append: "/doctors#" | append: doctor.id) | jsonify }},
-    "name": {{ doctor.name | jsonify }},
-    "jobTitle": {{ doctor.speciality | jsonify }},
-    "medicalSpecialty": {{ doctor.speciality | jsonify }},
-    "affiliation": {
-      "@type": "MedicalOrganization",
-      "name": {{ site.title | jsonify }},
-      "url": {{ site.url | jsonify }}
-    },
+  {%- if doctor.degree and doctor.degree.size > 0 -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"hasCredential":[{% for deg in doctor.degree %}{"@type":"EducationalOccupationalCredential","name":{{ deg | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endcapture -%}
+  {%- endif -%}
 
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": {{ doctor.location | default: "Hyderabad" | jsonify }},
-      "addressRegion": "Telangana",
-      "addressCountry": "IN"
-    }{% comment %} optional doctor fields below {% endcomment %}{% assign author_props = "" %}
+  {%- if doctor.image -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"image": {"@type":"ImageObject","url": {{ doctor.image | absolute_url | jsonify }}}{% endcapture -%}
+  {%- endif -%}
 
-    {%- if doctor.degree and doctor.degree.size > 0 -%}
-      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"hasCredential":[{% for deg in doctor.degree %}{% if forloop.first %}{% endif %}{"@type":"EducationalOccupationalCredential","name":{{ deg | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endcapture -%}
-    {%- endif -%}
+  {%- if doctor.profile_url -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"url": {{ doctor.profile_url | absolute_url | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-    {%- if doctor.image -%}
-      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"image": {"@type":"ImageObject","url": {{ doctor.image | absolute_url | jsonify }}}{% endcapture -%}
-    {%- endif -%}
+  {%- assign degree_part = doctor.degree | join: ', ' | default: "" -%}
+  {%- assign dept_part = doctor.department | default: "" -%}
+  {%- assign bio_part = doctor.bio | default: "" -%}
+  {%- assign exp_part = doctor.experience | default: "" -%}
+  {%- assign desc_parts = degree_part -%}
+  {%- if dept_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: dept_part %}{% endif -%}
+  {%- if bio_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: bio_part %}{% endif -%}
+  {%- if exp_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: exp_part | append: " years experience" %}{% endif -%}
 
-    {%- if doctor.profile_url -%}
-      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"url": {{ doctor.profile_url | absolute_url | jsonify }}{% endcapture -%}
-    {%- endif -%}
+  {%- if desc_parts != "" -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-    {%- assign degree_part = doctor.degree | join: ', ' | default: "" -%}
-    {%- assign dept_part = doctor.department | default: "" -%}
-    {%- assign bio_part = doctor.bio | default: "" -%}
-    {%- assign exp_part = doctor.experience | default: "" -%}
-    {%- assign desc_parts = degree_part -%}
-    {%- if dept_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: dept_part %}{% endif -%}
-    {%- if bio_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: bio_part %}{% endif -%}
-    {%- if exp_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: exp_part | append: " years experience" %}{% endif -%}
+  {%- if doctor.services and doctor.services.size > 0 -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"knowsAbout": {{ doctor.services | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-    {%- if desc_parts != "" -%}
-      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }}{% endcapture -%}
-    {%- endif -%}
+  {%- if doctor.tags and doctor.tags.size > 0 -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"keywords": {{ doctor.tags | join: ', ' | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-    {%- if doctor.services and doctor.services.size > 0 -%}
-      {%- capture services_json -%}{{ doctor.services | jsonify }}{% endcapture -%}
-      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"knowsAbout": {{ services_json }}{% endcapture -%}
-    {%- endif -%}
+  {%- if doctor.languages and doctor.languages.size > 0 -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"knowsLanguage": {{ doctor.languages | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-    {%- if doctor.tags and doctor.tags.size > 0 -%}
-      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"keywords": {{ doctor.tags | join: ', ' | jsonify }}{% endcapture -%}
-    {%- endif -%}
-
-    {%- if doctor.languages and doctor.languages.size > 0 -%}
-      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"knowsLanguage": {{ doctor.languages | jsonify }}{% endcapture -%}
-    {%- endif -%}
-
-    {%- if author_props != "" -%},{% endif -%}
-    {{ author_props }}
-  }
+  {%- if props != "" -%},{% endif -%}
+  {{ props }}
 }
 </script>
+
 
 {%- endif -%}
 
