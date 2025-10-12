@@ -6,6 +6,8 @@ excerpt: "Every monsoon, Attapur and Musi river belt areas face rising cases of 
 tags: [dengue, chikungunya, arthritis, mosquitoes, Attapur, Hyderabad, Musi]
 image: /assets/images/post-images/2025-09-25-dengue-chikungunya.webp
 thumbnail: /assets/images/post-images/thumbs/2025-09-25-dengue-chikungunya.webp
+author: "Dr D Raja Ramesh"
+author-id: GM-1
 ---
 > {% include doctor-card.html id='GM-1' %}
 
