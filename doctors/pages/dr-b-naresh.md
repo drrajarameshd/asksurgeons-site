@@ -1,6 +1,6 @@
 ---
 layout: doctor
-id: NS-1
+doctor-id: NS-1
 name: "Dr. B. Naresh"
 title: "Dr. B. Naresh, MCh (Osmania) | Neurosurgeon — Attapur, Hyderabad"
 description: "Neurosurgeon in Attapur providing care for brain and spine conditions, microsurgery, endoscopic procedures and trauma management."
