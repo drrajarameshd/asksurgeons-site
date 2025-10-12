@@ -78,6 +78,7 @@ Uses site.banner as fallback for article image / publisher logo.
   "@id": {{ (site.url | append: "/doctors#" | append: doctor.id) | jsonify }},
   "name": {{ doctor.name | jsonify }},
   "jobTitle": {{ doctor.speciality | jsonify }},
+  "address": {{doctor.location | jsonify }},
   "medicalSpecialty": {{ doctor.speciality | jsonify }}{% capture author_props %}{% endcapture %}
 
   {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"affiliation": {"@type":"MedicalOrganization","name": {{ site.title | jsonify }}}{% endcapture -%}
