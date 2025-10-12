@@ -124,7 +124,7 @@ Uses site.banner as fallback for article image / publisher logo.
       "name": {{ site.title | jsonify }},
       "logo": {
         "@type": "ImageObject",
-        "url": {{ site.banner | absolute_url | jsonify }}
+        "url": {{ site.logo | absolute_url | jsonify }}
       }
     }
   }
