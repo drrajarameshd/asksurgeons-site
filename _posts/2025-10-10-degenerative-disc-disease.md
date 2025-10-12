@@ -2,7 +2,8 @@
 layout: post
 title: "Degenerative Disc Disease — Understanding Back Pain and Modern Treatment Options"
 date: 2025-10-10 11:00:00 +0530
-author: "Dr. Aditya"
+author: "Dr. Aditya Sunder Goparaju"
+author-id: ORTHO-2
 excerpt: "Degenerative Disc Disease causes back pain, disc bulge, or nerve compression. Dr. Aditya explains how posture, muscle strength, and lifestyle affect the spine — and when medical, surgical, or physiotherapy treatments are needed."
 tags: [back pain, degenerative disc disease, spine surgery, physiotherapy, posture, Dr. Aditya]
 image: /assets/images/post-images/2025-10-10-degenerative-disc-disease.webp
