@@ -6,5 +6,5 @@ title: "Dr. Pyreddy Pavani, MBBS, DGO, DNB | Obstetrics & Gynecology — Attapur
 description: "Obstetrician & gynecologist in Attapur supporting women through antenatal care, high-risk pregnancies, PCOS and fertility counselling."
 image: /assets/images/doctor-images/dr-pyreddy-pavani-mbbs-dgo-dnb.webp
 speciality: "Obstetrics & Gynecology"
-permalink: /doctors/attapur/dr-pyreddy-pavani
+permalink: /doctors/nallagandla/dr-pyreddy-pavani
 ---
