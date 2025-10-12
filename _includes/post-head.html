@@ -53,6 +53,11 @@ Assumes site.url = "https://asksurgeons.com"
 
 <!-- 7️⃣ Structured Data (JSON-LD) -->
 {%- assign doctor = site.data.doctors | where: "id", page.id | first -%}
+<script>
+  console.log("Doctor Name:", "{{ doctor.name | escape }}");
+  console.log("Doctor ID:", "{{ doctor.id | escape }}");
+</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
