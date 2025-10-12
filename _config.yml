@@ -7,7 +7,7 @@ baseurl: ""       # Keep in sync with your repo/project path
 site_phone: "+91 8062182411"
 site_whatsapp: "+91 8062182411"
 locale: en_IN
-
+logo: /assets/site-images/logo.webp
 
 # ---- Author (used by seo tag in head.html) ----
 author:
