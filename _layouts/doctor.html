@@ -28,32 +28,32 @@
 
 <!-- ================== 4. Dynamic Doctor SEO ================== -->
 {% assign doctor_id = page.id | default: page.doctor_id %}
-{% assign doc = site.data.doctors | where: "id", doctor_id | first %}
+{% assign doctor = site.data.doctors | where: "id", doctor_id | first %}
   <script>
     console.log(page.id)
   </script>
 
 
-{%- if doc -%}
+{%- if doctor -%}
   {%- assign site_name = site.title | default: site.name | default: "AskSurgeons" -%}
-  {%- assign degrees = doc.degree | default: [] | join: ", " -%}
-  {%- assign services_desc = doc.services | default: [] | join: ", " -%}
+  {%- assign degrees = doctor.degree | default: [] | join: ", " -%}
+  {%- assign services_desc = doctor.services | default: [] | join: ", " -%}
 
-  {%- assign seo_title = doc.name -%}
-  {%- if doc.speciality and doc.speciality != "" -%}
-    {%- assign seo_title = seo_title | append: " — " | append: doc.speciality -%}
+  {%- assign seo_title = doctor.name -%}
+  {%- if doctor.speciality and doctor.speciality != "" -%}
+    {%- assign seo_title = seo_title | append: " — " | append: doctor.speciality -%}
   {%- endif -%}
   {%- assign seo_title = seo_title | append: " | " | append: site_name -%}
 
-  {%- assign seo_description = doc.bio | default: services_desc | truncate: 155, "" -%}
-  {%- assign seo_keywords = doc.tags | default: [] | join: ", " -%}
+  {%- assign seo_description = doctor.bio | default: services_desc | truncate: 155, "" -%}
+  {%- assign seo_keywords = doctor.tags | default: [] | join: ", " -%}
   {%- assign canonical = page.canonical | default: (site.url | append: page.url) -%}
 
-  {%- if doc.image and doc.image != "" -%}
-    {%- if doc.image contains "http" -%}
-      {%- assign og_image = doc.image -%}
+  {%- if doctor.image and doctor.image != "" -%}
+    {%- if doctor.image contains "http" -%}
+      {%- assign og_image = doctor.image -%}
     {%- else -%}
-      {%- assign og_image = site.url | append: doc.image -%}
+      {%- assign og_image = site.url | append: doctor.image -%}
     {%- endif -%}
   {%- else -%}
     {%- assign og_image = site.url | append: "/assets/images/site-images/logo.webp" -%}
