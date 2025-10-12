@@ -2,7 +2,8 @@
 layout: post
 title: "Signs, Symptoms and Treatment of Appendicitis"
 date: 2025-10-08 09:00:00 +0530
-author: "Dr. Nilofer"
+author: "Dr.Ashfa Nilofer"
+author-id: GS-2
 excerpt: "A storytelling insight by Dr. Nilofer about Ayesha, a 22-year-old woman with appendicitis — from her first symptoms to a successful surgery."
 tags: [appendicitis, emergency, abdominal pain, surgery, Dr. Nilofer]
 image: /assets/images/post-images/2025-10-08-appendicitis.webp
