@@ -3,7 +3,106 @@
 <html lang="en-IN">
 <head>
   
-  {% include doctor-head.html %}
+<!-- ================== 1. Google Analytics ================== -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1KNKJJ87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-7L1KNKJJ87');
+</script>
+
+<!-- ================== 2. Basic Meta & Favicon ================== -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#007BBF" />
+
+<link rel="icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}" type="image/webp">
+<link rel="apple-touch-icon" href="{{ '/assets/images/site-images/logo.webp' | relative_url }}">
+
+<!-- ================== 3. Stylesheets ================== -->
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/post-layout.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
+
+<!-- ================== 4. Dynamic Doctor SEO ================== -->
+{%- assign doctor_id = page.id | default: page.doctor_id -%}
+{%- assign doc = site.data.doctors | where: "id", doctor_id | first -%}
+
+{%- if doc -%}
+  {%- assign site_name = site.title | default: site.name | default: "AskSurgeons" -%}
+  {%- assign degrees = doc.degree | default: [] | join: ", " -%}
+  {%- assign services_desc = doc.services | default: [] | join: ", " -%}
+
+  {%- assign seo_title = doc.name -%}
+  {%- if doc.speciality and doc.speciality != "" -%}
+    {%- assign seo_title = seo_title | append: " — " | append: doc.speciality -%}
+  {%- endif -%}
+  {%- assign seo_title = seo_title | append: " | " | append: site_name -%}
+
+  {%- assign seo_description = doc.bio | default: services_desc | truncate: 155, "" -%}
+  {%- assign seo_keywords = doc.tags | default: [] | join: ", " -%}
+  {%- assign canonical = page.canonical | default: (site.url | append: page.url) -%}
+
+  {%- if doc.image and doc.image != "" -%}
+    {%- if doc.image contains "http" -%}
+      {%- assign og_image = doc.image -%}
+    {%- else -%}
+      {%- assign og_image = site.url | append: doc.image -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign og_image = site.url | append: "/assets/images/site-images/logo.webp" -%}
+  {%- endif -%}
+
+  <title>{{ seo_title }}</title>
+  <meta name="description" content="{{ seo_description }}">
+  <meta name="keywords" content="{{ seo_keywords }}">
+  <link rel="canonical" href="{{ canonical }}">
+
+  <!-- ================== 5. Open Graph / Twitter ================== -->
+  <meta property="og:site_name" content="{{ site_name }}">
+  <meta property="og:title" content="{{ seo_title }}">
+  <meta property="og:description" content="{{ seo_description }}">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ og_image }}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo_title }}">
+  <meta name="twitter:description" content="{{ seo_description }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+
+  <!-- ================== 6. JSON-LD Structured Data ================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": {{ doc.name | jsonify }},
+    "jobTitle": {{ doc.speciality | jsonify }},
+    "description": {{ doc.bio | default: services_desc | truncate: 300 | jsonify }},
+    "image": {{ og_image | jsonify }},
+    {% if doc.location and doc.location != "" %}
+    "address": { "@type": "PostalAddress", "addressLocality": {{ doc.location | jsonify }} },
+    {% endif %}
+    "knowsLanguage": {{ doc.languages | default: [] | jsonify }},
+    "url": {{ canonical | jsonify }}
+  }
+  </script>
+{%- endif -%}
+
+<!-- ================== 7. Optional Article Meta ================== -->
+<meta name="author" content="{{ page.author | default: site.author.name }}">
+{%- if page.date -%}
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- endif -%}
+{%- if page.last_modified_at -%}
+  <meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">
+{%- endif -%}
+
+<!-- ================== 8. Feed ================== -->
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }} - Atom Feed" href="{{ '/atom.xml' | relative_url }}">
+
   
 </head>
 <body>
