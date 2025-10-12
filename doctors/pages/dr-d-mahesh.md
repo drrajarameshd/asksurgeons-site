@@ -1,5 +1,5 @@
 ---
 layout: doctor
-id: ENT-2
+doctor-id: ENT-2
 permalink: /doctors/attapur/dr-d-mahesh
 ---
