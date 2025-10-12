@@ -7,7 +7,7 @@ excerpt: "On World Mental Health Day, Dr. D. Raja Ramesh highlights the importan
 tags: [mental health, stress, counselling, psychiatrist, psychologist, depression, anxiety, Dr. D. Raja Ramesh]
 image: /assets/images/post-images/2025-10-10-world-mental-health-day.webp
 thumbnail: /assets/images/post-images/thumbs/2025-10-10-world-mental-health-day.webp
-id: GM-1
+author-id: GM-1
 ---
 <blockquote>
   {% include doctor-card.html id='GM-1' %}
