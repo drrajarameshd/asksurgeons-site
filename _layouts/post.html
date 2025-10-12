@@ -74,60 +74,55 @@ Uses site.banner as fallback for article image / publisher logo.
       "url": {{ article_image | jsonify }}
     },
     "author": {
-      "@type": "Person",
-      "@id": {{ (site.url | append: "/doctors#" | append: doctor.id) | jsonify }},
-      "name": {{ doctor.name | jsonify }},
-      "jobTitle": {{ doctor.speciality | jsonify }},
-      "medicalSpecialty": {{ doctor.speciality | jsonify }}{% comment %} optional following properties captured below {% endcomment %}{% capture author_props %}{% endcapture %}
+  "@type": "Person",
+  "@id": {{ (site.url | append: "/doctors#" | append: doctor.id) | jsonify }},
+  "name": {{ doctor.name | jsonify }},
+  "jobTitle": {{ doctor.speciality | jsonify }},
+  "medicalSpecialty": {{ doctor.speciality | jsonify }}{% comment %} optional following properties captured below {% endcomment %}{% capture author_props %}{% endcapture %}
 
-      {%- if doctor.gender -%}
-        {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"gender": {{ doctor.gender | jsonify }}{% endcapture -%}
-      {%- endif -%}
+  {%- if doctor.gender -%}
+    {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"gender": {{ doctor.gender | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-      {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"affiliation": {"@type":"MedicalOrganization","name": {{ site.title | jsonify }}}{% endcapture -%}
+  {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"affiliation": {"@type":"MedicalOrganization","name": {{ site.title | jsonify }}}{% endcapture -%}
 
-      {%- if doctor.image -%}
-        {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"image": {"@type":"ImageObject","url": {{ doctor.image | absolute_url | jsonify }}}{% endcapture -%}
-      {%- endif -%}
+  {%- if doctor.image -%}
+    {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"image": {"@type":"ImageObject","url": {{ doctor.image | absolute_url | jsonify }}}{% endcapture -%}
+  {%- endif -%}
 
-      {%- if doctor.profile_url -%}
-        {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"url": {{ doctor.profile_url | absolute_url | jsonify }}{% endcapture -%}
-      {%- endif -%}
+  {%- if doctor.profile_url -%}
+    {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"url": {{ doctor.profile_url | absolute_url | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-      {%- assign degree_part = doctor.degree | join: ', ' | default: "" -%}
-      {%- assign dept_part = doctor.department | default: "" -%}
-      {%- assign bio_part = doctor.bio | default: "" -%}
-      {%- assign exp_part = doctor.experience | default: "" -%}
-      {%- assign desc_parts = degree_part -%}
-      {%- if dept_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: dept_part %}{% endif -%}
-      {%- if bio_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: bio_part %}{% endif -%}
-      {%- if exp_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: exp_part | append: " years experience" %}{% endif -%}
+  {%- assign degree_part = doctor.degree | join: ', ' | default: "" -%}
+  {%- assign dept_part = doctor.department | default: "" -%}
+  {%- assign bio_part = doctor.bio | default: "" -%}
+  {%- assign exp_part = doctor.experience | default: "" -%}
+  {%- assign desc_parts = degree_part -%}
+  {%- if dept_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: dept_part %}{% endif -%}
+  {%- if bio_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: bio_part %}{% endif -%}
+  {%- if exp_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: exp_part | append: " years experience" %}{% endif -%}
 
-      {%- if desc_parts != "" -%}
-        {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }}{% endcapture -%}
-      {%- endif -%}
+  {%- if desc_parts != "" -%}
+    {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-      {%- if doctor.education and doctor.education.size > 0 -%}
-        {%- capture edu_array -%}{% for ed in doctor.education %}{% capture e %}{"@type":"EducationalOrganization","name":{{ (ed.degree | append: " — " | append: ed.institute) | jsonify }}}{% endcapture %}{% if forloop.first %}{{ e }}{% else %},{% endif %}{% endfor %}{% endcapture -%}
-        {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"alumniOf": [{{ edu_array }}]{% endcapture -%}
-      {%- endif -%}
+  {%- if doctor.services and doctor.services.size > 0 -%}
+    {%- capture services_json -%}{{ doctor.services | jsonify }}{% endcapture -%}
+    {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"knowsAbout": {{ services_json }}{% endcapture -%}
+  {%- endif -%}
 
-      {%- if doctor.services and doctor.services.size > 0 -%}
-        {%- capture services_json -%}{{ doctor.services | jsonify }}{% endcapture -%}
-        {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"knowsAbout": {{ services_json }}{% endcapture -%}
-      {%- endif -%}
+  {%- if doctor.tags and doctor.tags.size > 0 -%}
+    {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"keywords": {{ doctor.tags | join: ', ' | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-      {%- if doctor.tags and doctor.tags.size > 0 -%}
-        {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"keywords": {{ doctor.tags | join: ', ' | jsonify }}{% endcapture -%}
-      {%- endif -%}
+  {%- if doctor.languages and doctor.languages.size > 0 -%}
+    {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"knowsLanguage": {{ doctor.languages | jsonify }}{% endcapture -%}
+  {%- endif -%}
 
-      {%- if doctor.languages and doctor.languages.size > 0 -%}
-        {%- capture author_props -%}{{ author_props }}{% if author_props != "" %}, {% endif %}"knowsLanguage": {{ doctor.languages | jsonify }}{% endcapture -%}
-      {%- endif -%}
-
-      {%- if author_props != "" -%},{% endif -%}
-      {{ author_props }}
-    },
+  {%- if author_props != "" -%},{% endif -%}
+  {{ author_props }}
+},
     "publisher": {
       "@type": "Organization",
       "name": {{ site.title | jsonify }},
