@@ -74,7 +74,7 @@ Uses site.banner as fallback for article image / publisher logo.
       "url": {{ article_image | jsonify }}
     },
     "author": {
-  "@type": "Person",
+  "@type": "Physician",
   "@id": {{ (site.url | append: "/doctors#" | append: doctor.id) | jsonify }},
   "name": {{ doctor.name | jsonify }},
   "jobTitle": {{ doctor.speciality | jsonify }},
