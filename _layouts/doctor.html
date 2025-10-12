@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="{{ '/assets/css/doctors.css' | relative_url }}">
 
 <!-- ================== 4. Dynamic Doctor SEO ================== -->
-{%- assign doctor_id = page.id | default: page.doctor_id -%}
+{%- assign doctor_id = page.doctor-id -%}
 {%- assign doc = site.data.doctors | where: "id", doctor_id | first -%}
 
 {%- if doc -%}
