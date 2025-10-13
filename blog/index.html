@@ -22,7 +22,7 @@ permalink: /blog/
 
     {%- comment -%}
       Use paginator.posts when pagination is enabled (jekyll-paginate).
-      Fallback to listing all non-draft posts if paginator is missing..
+      Fallback to listing all non-draft posts if paginator is missing.
     {%- endcomment -%}
 
     {% assign all_posts = site.posts | where_exp:'p','p.draft != true' | sort: 'date' | reverse %}
@@ -35,7 +35,8 @@ permalink: /blog/
     {% if posts_to_show == empty %}
       <p>No posts available yet. Add some in <code>_posts/</code>.</p>
     {% else %}
-      <article class="post-list" aria-live="polite">
+      <!-- postsContainer is the element the JS will append new post-item nodes to -->
+      <article id="postsContainer" class="post-list" aria-live="polite">
         {% for post in posts_to_show %}
           <article class="post-item" itemscope itemtype="http://schema.org/BlogPosting">
             {% if post.thumbnail %}
@@ -75,13 +76,29 @@ permalink: /blog/
     {% endif %}
   </div>
 
-  {%- comment -%} Pagination controls (works with jekyll-paginate) {%- endcomment -%}
+  <!-- Infinite-scroll loader sentinel (no paginator required) -->
+  <div id="infiniteLoader" aria-hidden="true" style="text-align:center;padding:18px;">
+    <!-- shown when user prefers reduced motion or auto loading fails -->
+    <button id="loadMoreBtn" class="btn muted" style="display:none;">Load more</button>
+
+    <!-- spinner -->
+    <div id="loaderSpinner" style="display:none;margin:8px auto;" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 50 50" aria-hidden="true">
+        <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 25 25)">
+          <animateTransform attributeName="transform" type="rotate" values="-90 25 25;270 25 25" dur="0.9s" repeatCount="indefinite" />
+        </circle>
+      </svg>
+    </div>
+
+    <div id="endOfList" style="display:none;color:var(--muted);margin-top:6px;">No more posts</div>
+  </div>
+
+  {%- comment -%} If you still have paginator enabled for other reasons, keep controls; they won't be used by the JS. {%- endcomment -%}
   {% if paginator and paginator.total_pages > 1 %}
     <nav class="pagination" role="navigation" aria-label="Pagination">
       {% assign current = paginator.page | default: 1 %}
       {% assign total = paginator.total_pages %}
 
-      {%- comment -%} Newer (previous page) {%- endcomment -%}
       {% if paginator.previous_page %}
         {% if paginator.previous_page == 1 %}
           <a class="btn" href="{{ '/blog/' | relative_url }}" aria-label="Newer posts">← Newer</a>
@@ -94,7 +111,6 @@ permalink: /blog/
 
       <span aria-hidden="true" style="margin:0 .5rem;color:var(--muted)">Page {{ current }} of {{ total }}</span>
 
-      {%- comment -%} Older (next page) {%- endcomment -%}
       {% if paginator.next_page %}
         <a class="btn" href="{{ paginator.next_page_path | relative_url }}" aria-label="Older posts">Older →</a>
       {% else %}
@@ -104,3 +120,9 @@ permalink: /blog/
   {% endif %}
 
 </section>
+
+<!-- include the infinite-scroll script adapted for search-pages -->
+<script src="{{ '/assets/js/infinite-scroll-search-pages.js' | relative_url }}" defer
+  data-base-pattern="{{ '/search-pages/search-{{page}}.json' | relative_url }}"
+  data-start-page="2"
+  data-batch-size="10"></script>
