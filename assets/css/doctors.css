@@ -84,7 +84,7 @@
 }
 .dd-speciality {
   color: var(--muted);
-  margin: 0.15rem 0 0.35rem;
+  margin: 0.3rem 0 0.6rem;
 }
 .dd-meta {
   display: flex;
@@ -112,6 +112,7 @@
 .dd-services {
   color: #475569;
   font-size: 0.9rem;
+  margin: 0.3rem;
 }
 
 /* ===============================================
