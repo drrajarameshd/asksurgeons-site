@@ -1,15 +1,17 @@
 ---
 layout: default
 title: Blog
-permalink: /blog.html
+permalink: /blog/
 ---
+
 <div class="sticky-gap"></div>
 
 <section class="blog-list container post-layout-root" aria-label="All Blog Posts">
   
+  <!-- Search form (kept exactly as requested) -->
   <form action="{{ '/search/' | relative_url }}" method="get" role="search" class="search-form">
-        <input id="q" name="q" type="search" placeholder="Search diabetes, thyroid, fever…" value="{{ page.q | default: '' }}" class="input" />
-        <button class="btn gradient" type="submit">Search</button>
+    <input id="q" name="q" type="search" placeholder="Search diabetes, thyroid, fever…" value="{{ page.q | default: '' }}" class="input" />
+    <button class="btn gradient" type="submit">Search</button>
   </form>
   
   <div class="wrap">
@@ -18,15 +20,26 @@ permalink: /blog.html
       <p class="page-description">Browse helpful articles and guides from AskSurgeons.</p>
     </header>
 
-    {% assign sorted_posts = site.posts | where_exp:'p','p.draft != true' %}
-    {% if sorted_posts == empty %}
+    {%- comment -%}
+      Use paginator.posts when pagination is enabled (jekyll-paginate).
+      Fallback to listing all non-draft posts if paginator is missing.
+    {%- endcomment -%}
+
+    {% assign all_posts = site.posts | where_exp:'p','p.draft != true' | sort: 'date' | reverse %}
+    {% if paginator %}
+      {% assign posts_to_show = paginator.posts %}
+    {% else %}
+      {% assign posts_to_show = all_posts %}
+    {% endif %}
+
+    {% if posts_to_show == empty %}
       <p>No posts available yet. Add some in <code>_posts/</code>.</p>
     {% else %}
       <article class="post-list" aria-live="polite">
-        {% for post in sorted_posts %}
+        {% for post in posts_to_show %}
           <article class="post-item" itemscope itemtype="http://schema.org/BlogPosting">
             {% if post.thumbnail %}
-              <a class="thumb" href="{{ post.url | relative_url }}" itemprop="url" aria-hidden="true">
+              <a class="thumb" href="{{ post.url | relative_url }}" itemprop="url" aria-hidden="true" tabindex="-1">
                 <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title | escape }}" loading="lazy" width="200" height="120">
               </a>
             {% endif %}
@@ -61,4 +74,33 @@ permalink: /blog.html
       </article>
     {% endif %}
   </div>
+
+  {%- comment -%} Pagination controls (works with jekyll-paginate) {%- endcomment -%}
+  {% if paginator and paginator.total_pages > 1 %}
+    <nav class="pagination" role="navigation" aria-label="Pagination">
+      {% assign current = paginator.page | default: 1 %}
+      {% assign total = paginator.total_pages %}
+
+      {%- comment -%} Newer (previous page) {%- endcomment -%}
+      {% if paginator.previous_page %}
+        {% if paginator.previous_page == 1 %}
+          <a class="btn" href="{{ '/blog/' | relative_url }}" aria-label="Newer posts">← Newer</a>
+        {% else %}
+          <a class="btn" href="{{ paginator.previous_page_path | relative_url }}" aria-label="Newer posts">← Newer</a>
+        {% endif %}
+      {% else %}
+        <span class="btn is-disabled" aria-disabled="true">← Newer</span>
+      {% endif %}
+
+      <span aria-hidden="true" style="margin:0 .5rem;color:var(--muted)">Page {{ current }} of {{ total }}</span>
+
+      {%- comment -%} Older (next page) {%- endcomment -%}
+      {% if paginator.next_page %}
+        <a class="btn" href="{{ paginator.next_page_path | relative_url }}" aria-label="Older posts">Older →</a>
+      {% else %}
+        <span class="btn is-disabled" aria-disabled="true">Older →</span>
+      {% endif %}
+    </nav>
+  {% endif %}
+
 </section>
