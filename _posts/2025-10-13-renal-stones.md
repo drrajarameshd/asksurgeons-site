@@ -17,7 +17,7 @@ There are several myths surrounding them — from “drinking milk causes stones
 Dr. Vinay Ausekar clears these myths and explains how early hydration, medical care, and modern minimally invasive surgery can manage stones effectively.
 
 <!-- inline image (same as cover) -->
-![Kidney Stone and Urinary Tract Illustration — showing stone formation and DJ Stent placement](/assets/images/post-images/2025-10-13-renal-stones.webp)
+![Kidney or Renal Stone Photo](/assets/images/post-images/2025-10-13-renal-stones.webp)
 
 ---
 
