@@ -22,7 +22,7 @@ permalink: /blog/
 
     {%- comment -%}
       Use paginator.posts when pagination is enabled (jekyll-paginate).
-      Fallback to listing all non-draft posts if paginator is missing.
+      Fallback to listing all non-draft posts if paginator is missing..
     {%- endcomment -%}
 
     {% assign all_posts = site.posts | where_exp:'p','p.draft != true' | sort: 'date' | reverse %}
