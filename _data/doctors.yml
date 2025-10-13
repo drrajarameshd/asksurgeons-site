@@ -1,7 +1,7 @@
 - id: GM-1
   name: Dr. D. Raja Ramesh
   degree: [MD (Osmania)]
-  speciality: General Medicine
+  speciality: General Physicina & Diabetologist
   department: General Medicine
   image: /assets/images/doctor-images/dr-d-raja-ramesh.webp
   bio: Trusted general physician focused on clear communication, evidence-based care, and long-term follow-up for conditions like diabetes, thyroid, and hypertension.
@@ -25,7 +25,7 @@
 - id: TR-1
   name: Dr. Karthik N.V.K.N
   degree: [MS, MCh (PGI)]
-  speciality: Transplant Surgery
+  speciality: Renal Transplant Surgeon
   department: Transplant Surgery
   image: /assets/images/doctor-images/dr-karthik.webp
   bio: Transplant surgeon dedicated to safe surgeries, meticulous follow-up, and patient-family counselling throughout the journey.
@@ -76,7 +76,7 @@
 - id: PATH-1
   name: Dr. P. A. Sanjuktha
   degree: [MD]
-  speciality: Pathology
+  speciality: Consultant Pathologist
   department: Pathology
   image: /assets/images/doctor-images/dr-p-a-sanjuktha.webp
   bio: Detail-oriented pathologist ensuring accurate, timely reports to guide your treatment decisions.
@@ -124,7 +124,7 @@
 - id: ORTHO-1
   name: Dr. B. Sudhakar
   degree: [MS (Osmania)]
-  speciality: Orthopedics & Joint Replacement
+  speciality: Orthopedician & Joint Replacement Surgeon
   department: Orthopedics
   image: /assets/images/doctor-images/dr-b-sudhakar.webp
   bio: Orthopedic surgeon focused on joint replacement, fracture care, and sports injury management.
@@ -148,7 +148,7 @@
 - id: OBG-1
   name: Dr. Pyreddy Pavani
   degree: [MBBS, DGO, DNB]
-  speciality: Obstetrics & Gynecology
+  speciality: Obstetrician & Gynecologist
   department: Obstetrics & Gynecology
   image: /assets/images/doctor-images/dr-pyreddy-pavani-mbbs-dgo-dnb.webp
   bio: Caring obstetrician-gynecologist supporting women through every stage—from adolescence to motherhood and beyond.
@@ -178,7 +178,7 @@
 - id: URO-1
   name: Dr. Vinay
   degree: [MS, MCh (NIMS)]
-  speciality: Urology & Kidney Surgery
+  speciality: Urologist & Kidney Surgeon
   department: Urology
   image: /assets/images/doctor-images/dr-vinay.webp
   bio: Urologist focused on precise diagnosis and minimally invasive solutions for kidney and urinary problems.
@@ -205,7 +205,7 @@
 - id: NS-1
   name: Dr. B. Naresh
   degree: [MCh (Osmania)]
-  speciality: Neurosurgery
+  speciality: Neurosurgeon
   department: Neurosurgery
   image: /assets/images/doctor-images/dr-b-naresh.webp
   bio: Neurosurgeon offering thoughtful guidance and advanced care for brain and spine conditions.
@@ -229,7 +229,7 @@
 - id: GS-1
   name: Dr. Abdullah Umayr
   degree: [MS, FMAS]
-  speciality: General Surgery
+  speciality: General & Laproscopic Surgeon 
   department: General Surgery & Laparoscopic Surgery
   image: /assets/images/doctor-images/dr-abdullah-umayr.webp
   bio: Experienced General & Laparoscopic Surgeon skilled in advanced surgical techniques, committed to patient-centered care and optimal outcomes.
@@ -256,7 +256,7 @@
 - id: GS-2
   name: Dr. Ashfa Neelofer
   degree: [MS, FIAGES]
-  speciality: General Surgery
+  speciality:  General & Laproscopic Surgeon
   department: General Surgery & Laparoscopic Surgery
   image: /assets/images/doctor-images/dr-ashfa-neelofer.webp
   bio: Experienced General & Laparoscopic Surgeon skilled in advanced surgical techniques, committed to patient-centered care and optimal outcomes.
@@ -283,7 +283,7 @@
 - id: SPINE-1
   name: Dr. Aditya Sunder Goparaju
   degree: [MBBS, MS(JIPMER), DNB (Ortho), "ASSI Spine Fellowship"]
-  speciality: Spine Surgery
+  speciality: Spine Surgeon
   department: Orthopedics
   image: /assets/images/doctor-images/dr-aditya.webp
   bio: Consultant spine surgeon with expertise in open & minimally invasive spine surgery, navigation & robotic-assisted procedures, and complex deformity and trauma care.
@@ -318,7 +318,7 @@
 - id: ENT-2
   name: Dr. D. Mahesh
   degree: [MBBS, MS]
-  speciality: ENT
+  speciality: ENT Surgeon
   department: ENT
   image: /assets/images/doctor-images/dr-d-mahesh.webp
   bio: Experienced ENT surgeon providing precise diagnosis and advanced treatment for ear, nose, and throat conditions with patient-focused care.
