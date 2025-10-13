@@ -37,7 +37,7 @@ permalink: /:categories/:title/
 
 # ---- Pagination (classic jekyll-paginate) ----
 paginate: 5                         # posts per page
-paginate_path: "blog/page:num/"           # /page2/, /page3/, ... (change to "/blog/page:num/" if listing is at /blog/)
+paginate_path: "blog/page/:num/"           # /page2/, /page3/, ... (change to "/blog/page:num/" if listing is at /blog/)
 
 # ---- Collections (optional future) ----
 # If later you create real profile pages in `_doctors/`
