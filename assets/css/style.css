@@ -141,8 +141,23 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
 .footer-inner{ padding: 28px 0; }
 .footer-grid{ display:grid; gap:20px; grid-template-columns: 1fr; } /* mobile: 1 col */
 .footer h4{ margin:0 0 10px; font-size:18px; }
-.footer a{ color:#dbeafe; padding:1rem; }
-.footer .muted{ color:#94a3b8; font-size:14px; }
+.footer a {
+  color: #dbeafe;
+  display: block;          /* Makes each link take full line width */
+  margin-bottom: 6px;      /* Adds space between links */
+  text-decoration: none;   /* Optional: cleaner look */
+  padding: 4px 0;          /* Slim vertical padding */
+}
+
+.footer a:hover {
+  color: #fff;             /* Optional hover effect */
+}
+
+.footer .muted {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;        /* Adds breathing space for contact lines */
+}
 
 /* ───────────────────────────────────────
    Doctor Auto-scroll Strip (Option C)
