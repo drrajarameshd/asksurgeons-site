@@ -1,0 +1,22 @@
+---
+layout: null
+permalink: /search-pages/search-2.json
+---
+{%- assign per_page = 10 -%}
+{%- assign all_posts = site.posts | where_exp:'p','p.draft != true' | sort: 'date' | reverse -%}
+{
+  "page": 2,
+  "per_page": {{ per_page }},
+  "docs": [
+    {%- for post in all_posts limit: per_page offset: 10 -%}
+    {
+      "title": {{ post.title | jsonify }},
+      "url": {{ post.url | relative_url | jsonify }},
+      "date": {{ post.date | date_to_xmlschema | jsonify }},
+      "excerpt": {{ post.excerpt | strip_html | strip_newlines | truncate: 240 | jsonify }},
+      "tags": {{ post.tags | jsonify }},
+      "thumbnail": {{ post.thumbnail | relative_url | absolute_url | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
