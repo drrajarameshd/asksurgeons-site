@@ -15,7 +15,6 @@
   border-radius: var(--radius);
   box-shadow: var(--card-shadow);
   overflow: hidden;
-  padding: 18px;
   max-width: 1200px;
   margin: 0 auto; /* centers it horizontally */
 }
