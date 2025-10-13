@@ -145,6 +145,7 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
   color: #dbeafe;
   display: block;          /* Makes each link take full line width */
   margin-bottom: 6px;      /* Adds space between links */
+  margin-left: 1rem;
   text-decoration: none;   /* Optional: cleaner look */
   padding: 4px 0;          /* Slim vertical padding */
 }
@@ -157,6 +158,7 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
   color: #94a3b8;
   font-size: 14px;
   line-height: 1.6;        /* Adds breathing space for contact lines */
+   margin-left: 1rem;
 }
 
 /* ───────────────────────────────────────
