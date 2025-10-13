@@ -36,7 +36,7 @@ sass:
 permalink: /:categories/:title/
 
 # ---- Pagination (classic jekyll-paginate) ----
-paginate: 5                         # posts per page
+paginate: 12                         # posts per page
 paginate_path: "/blog/page/:num/"  
 
 # ---- Collections (optional future) ----
