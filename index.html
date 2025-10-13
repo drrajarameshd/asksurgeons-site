@@ -43,26 +43,56 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
 </section>
 
 <!-- ===== Blog listing (placed just before footer as requested) ===== -->
-<section class="blog-list">
-  <h1>Blog</h1>
 
-  {% for post in paginator.posts %}
-    <article class="post-item">
-      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-      <time>{{ post.date | date: "%B %-d, %Y" }}</time>
-      <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
+<section class="container post-layout-root" aria-label="Latest Posts">
+  <!-- Search bar (optional, if you want on homepage) -->
+  <form action="{{ '/search/' | relative_url }}" method="get" role="search" class="search-form">
+    <input id="q" name="q" type="search" placeholder="Search diabetes, thyroid, fever…" value="{{ page.q | default: '' }}" class="input" />
+    <button class="btn gradient" type="submit">Search</button>
+  </form>
+
+  <header class="page-header">
+    <h2>Latest Articles</h2>
+    <p class="page-description">Recently published posts from AskSurgeons experts.</p>
+  </header>
+
+  {% assign latest_posts = site.posts | where_exp:'p','p.draft != true' | sort: 'date' | reverse | slice: 0,5 %}
+
+  {% if latest_posts == empty %}
+    <p>No posts yet. Check back soon!</p>
+  {% else %}
+    <article class="post-list" aria-live="polite">
+      {% for post in latest_posts %}
+        <article class="post-item" itemscope itemtype="http://schema.org/BlogPosting">
+          {% if post.thumbnail %}
+            <a class="thumb" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">
+              <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title | escape }}" loading="lazy" width="200" height="120">
+            </a>
+          {% endif %}
+
+          <div class="post-meta">
+            <h3 class="post-link" itemprop="headline">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+
+            <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+              {{ post.date | date: "%B %-d, %Y" }}
+            </time>
+
+            {% if post.excerpt %}
+              <p class="excerpt" itemprop="description">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+            {% endif %}
+
+            <p style="margin-top:.55rem;">
+              <a class="btn outline" href="{{ post.url | relative_url }}">Read more</a>
+            </p>
+          </div>
+        </article>
+      {% endfor %}
     </article>
-  {% endfor %}
-
-  {% if paginator.total_pages > 1 %}
-    <nav class="pagination">
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | relative_url }}">← Newer</a>
-      {% endif %}
-      <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}">Older →</a>
-      {% endif %}
-    </nav>
   {% endif %}
+
+  <p style="text-align:center;margin-top:1.5rem;">
+    <a class="btn" href="{{ '/blog/' | relative_url }}">View All Posts →</a>
+  </p>
 </section>
