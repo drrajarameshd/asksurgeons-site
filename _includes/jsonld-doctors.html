@@ -1,0 +1,79 @@
+{%- comment -%}
+===========================================
+CONFIGURABLE CONSTANTS
+===========================================
+{%- endcomment -%}
+{% assign target_location = "Attapur" %}
+{% assign doctors = site.data.doctors | where: "location", target_location %}
+
+{%- comment -%}
+===========================================
+LOOP: Generate Physician JSON-LD for each doctor
+===========================================
+{%- endcomment -%}
+
+{% for doctor in doctors %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "@id": {{ (doctor.profile_url | default: page.url) | absolute_url | jsonify }},
+  "name": {{ doctor.name | jsonify }},
+  "jobTitle": {{ doctor.speciality | jsonify }},
+  "medicalSpecialty": {{ doctor.speciality | jsonify }},
+  "affiliation": {
+    "@type": "MedicalOrganization",
+    "name": {{ site.title | jsonify }},
+    "url": {{ site.url | jsonify }}
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": {{ doctor.location | default: "Hyderabad" | jsonify }},
+    "addressRegion": "Telangana",
+    "addressCountry": "IN"
+  }
+
+  {%- assign props = "" -%}
+
+  {%- if doctor.degree and doctor.degree.size > 0 -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"hasCredential":[{% for deg in doctor.degree %}{"@type":"EducationalOccupationalCredential","name":{{ deg | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endcapture -%}
+  {%- endif -%}
+
+  {%- if doctor.image -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"image": {"@type":"ImageObject","url": {{ doctor.image | absolute_url | jsonify }}}{% endcapture -%}
+  {%- endif -%}
+
+  {%- if doctor.profile_url -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"url": {{ doctor.profile_url | absolute_url | jsonify }}{% endcapture -%}
+  {%- endif -%}
+
+  {%- assign degree_part = doctor.degree | join: ', ' | default: "" -%}
+  {%- assign dept_part = doctor.department | default: "" -%}
+  {%- assign bio_part = doctor.bio | default: "" -%}
+  {%- assign exp_part = doctor.experience | default: "" -%}
+  {%- assign desc_parts = degree_part -%}
+  {%- if dept_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: dept_part %}{% endif -%}
+  {%- if bio_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: bio_part %}{% endif -%}
+  {%- if exp_part != "" -%}{% assign desc_parts = desc_parts | append: " — " | append: exp_part | append: " years experience" %}{% endif -%}
+
+  {%- if desc_parts != "" -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"description": {{ desc_parts | strip_html | strip_newlines | truncate:800 | jsonify }}{% endcapture -%}
+  {%- endif -%}
+
+  {%- if doctor.services and doctor.services.size > 0 -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"knowsAbout": {{ doctor.services | jsonify }}{% endcapture -%}
+  {%- endif -%}
+
+  {%- if doctor.tags and doctor.tags.size > 0 -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"keywords": {{ doctor.tags | join: ', ' | jsonify }}{% endcapture -%}
+  {%- endif -%}
+
+  {%- if doctor.languages and doctor.languages.size > 0 -%}
+    {%- capture props -%}{{ props }}{% if props != "" %}, {% endif %}"knowsLanguage": {{ doctor.languages | jsonify }}{% endcapture -%}
+  {%- endif -%}
+
+  {%- if props != "" -%},{% endif -%}
+  {{ props }}
+}
+</script>
+{% endfor %}
