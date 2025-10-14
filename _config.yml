@@ -22,7 +22,6 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
-  - jekyll-paginate  
 
 # Atom/RSS (jekyll-feed)
 feed:
@@ -35,9 +34,6 @@ sass:
 # ---- Permalinks ----
 permalink: /:categories/:title/
 
-# ---- Pagination (classic jekyll-paginate) ----
-paginate: 12                         # posts per page
-paginate_path: "/blog/page/:num/"  
 
 # ---- Collections (optional future) ----
 # If later you create real profile pages in `_doctors/`
