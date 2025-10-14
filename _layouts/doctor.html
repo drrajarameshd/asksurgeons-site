@@ -41,7 +41,7 @@
 
   {%- assign seo_title = doctor.name -%}
   {%- if doctor.speciality and doctor.speciality != "" -%}
-    {%- assign seo_title = seo_title | append: " — " | append: doctor.speciality -%}
+    {%- assign seo_title = seo_title | append: " — Best " | append: doctor.speciality | append: "in" | append: doctor.location-%}
   {%- endif -%}
   {%- assign seo_title = seo_title | append: " | " | append: site_name -%}
 
