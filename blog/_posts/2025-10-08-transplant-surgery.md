@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Understanding Transplant Surgery — Kidney and Pancreas Transplants Explained"
+title: "Understanding Transplant Surgery — Kidney and Pancreas"
 author: "Dr.Karthik NVKN"
 author-id: TR-1
 date: 2025-10-08 08:30:00 +0530
