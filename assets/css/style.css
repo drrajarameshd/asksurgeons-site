@@ -548,3 +548,23 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
   .container{ padding: 0 20px; }
 
 }
+
+/* === Site-wide custom bullet icon === */
+ul, ol {
+  list-style: none;
+}
+
+ul li, ol li {
+  position: relative;
+}
+
+ul li::before, ol li::before {
+  content: "›"; /* small arrow bullet */
+  position: absolute;
+  left: -1em; /* aligns arrow with normal bullet position */
+  color: #007BBF; /* AskSurgeons theme color */
+  font-weight: bold;
+  font-size: 0.9em;
+  line-height: 1;
+}
+
