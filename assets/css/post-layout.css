@@ -30,7 +30,7 @@
 .post-layout-root .post-body blockquote{border-left:4px solid var(--primary);padding:10px 14px;margin:0 0 1rem;background:#fbfcff;border-radius:6px}
 .post-layout-root .post-body table{width:100%;border-collapse:collapse;margin:1rem 0}
 .post-layout-root .post-body table th,.post-layout-root .post-body table td{border:1px solid #e6e9ef;padding:8px;text-align:left}
-.post-layout-root .post-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.post-layout-root .post-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:12px; justify-content: center;}
 
 .post-layout-root .post-footer{padding-top:12px;border-top:1px dashed rgba(15,23,42,0.04);display:flex;justify-content:space-between;align-items:center}
 .post-layout-root .back-link{font-size:0.95rem;text-decoration:none;color:var(--primary)}
