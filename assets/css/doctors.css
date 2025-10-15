@@ -229,3 +229,30 @@
 @media (max-width: 991.98px){
   .d-grid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 768px) {
+  .post-body ul,
+  .post-body ol {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none; /* remove default bullets/numbers */
+  }
+
+  .post-body ul li,
+  .post-body ol li {
+    position: relative;
+    padding-left: 1.2em; /* space for arrow */
+    margin-bottom: 0.4em;
+  }
+
+  .post-body ul li::before,
+  .post-body ol li::before {
+    content: "›"; /* small arrow bullet */
+    position: absolute;
+    left: 0;
+    color: #007BBF; /* matches your theme color */
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 1;
+  }
+}
