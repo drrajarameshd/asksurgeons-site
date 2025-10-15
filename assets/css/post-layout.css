@@ -154,6 +154,5 @@
   .post-body ol {
     margin-left: 0;
     padding-left: 0; /* or 0 if you want it fully flush with edge */
-    list-style-position: inside;
    font-size: 1.3rem; }
 }
