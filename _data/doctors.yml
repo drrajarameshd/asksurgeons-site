@@ -122,14 +122,14 @@
   profile_url: /doctors/attapur/dr-g-v-nagarjuna-reddy
 
 - id: ORTHO-1
-  name: Dr. B. Sudhakar
-  degree: [MS (Osmania)]
+  name: Dr. Khaleelullah
+  degree: [MS(Nims), Mch(Ortho)]
   speciality: Orthopedician & Joint Replacement Surgeon
   department: Orthopedics
-  image: /assets/images/doctor-images/dr-b-sudhakar.webp
-  bio: Orthopedic surgeon focused on joint replacement, fracture care, and sports injury management.
+  image: /assets/images/doctor-images/dr-khaleelullah.webp
+  bio:Senior Orthopedic surgeon focused on joint replacement, fracture care, and sports injury management.
   education:
-    - degree: MS (Osmania)
+    - degree: MS (Nims)
       institute: ''
       year: ''
   services:
@@ -140,10 +140,10 @@
     - Spine & deformity evaluation
   location: Attapur
   gender: male
-  experience: 10
+  experience: 15
   languages: [Telugu, English, Hindi]
   tags: [arthritis, fracture, joint replacement, orthopedics, sports injuries, spine, trauma]
-  profile_url: /doctors/attapur/dr-b-sudhakar
+  profile_url: /doctors/attapur/dr-khaleelullah
 
 - id: OBG-1
   name: Dr. Pyreddy Pavani
