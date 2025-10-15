@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Renal Stones — Myths, Facts, Symptoms and Treatment Options"
+title: "Renal Stones — Myths, Facts & Treatment"
 date: 2025-10-13 11:00:00 +0530
 author: "Dr. Vinay Ausekar"
 author-id: URO-1
