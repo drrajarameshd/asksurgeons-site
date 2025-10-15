@@ -108,6 +108,12 @@
     - degree: MS (PGI)
       institute: ''
       year: ''
+  training:
+    - RCS London - Fellowship Head & Neck Oncology
+    - IFHNOS - MSKCC - Fellowship Head & Neck Oncology
+    - EBEORL-HNS - Fellow Otolaryngology Head & Neck Surgery
+    - Tata Memorial Hospitals - Senior Resident HBCHRI (A Unit of TMH)
+    - FHNO - Travelling Fellow at Amrita Institute of Medical Sciences, Kerala
   services:
     - Ear pain, infections & wax removal
     - Sinusitis & allergy care
@@ -120,6 +126,7 @@
   languages: [Telugu, English, Hindi]
   tags: [allergy, ent, infections, ms (pgi), nasal, sinusitis, swallowing, tumor, voice, wax]
   profile_url: /doctors/attapur/dr-g-v-nagarjuna-reddy
+
 
 - id: ORTHO-1
   name: Dr. Khaleelullah
