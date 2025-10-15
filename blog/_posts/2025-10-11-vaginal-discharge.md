@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Vaginal Discharge — What’s Normal and When to Consult Your Gynecologist"
+title: "Vaginal Discharge — What’s Normal"
 date: 2025-10-11 09:00:00 +0530
 excerpt: "Dr. Pyreddy Pavani explains how to differentiate normal vaginal discharge from abnormal, understand hormonal changes across menstrual phases, and when to seek medical advice."
 tags: [vaginal discharge, gynecology, women health, infections, Attapur, Hyderabad]
