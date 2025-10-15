@@ -12,8 +12,9 @@ Uses site.banner as fallback for article image / publisher logo.
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  {%- assign doctor = site.data.doctors | where: "id", page.author-id | first -%}
 
-  <title>{{ page.title | escape }}</title>
+  <title>{{ page.title |append: " Expert insights by "| append: doctor.name |append: " "| append: doctor.speciality | append: " in " | append: doctor.location  | escape }}</title>
   <link rel="canonical" href="{{ page.url | absolute_url }}">
 
   <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate:160 | escape }}">
