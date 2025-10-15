@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mosquito Breeding Near Musi — Dengue & Chikungunya Risks in Attapur and Surroundings"
+title: "Mosquito Breeding Near Musi — Dengue & Chikungunya Risks"
 date: 2025-09-25 10:00:00 +0530
 excerpt: "Every monsoon, Attapur and Musi river belt areas face rising cases of dengue and chikungunya. Learn how mosquitoes spread, common symptoms, and real patient experiences from local practice."
 tags: [dengue, chikungunya, arthritis, mosquitoes, Attapur, Hyderabad, Musi]
