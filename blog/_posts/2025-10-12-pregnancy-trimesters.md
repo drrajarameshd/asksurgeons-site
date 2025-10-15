@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Three Trimesters of Pregnancy — What to Expect, Tests, and When to See Your Doctor"
+title: "Three Trimesters of Pregnancy — What to Expect"
 date: 2025-10-12 09:00:00 +0530
 author: "Dr. Pyreddy Pavani"
 author-id: OBG-1
