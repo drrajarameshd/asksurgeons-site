@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Degenerative Disc Disease — Understanding Back Pain and Modern Treatment Options"
+title: "Degenerative Disc Disease — Understanding Back Pain"
 date: 2025-10-10 11:00:00 +0530
 author: "Dr. Aditya Sunder Goparaju"
 author-id: SPINE-1
