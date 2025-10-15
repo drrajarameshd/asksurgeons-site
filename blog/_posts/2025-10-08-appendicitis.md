@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Signs, Symptoms and Treatment of Appendicitis"
+title: "Signs, Symptoms & Treatment of Appendicitis"
 date: 2025-10-08 09:00:00 +0530
 author: "Dr.Ashfa Nilofer"
 author-id: GS-2
