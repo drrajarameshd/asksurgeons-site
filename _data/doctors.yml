@@ -106,7 +106,10 @@
   bio: ENT specialist offering gentle, thorough care for ear, nose, throat and head-neck concerns.
   education:
     - degree: MS (PGI)
-      institute: ''
+      institute: 'Chandigarh Otolaryngology, Head & Neck Surgery'
+      year: ''
+    - degree: MBBS
+      institute: 'Kakatiya Medical College'
       year: ''
   training:
     - RCS London - Fellowship Head & Neck Oncology
