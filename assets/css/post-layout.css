@@ -22,7 +22,7 @@
 .post-layout-root .post-header{padding:12px 6px 6px}
 .post-layout-root .post-header h1{margin:8px 0 4px;font-size:1.45rem;line-height:1.18}
 .post-layout-root .meta{color:var(--muted);font-size:0.9rem}
-.post-layout-root .post-body{padding:6px 6px 18px}
+.post-layout-root .post-body{padding:6px 12px 18px}
 .post-layout-root .post-body :where(h2,h3){margin-top:1.4em;margin-bottom:.6em}
 .post-layout-root .post-body p{line-height:1.65;margin:0 0 1em}
 .post-layout-root .post-body img{max-width:100%;height:auto;border-radius:8px}
