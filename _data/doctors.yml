@@ -351,3 +351,45 @@
   languages: [Telugu, English, Hindi]
   tags: [ent, ear, nose, throat, sinusitis, hearing, infections, endoscopic, surgery, wax]
   profile_url: /doctors/attapur/dr-d-mahesh
+
+  - id: OBG-2
+  name: Dr. Monika Reddy
+  degree: [MBBS, MS (Obstetrics & Gynecology), DNB, FRM, MRCOG]
+  speciality: Obstetrician & Gynecologist
+  department: Obstetrics & Gynecology
+  image: /assets/images/doctor-images/dr-monika-reddy.webp
+  bio: Fertility and reproductive medicine specialist with expertise in infertility evaluation, assisted reproduction, and comprehensive obstetric and gynecological care.
+  education:
+    - degree: MBBS
+      institute: ''
+      year: ''
+    - degree: MS (Obstetrics & Gynecology)
+      institute: ''
+      year: ''
+    - degree: DNB
+      institute: ''
+      year: ''
+    - degree: FRM
+      institute: Iswarya Fertility Centre
+      year: ''
+    - degree: MRCOG
+      institute: Royal College of Obstetricians & Gynaecologists (UK)
+      year: ''
+  services:
+    - Evaluation of infertile couple
+    - Fertility counselling & treatment planning
+    - Ovulation induction & follicular monitoring
+    - IUI (Intrauterine Insemination)
+    - IVF stimulation & Oocyte pickup
+    - Embryo transfer (fresh & frozen)
+    - Hysteroscopy procedures
+    - Pregnancy management & complications
+    - Normal delivery & caesarean section
+    - Comprehensive gynecological care
+  location: Attapur
+  gender: female
+  experience: 7
+  languages: [Telugu, English, Hindi]
+  tags: [fertility, frm, mrcog, iui, ivf, oocyte pickup, embryo transfer, hysteroscopy, pregnancy, gynecology, counseling, ovulation induction, obstetrics]
+  profile_url: /doctors/attapur/dr-monika-reddy
+
