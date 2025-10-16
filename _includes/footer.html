@@ -31,7 +31,7 @@
                    onerror="this.src='{{ '/assets/images/site-images/doctor-placeholder.webp' | relative_url }}'">
               <div class="meta">
                 <div class="name">{{ d.name }}</div>
-                <div class="qual">{{ d.degree}}</div>
+                <div class="qual">{{ d.degree | join: ", " }}</div>
                 <div class="dept">{{ d.speciality }}</div>
               </div>
             </div>
