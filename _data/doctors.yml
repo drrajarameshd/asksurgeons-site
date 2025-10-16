@@ -350,9 +350,9 @@
   experience: 12
   languages: [Telugu, English, Hindi]
   tags: [ent, ear, nose, throat, sinusitis, hearing, infections, endoscopic, surgery, wax]
-  profile_url: /doctors/attapur/dr-d-mahesh
+ profile_url: /doctors/attapur/dr-d-mahesh
 
-  - id: OBG-2
+- id: OBG-2
   name: Dr. Monika Reddy
   degree: [MBBS, MS (Obstetrics & Gynecology), DNB, FRM, MRCOG]
   speciality: Obstetrician & Gynecologist
