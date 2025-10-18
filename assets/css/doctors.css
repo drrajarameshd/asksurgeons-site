@@ -29,11 +29,6 @@
   max-width: var(--maxw);
   margin: 2rem auto;
   padding: 0 1rem;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
 }
 
 .dd-title {
@@ -127,7 +122,7 @@
 .d-container {
   max-width: var(--maxw);
   margin: 2rem auto;
-  padding: 0 1rem;
+  padding: 2rem;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   border-radius: 18px;
