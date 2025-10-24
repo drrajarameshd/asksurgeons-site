@@ -212,10 +212,6 @@
         </div>
         <div class="d-qual"><strong>Degrees:</strong><br>{{ doc.degree | join: ", " }}</div>
         <div class="d-lang"><strong>Languages:</strong><br>{{ doc.languages | join: " • " }}</div>
-        {% if doc.profile_links.whatsapp %}
-          <a href="https://wa.me/{{ doc.profile_links.whatsapp | replace: '+','' | replace: ' ','' 
-            }}" class="d-whatsapp">WhatsApp</a>
-        {% endif %}
       </div>
     </div>
 
