@@ -1,5 +1,7 @@
 - id: GM-1
   name: Dr. D. Raja Ramesh
+  email: dr.rajaramesh.d@gmail.com
+  phone: 7989676770
   degree: [MD (Osmania)]
   speciality: General Physicina & Diabetologist
   department: General Medicine
@@ -24,6 +26,8 @@
 
 - id: TR-1
   name: Dr. Karthik N.V.K.N
+  email: karthik.nvkn@gmail.com
+  phone: 7087216009
   degree: [MS, MCh (PGI)]
   speciality: Renal Transplant Surgeon
   department: Transplant Surgery
