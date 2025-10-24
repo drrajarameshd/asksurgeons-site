@@ -17,6 +17,8 @@ This non-cancerous growth, called **Benign Prostatic Hypertrophy (BPH)** or **pr
 
 While BPH is **common and not cancer**, it’s important to know when symptoms need medical evaluation to rule out **prostate cancer**.
 
+![Prostate Health — BPH vs Cancer Awareness Illustration](/assets/images/post-images/2025-10-24-prostate-hypertrophy-tips.webp)
+
 ---
 
 ## 🩺 What is Prostate Hypertrophy (BPH)?
@@ -86,7 +88,7 @@ Early detection saves lives — most prostate cancers, when caught early, are **
 Benign prostate enlargement is **a natural part of aging**, but it should not be ignored.  
 With regular check-ups and early management, men can maintain normal urinary health and avoid complications.
 
-> 🧠 “Prostate issues are common after 50 — but cancer fear shouldn’t stop you from getting evaluated.” — Dr. Vinay Ausekar
+>  “Prostate issues are common after 50 — but cancer fear shouldn’t stop you from getting evaluated.” — Dr. Vinay Ausekar
 
 ---
 
