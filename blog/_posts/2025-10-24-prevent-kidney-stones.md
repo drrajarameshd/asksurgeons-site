@@ -15,6 +15,8 @@ thumbnail: /assets/images/post-images/thumbs/2025-10-24-prevent-kidney-stones.we
 Kidney stones are one of the most **painful urological conditions**, and they often tend to **recur** if preventive steps are ignored.  
 The good news — with simple diet and lifestyle changes, most stones can be prevented.
 
+![Kidney Stone Prevention Tips — Hydration and Diet Illustration](/assets/images/post-images/2025-10-24-prevent-kidney-stones.webp)
+
 ---
 
 ## 🩺 10 General Tips to Prevent Kidney Stones
