@@ -201,6 +201,8 @@
     <div class="d-profile">
       <div class="d-image-wrapper">
         <img src="{{ doc.image }}" alt="{{ doc.name }}" class="d-image">
+      </div>
+      <div class="d-meta">
         <a class="btn outline with-icon" href="https://wa.me/+91{{ doc.whatsapp | default: site.site_whatsapp }}" target="_blank" rel="noopener noreferrer" aria-label="Chat with {{ doc.name }} on WhatsApp">
            <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="#25D366">
             <path
@@ -208,8 +210,6 @@
            </svg> Whatsapp
         </a>
         <a class="btn outline" href="/appointment"  aria-label="Book Appointment with {{ doc.name }} ">Book Appointment</a>
-      </div>
-      <div class="d-meta">
         <div class="d-name">{{ doc.name }}{% if doc.degree %}, {{ doc.degree | join: ", " }}{% endif %}</div>
         <div class="d-speciality">{{ doc.speciality }}</div>
         <div class="d-chips">
