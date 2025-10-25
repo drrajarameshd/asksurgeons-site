@@ -287,6 +287,24 @@
       {% endif %}
     </div>
   </div>
+     <div class="post-actions wrap">
+          <a class="btn btn--primary" href="#"
+             onclick="
+               if (navigator.share) {
+                 navigator.share({
+                   title: '{{ page.title | escape }}',
+                   text: 'Check this out:',
+                   url: '{{ page.url | absolute_url }}'
+                 }).catch((error) => console.log('Error sharing:', error));
+               } else {
+                 navigator.clipboard.writeText('{{ page.url | absolute_url }}')
+                   .then(() => alert('Link copied to clipboard!'))
+                   .catch(() => alert('Could not copy link. Please try manually.'));
+               }
+               return false;">
+            Share Doctors Profile
+          </a>
+       </div>
 </div>
 {% else %}
 <div class="d-container">
