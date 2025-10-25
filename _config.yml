@@ -4,8 +4,8 @@ tagline: "Clear answers • Trusted care"
 description: "Hyderabad-based doctors directory, blog, and appointment info."
 url: "https://asksurgeons.com"     # Change if needed
 baseurl: ""       # Keep in sync with your repo/project path
-site_phone: "+91 8062182411"
-site_whatsapp: "+91 8062182411"
+site_phone: "8062182411"
+site_whatsapp: "8062182411"
 site_email: "asksurgeons@gmaill.com"
 address: "hyderabad"
 locale: en_IN
