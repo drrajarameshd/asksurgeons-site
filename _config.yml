@@ -6,7 +6,7 @@ url: "https://asksurgeons.com"     # Change if needed
 baseurl: ""       # Keep in sync with your repo/project path
 site_phone: "8062182411"
 site_whatsapp: "8062182411"
-site_email: "asksurgeons@gmaill.com"
+site_email: "asksurgeons@gmail.com"
 address: "hyderabad"
 locale: en_IN
 logo: /assets/site-images/logo.webp
