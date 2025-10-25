@@ -213,7 +213,8 @@
         <div class="d-qual"><strong>Degrees:</strong><br>{{ doc.degree | join: ", " }}</div>
         <div class="d-lang"><strong>Languages:</strong><br>{{ doc.languages | join: " • " }}</div>
        
-          <a class="btn outline" href="https://wa.me/{{ doc.whatsapp | default: site.site_whatsapp }}" target="_blank" rel="noopener noreferrer" aria-label="Chat with {{ doc.name }} on WhatsApp">WhatsApp</a>
+          <a class="btn outline" href="https://wa.me/+91{{ doc.whatsapp | default: site.site_whatsapp }}" target="_blank" rel="noopener noreferrer" aria-label="Chat with {{ doc.name }} on WhatsApp">WhatsApp</a>
+          <a class="btn outline" href="/appointment"  aria-label="Book Appointment with {{ doc.name }} ">Book Appointment</a>
        
       </div>
     </div>
