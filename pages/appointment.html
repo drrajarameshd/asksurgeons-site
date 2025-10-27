@@ -22,7 +22,7 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
               data-name="{{ doc.name | escape }}" 
               data-email="{{ doc.email | escape }}" 
               data-phone="{{ doc.phone | escape }}">
-        {{ doc.id }} — {{ doc.name }}
+        {{ doc.name }}
       </option>
     {% endfor %}
   </select>
