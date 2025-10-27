@@ -1,0 +1,402 @@
+- id: GM-1
+  name: Dr. D. Raja Ramesh
+  email: dr.rajaramesh.d@gmail.com
+  phone: 7989676770
+  whatsapp: 7989676770
+  degree: [MD (Osmania)]
+  speciality: General Physician & Diabetologist
+  department: General Medicine
+  image: /assets/images/doctor-images/dr-d-raja-ramesh.webp
+  bio: Trusted general physician focused on clear communication, evidence-based care, and long-term follow-up for conditions like diabetes, thyroid, and hypertension.
+  education:
+    - degree: MD (Osmania)
+      institute: ''
+      year: ''
+  services:
+    - Diabetes & thyroid care
+    - Hypertension & lipid management
+    - Fever, infections & dengue care
+    - Preventive health check-ups
+    - ECG & cardiac risk assessment
+  location: Attapur
+  gender: male
+  experience: 10
+  languages: [Telugu, English, Hindi]
+  tags: [assessment, cardiac, diabetes, ecg, fever, general medicine, hypertension, lipid, management, md (osmania), preventive, risk, thyroid]
+  profile_url: /doctors/attapur/dr-d-raja-ramesh
+
+- id: TR-1
+  name: Dr. Karthik N.V.K.N
+  email: karthik.nvkn@gmail.com
+  phone: 7087216009
+  whatsapp: 7087216009
+  degree: [MS, MCh (PGI)]
+  speciality: Renal Transplant Surgeon
+  department: Transplant Surgery
+  image: /assets/images/doctor-images/dr-karthik.webp
+  bio: Transplant surgeon dedicated to safe surgeries, meticulous follow-up, and patient-family counselling throughout the journey.
+  education:
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: MCh (PGI)
+      institute: ''
+      year: ''
+  services:
+    - Kidney & pancreas transplant evaluation
+    - Access surgery & vascular care
+    - Pre-transplant optimization
+    - Post-transplant follow-up
+    - Second opinions & counselling
+  location: Attapur
+  gender: male
+  experience: 10
+  languages: [Telugu, English, Hindi]
+  tags: [access, counselling, evaluation, follow-up, kidney, mch (pgi), ms, opinions, optimization, pancreas, post-transplant, pre-transplant, second, surgery, transplant, transplant surgery, vascular]
+  profile_url: /doctors/attapur/dr-karthik
+
+- id: GP-1
+  name: Dr. D. Lakshmi Prasanna
+  degree: [MBBS]
+  speciality: General Practitioner
+  department: General Practice
+  image: /assets/images/doctor-images/dr-d-lakshmi-prasanna-mbbs.webp
+  bio: Compassionate family doctor providing first-contact, continuous care and guidance for you and your family.
+  education:
+    - degree: MBBS
+      institute: ''
+      year: ''
+  services:
+    - Comprehensive primary care
+    - Immunizations & wellness counselling
+    - Minor ailments & injuries
+    - Women’s health screening
+    - Referrals & care coordination
+  location: Attapur
+  gender: female
+  experience: 4
+  languages: [Telugu, English, Hindi]
+  tags: [ailments, coordination, counselling, general practitioner, immunizations, mbbs, primary, referrals, screening, wellness, women’s]
+  profile_url: /doctors/attapur/dr-d-lakshmi-prasanna
+
+- id: PATH-1
+  name: Dr. P. A. Sanjuktha
+  degree: [MD]
+  speciality: Consultant Pathologist
+  department: Pathology
+  image: /assets/images/doctor-images/dr-p-a-sanjuktha.webp
+  bio: Detail-oriented pathologist ensuring accurate, timely reports to guide your treatment decisions.
+  education:
+    - degree: MD
+      institute: ''
+      year: ''
+  services:
+    - Biopsy & cytology reporting
+    - Cancer screening panels
+    - Clinical pathology (CBC, LFT, RFT)
+    - Quality-assured lab services
+    - Report verification & second opinion
+  location: Attapur
+  gender: female
+  experience: 7
+  languages: [Telugu, English, Hindi]
+  tags: [cbc, biopsy, cancer, cytology, lab, lft, md, pathology, quality-assured, report, rft, screening, second, verification]
+  profile_url: /doctors/attapur/dr-p-a-sanjuktha
+
+- id: ENT-1
+  name: Dr. G. V. Nagarjuna Reddy
+  degree: [MS (PGI)]
+  speciality: ENT Surgeon
+  department: ENT
+  image: /assets/images/doctor-images/dr-g-v-nagarjuna-reddy.webp
+  bio: ENT specialist offering gentle, thorough care for ear, nose, throat and head-neck concerns.
+  education:
+    - degree: MS (PGI)
+      institute: 'Chandigarh Otolaryngology, Head & Neck Surgery'
+      year: ''
+    - degree: MBBS
+      institute: 'Kakatiya Medical College'
+      year: ''
+  training:
+    - RCS London - Fellowship Head & Neck Oncology
+    - IFHNOS - MSKCC - Fellowship Head & Neck Oncology
+    - EBEORL-HNS - Fellow Otolaryngology Head & Neck Surgery
+    - Tata Memorial Hospitals - Senior Resident HBCHRI (A Unit of TMH)
+    - FHNO - Travelling Fellow at Amrita Institute of Medical Sciences, Kerala
+  services:
+    - Ear pain, infections & wax removal
+    - Sinusitis & allergy care
+    - Voice & swallowing disorders
+    - Endoscopic nasal procedures
+    - Head & neck tumor evaluation
+  location: Attapur
+  gender: male
+  experience: 10
+  languages: [Telugu, English, Hindi]
+  tags: [allergy, ent, infections, ms (pgi), nasal, sinusitis, swallowing, tumor, voice, wax]
+  profile_url: /doctors/attapur/dr-g-v-nagarjuna-reddy
+
+
+- id: ORTHO-1
+  name: Dr. Khaleelullah
+  degree: [MS(Nims), Mch(Ortho)]
+  speciality: Orthopedician & Joint Replacement Surgeon
+  department: Orthopedics
+  image: /assets/images/doctor-images/dr-khaleelullah.webp
+  bio: Senior Orthopedic surgeon focused on joint replacement, fracture care, and sports injury management.
+  education:
+    - degree: MS (Nims)
+      institute: ''
+      year: ''
+  services:
+    - Knee & hip joint replacement
+    - Fracture & trauma care
+    - Sports injuries & arthroscopy
+    - Arthritis & back pain management
+    - Spine & deformity evaluation
+  location: Attapur
+  gender: male
+  experience: 15
+  languages: [Telugu, English, Hindi]
+  tags: [arthritis, fracture, joint replacement, orthopedics, sports injuries, spine, trauma]
+  profile_url: /doctors/attapur/dr-khaleelullah
+
+- id: OBG-1
+  name: Dr. Pyreddy Pavani
+  degree: [MBBS, DGO, DNB]
+  speciality: Obstetrician & Gynecologist
+  department: Obstetrics & Gynecology
+  image: /assets/images/doctor-images/dr-pyreddy-pavani-mbbs-dgo-dnb.webp
+  bio: Caring obstetrician-gynecologist supporting women through every stage—from adolescence to motherhood and beyond.
+  education:
+    - degree: MBBS
+      institute: ''
+      year: ''
+    - degree: DGO
+      institute: ''
+      year: ''
+    - degree: DNB
+      institute: ''
+      year: ''
+  services:
+    - Antenatal check-ups & scans review
+    - Normal & high-risk pregnancy care
+    - PCOS & fertility counselling
+    - Menstrual & menopausal health
+    - Family planning & contraception
+  location: Nallagandla
+  gender: female
+  experience: 10
+  languages: [Telugu, English, Hindi]
+  tags: [antenatal, contraception, dgo, dnb, fertility, high-risk, mbbs, menopausal, obstetrics & gynecology, pcos, pregnancy, scans]
+  profile_url: /doctors/nallagandla/dr-pyreddy-pavani
+
+- id: URO-1
+  name: Dr. Vinay Ausekar
+  degree: [MS, MCh (NIMS)]
+  speciality: Urologist & Kidney Surgeon
+  department: Urology
+  image: /assets/images/doctor-images/dr-vinay.webp
+  bio: Urologist focused on precise diagnosis and minimally invasive solutions for kidney and urinary problems.
+  education:
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: MCh (NIMS)
+      institute: ''
+      year: ''
+  services:
+    - Kidney stone evaluation
+    - Prostate & urinary issues
+    - UTI management
+    - Endoscopic & laparoscopic urology
+    - Male infertility evaluation
+  location: Attapur
+  gender: male
+  experience: 10
+  languages: [Telugu, English, Hindi]
+  tags: [endoscopic, infertility, kidney, mch (nims), ms, prostate, urinary, urology, uti]
+  profile_url: /doctors/attapur/dr-vinay
+
+- id: NS-1
+  name: Dr. B. Naresh
+  degree: [MCh (Osmania)]
+  speciality: Neurosurgeon
+  department: Neurosurgery
+  image: /assets/images/doctor-images/dr-b-naresh.webp
+  bio: Neurosurgeon offering thoughtful guidance and advanced care for brain and spine conditions.
+  education:
+    - degree: MCh (Osmania)
+      institute: ''
+      year: ''
+  services:
+    - Brain & spine evaluation
+    - Back pain & sciatica management
+    - Head injury & trauma assessment
+    - Microsurgical & endoscopic procedures
+    - Second opinions on MRI/CT
+  location: Attapur
+  gender: male
+  experience: 9
+  languages: [Telugu, English, Hindi]
+  tags: [back, brain, endoscopic, evaluation, injury, management, mch (osmania), microsurgical, mri ct, neurosurgery, pain, sciatica, spine, trauma]
+  profile_url: /doctors/attapur/dr-b-naresh
+
+- id: GS-1
+  name: Dr. Abdullah Umayr
+  degree: [MS, FMAS]
+  speciality: General & Laproscopic Surgeon 
+  department: General Surgery & Laparoscopic Surgery
+  image: /assets/images/doctor-images/dr-abdullah-umayr.webp
+  bio: Experienced General & Laparoscopic Surgeon skilled in advanced surgical techniques, committed to patient-centered care and optimal outcomes.
+  education:
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: FMAS
+      institute: ''
+      year: ''
+  services:
+    - Laparoscopic gallbladder & hernia surgery
+    - Appendix & abdominal procedures
+    - Diabetic foot & wound care
+    - Minor surgical procedures
+    - Second opinions & postoperative care
+  location: Attapur
+  gender: male
+  experience: 8
+  languages: [Telugu, English, Hindi]
+  tags: [abdomen, appendix, diabetic foot, fmas, general surgery, hernia, laparoscopic, ms, postoperative, wound, care, surgery]
+  profile_url: /doctors/attapur/dr-abdullah-umayr
+
+- id: GS-2
+  name: Dr. Ashfa Neelofer
+  degree: [MS, FIAGES]
+  speciality:  General & Laproscopic Surgeon
+  department: General Surgery & Laparoscopic Surgery
+  image: /assets/images/doctor-images/dr-ashfa-neelofer.webp
+  bio: Experienced General & Laparoscopic Surgeon skilled in advanced surgical techniques, committed to patient-centered care and optimal outcomes.
+  education:
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: FIAGES
+      institute: ''
+      year: ''
+  services:
+    - Laparoscopic gallbladder & hernia surgery
+    - Appendix & abdominal procedures
+    - Breast & thyroid surgery
+    - Minor surgical procedures
+    - Women’s surgical consultation
+  location: Attapur
+  gender: female
+  experience: 8
+  languages: [Telugu, English, Hindi]
+  tags: [abdomen, appendix, fiages, gallbladder, general surgery, hernia, laparoscopic, ms, thyroid, women, surgery]
+  profile_url: /doctors/attapur/dr-ashfa-neelofer
+  
+- id: SPINE-1
+  name: Dr. Aditya Sunder Goparaju
+  phone: 9787854235
+  whatsapp: 9787854235
+  degree: [MBBS, MS(JIPMER), DNB (Ortho), "ASSI Spine Fellowship"]
+  speciality: Spine Surgeon
+  department: Orthopedics
+  image: /assets/images/doctor-images/dr-aditya.webp
+  bio: Consultant spine surgeon with expertise in open & minimally invasive spine surgery, navigation & robotic-assisted procedures, and complex deformity and trauma care.
+  education:
+    - degree: MBBS
+      institute: ''
+      year: ''
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: DNB (Ortho)
+      institute: ''
+      year: ''
+    - degree: ASSI Spine Fellowship
+      institute: ISIC Delhi
+      year: ''
+  services:
+    - Open and minimally invasive spine surgery
+    - Interventional pain management procedures
+    - Navigation and robotic spine surgery
+    - Complex adult and pediatric spine deformity correction
+    - Traumatic spine conditions management
+    - Regenerative spine interventions
+    - Chronic cervical and low back pain management
+  location: Attapur
+  gender: male
+  experience: 9
+  languages: [English, Telugu, Hindi, Tamil]
+  tags: [spine, minimally invasive, robotic surgery, pain management, deformity, trauma, regenerative]
+  profile_url: /doctors/attapur/dr-aditya
+
+- id: ENT-2
+  name: Dr. D. Mahesh
+  degree: [MBBS, MS]
+  speciality: ENT Surgeon
+  department: ENT
+  image: /assets/images/doctor-images/dr-d-mahesh.webp
+  bio: Experienced ENT surgeon providing precise diagnosis and advanced treatment for ear, nose, and throat conditions with patient-focused care.
+  education:
+    - degree: MS (ENT)
+      institute: ''
+      year: ''
+    - degree: MBBS
+      institute: ''
+      year: ''
+  services:
+    - Ear pain, infections & wax removal
+    - Hearing loss & tinnitus management
+    - Sinusitis & nasal obstruction treatment
+    - Tonsil & adenoid surgery
+    - Endoscopic and microscopic ENT procedures
+  location: Attapur
+  gender: male
+  experience: 12
+  languages: [Telugu, English, Hindi]
+  tags: [ent, ear, nose, throat, sinusitis, hearing, infections, endoscopic, surgery, wax]
+  profile_url: /doctors/attapur/dr-d-mahesh
+
+- id: OBG-2
+  name: Dr. K. Monika Reddy
+  degree: [MBBS, MS (Obstetrics & Gynecology), DNB, FRM, MRCOG]
+  speciality: Obstetrician & Gynecologist
+  department: Obstetrics & Gynecology
+  image: /assets/images/doctor-images/dr-monika-reddy.webp
+  bio: Fertility and reproductive medicine specialist with expertise in infertility evaluation, assisted reproduction, and comprehensive obstetric and gynecological care.
+  education:
+    - degree: MBBS
+      institute: ''
+      year: ''
+    - degree: MS (Obstetrics & Gynecology)
+      institute: ''
+      year: ''
+    - degree: DNB
+      institute: ''
+      year: ''
+    - degree: FRM
+      institute: Iswarya Fertility Centre
+      year: ''
+    - degree: MRCOG
+      institute: Royal College of Obstetricians & Gynaecologists (UK)
+      year: ''
+  services:
+    - Evaluation of infertile couple
+    - Fertility counselling & treatment planning
+    - Ovulation induction & follicular monitoring
+    - IUI (Intrauterine Insemination)
+    - IVF stimulation & Oocyte pickup
+    - Embryo transfer (fresh & frozen)
+    - Hysteroscopy procedures
+    - Pregnancy management & complications
+    - Normal delivery & caesarean section
+    - Comprehensive gynecological care
+  location: Attapur
+  gender: female
+  experience: 7
+  languages: [Telugu, English, Hindi]
+  tags: [fertility, frm, mrcog, iui, ivf, oocyte pickup, embryo transfer, hysteroscopy, pregnancy, gynecology, counseling, ovulation induction, obstetrics]
+  profile_url: /doctors/attapur/dr-monika-reddy
