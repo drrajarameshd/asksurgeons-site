@@ -154,6 +154,9 @@
   image: /assets/images/doctor-images/dr-khaleelullah.webp
   bio: Senior Orthopedic surgeon focused on joint replacement, fracture care, and sports injury management.
   education:
+    - degree: Mch (Ortho)
+      institute: ''
+      year: ''
     - degree: MS (Nims)
       institute: ''
       year: ''
