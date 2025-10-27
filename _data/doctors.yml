@@ -12,6 +12,9 @@
     - degree: MD (Osmania)
       institute: ''
       year: ''
+    - degree: MBBS
+      institute: ''
+      year: ''
   services:
     - Diabetes & thyroid care
     - Hypertension & lipid management
@@ -31,11 +34,14 @@
   phone: 7087216009
   whatsapp: 7087216009
   degree: [MS, MCh (PGI)]
-  speciality: Renal Transplant Surgeon
+  speciality: Kidney and Pancreas Transplant Surgery Vascular access and Intervention surgeon
   department: Transplant Surgery
   image: /assets/images/doctor-images/dr-karthik.webp
   bio: Transplant surgeon dedicated to safe surgeries, meticulous follow-up, and patient-family counselling throughout the journey.
   education:
+    - degree: MBBS
+      institute: ''
+      year: ''
     - degree: MS
       institute: ''
       year: ''
@@ -87,6 +93,9 @@
   image: /assets/images/doctor-images/dr-p-a-sanjuktha.webp
   bio: Detail-oriented pathologist ensuring accurate, timely reports to guide your treatment decisions.
   education:
+    - degree: MBBS
+      institute: ''
+      year: ''
     - degree: MD
       institute: ''
       year: ''
@@ -148,6 +157,9 @@
     - degree: MS (Nims)
       institute: ''
       year: ''
+    - degree: MBBS
+      institute: ''
+      year: ''
   services:
     - Knee & hip joint replacement
     - Fracture & trauma care
@@ -199,6 +211,9 @@
   image: /assets/images/doctor-images/dr-vinay.webp
   bio: Urologist focused on precise diagnosis and minimally invasive solutions for kidney and urinary problems.
   education:
+    - degree: MBBS
+      institute: ''
+      year: ''
     - degree: MS
       institute: ''
       year: ''
@@ -226,6 +241,12 @@
   image: /assets/images/doctor-images/dr-b-naresh.webp
   bio: Neurosurgeon offering thoughtful guidance and advanced care for brain and spine conditions.
   education:
+    - degree: MBBS
+      institute: ''
+      year: ''
+    - degree: MS
+      institute: ''
+      year: ''
     - degree: MCh (Osmania)
       institute: ''
       year: ''
@@ -256,6 +277,9 @@
     - degree: FMAS
       institute: ''
       year: ''
+    - degree: MBBS
+      institute: ''
+      year: ''
   services:
     - Laparoscopic gallbladder & hernia surgery
     - Appendix & abdominal procedures
@@ -284,6 +308,9 @@
       institute: ''
       year: ''
     - degree: FIAGES
+      institute: ''
+      year: ''
+    - degree: MBBS
       institute: ''
       year: ''
   services:
