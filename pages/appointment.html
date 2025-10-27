@@ -62,10 +62,61 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
   #toast.show.error { opacity: 1; background: #c62828; }
 </style>
 
+<!-- Doctor Appointment Form -->
+<form id="patientForm" novalidate>
+  <label for="doctor">Choose Doctor</label>
+  <select id="doctor" name="doctor" required>
+    <option value="">— Select Doctor —</option>
+    {% for doc in site.data.appointment-doctors %}
+      <option value="{{ doc.id }}"
+              data-name="{{ doc.name | escape }}"
+              data-email="{{ doc.email | escape }}"
+              data-phone="{{ doc.phone | escape }}">
+        {{ doc.name }}
+      </option>
+    {% endfor %}
+  </select>
+  <div id="doctorError" class="error-text">Please select a doctor.</div>
+
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required autocomplete="name">
+  <div id="nameError" class="error-text">Name is required.</div>
+
+  <label for="phone">Phone Number</label>
+  <input type="tel" id="phone" name="phone" required autocomplete="tel">
+  <div id="phoneError" class="error-text">Enter a valid 10-digit Indian phone number.</div>
+
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" autocomplete="email">
+  <div id="emailError" class="error-text">Please enter a valid email address.</div>
+
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="4" required></textarea>
+  <div id="messageError" class="error-text">Message is required.</div>
+
+  <!-- Honeypot field -->
+  <div style="position: absolute; left: -9999px;">
+    <label for="website">Leave this field blank</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+  </div>
+
+  <button type="submit" id="submitBtn" class="btn">Send Enquiry</button>
+</form>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<style>
+  .error-text { display: none; color: #c62828; font-size: 0.9rem; margin-bottom: 8px; }
+  #toast { position: fixed; right: 20px; bottom: 20px; padding: 12px 16px; border-radius: 8px; opacity: 0; transition: opacity .25s; background: #333; color: #fff; z-index: 9999; }
+  #toast.show.success { opacity: 1; background: #2e7d32; }
+  #toast.show.error { opacity: 1; background: #c62828; }
+</style>
+
 <script>
   (function() {
-    // 🔗 Replace this with your own Google Apps Script URL
+    // 🔗 Replace with your Apps Script URL
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwSaJvddSKxyPmtUjpoECHXlEkVOd-J0SQv9bbKOs8rk7vFIqbmE1aKp8tlJ89awFUcqA/exec';
+
     const form = document.getElementById('patientForm');
     const btn = document.getElementById('submitBtn');
     const toast = document.getElementById('toast');
@@ -77,13 +128,13 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
     }
 
     function validPhone(v) { return /^[6-9]\d{9}$/.test(v); }
-    function validEmail(v) { return !v || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);}
+    function validEmail(v) { return !v || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v); }
 
     form.addEventListener('submit', e => {
       e.preventDefault();
       document.querySelectorAll('.error-text').forEach(el => el.style.display='none');
 
-      // 🐝 Honeypot check — stop bots silently
+      // Honeypot
       if (form.website.value.trim()) {
         showToast('✅ Enquiry submitted!', 'success');
         form.reset();
@@ -99,29 +150,35 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
       if (!valid) return;
 
       const selected = form.doctor.options[form.doctor.selectedIndex];
-      const payload = {
+
+      // Build a urlencoded body (no JSON, avoids CORS preflight)
+      const body = new URLSearchParams({
         doctorId: form.doctor.value,
-        doctorName: selected.dataset.name,
-        doctorEmail: selected.dataset.email,
-        doctorPhone: selected.dataset.phone,
+        doctorName: selected.dataset.name || '',
+        doctorEmail: selected.dataset.email || '',
+        doctorPhone: selected.dataset.phone || '',
         name: form.name.value.trim(),
         phone: form.phone.value.trim(),
         email: form.email.value.trim(),
         message: form.message.value.trim(),
         page: window.location.href,
-        timestamp: new Date().toISOString()
-      };
+        // include client timestamp if you want (server also logs its own)
+        clientTs: new Date().toISOString()
+      }).toString();
 
       btn.disabled = true;
       btn.textContent = '⏳ Sending...';
 
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
       })
       .then(r => r.text())
-      .then(() => { showToast('✅ Enquiry submitted successfully!', 'success'); form.reset(); })
+      .then(() => {
+        showToast('✅ Enquiry submitted successfully!', 'success');
+        form.reset();
+      })
       .catch(() => showToast('❌ Submission failed. Please try again.', 'error'))
       .finally(() => { btn.disabled = false; btn.textContent = 'Send Enquiry'; });
     });
