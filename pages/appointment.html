@@ -77,7 +77,7 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
     }
 
     function validPhone(v) { return /^[6-9]\d{9}$/.test(v); }
-    function validEmail(v) { return !v || /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v); }
+    function validEmail(v) { return !v || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);}
 
     form.addEventListener('submit', e => {
       e.preventDefault();
