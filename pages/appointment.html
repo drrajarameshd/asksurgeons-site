@@ -11,57 +11,6 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
 <main class="as-appointment-page" id="main">
   <section class="as-appointment" aria-labelledby="appt-title">
     <h1 id="appt-title">Appointment Enquiry</h1>
-
-    <!-- Doctor Appointment Form -->
-<form id="patientForm" novalidate>
-  <label for="doctor">Choose Doctor</label>
-  <select id="doctor" name="doctor" required>
-    <option value="">— Select Doctor —</option>
-    {% for doc in site.data.appointment-doctors %}
-      <option value="{{ doc.id }}" 
-              data-name="{{ doc.name | escape }}" 
-              data-email="{{ doc.email | escape }}" 
-              data-phone="{{ doc.phone | escape }}">
-        {{ doc.name }}
-      </option>
-    {% endfor %}
-  </select>
-  <div id="doctorError" class="error-text">Please select a doctor.</div>
-
-  <label for="name">Name</label>
-  <input type="text" id="name" name="name" required autocomplete="name">
-  <div id="nameError" class="error-text">Name is required.</div>
-
-  <label for="phone">Phone Number</label>
-  <input type="tel" id="phone" name="phone" required autocomplete="tel">
-  <div id="phoneError" class="error-text">Enter a valid 10-digit Indian phone number.</div>
-
-  <label for="email">Email</label>
-  <input type="email" id="email" name="email" autocomplete="email">
-  <div id="emailError" class="error-text">Please enter a valid email address.</div>
-
-  <label for="message">Message</label>
-  <textarea id="message" name="message" rows="4" required></textarea>
-  <div id="messageError" class="error-text">Message is required.</div>
-
-  <!-- Honeypot field -->
-  <div style="position: absolute; left: -9999px;">
-    <label for="website">Leave this field blank</label>
-    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-  </div>
-
-  <button type="submit" id="submitBtn" class="btn">Send Enquiry</button>
-</form>
-
-<div id="toast" role="status" aria-live="polite"></div>
-
-<style>
-  .error-text { display: none; color: #c62828; font-size: 0.9rem; margin-bottom: 8px; }
-  #toast { position: fixed; right: 20px; bottom: 20px; padding: 12px 16px; border-radius: 8px; opacity: 0; transition: opacity .25s; background: #333; color: #fff; z-index: 9999; }
-  #toast.show.success { opacity: 1; background: #2e7d32; }
-  #toast.show.error { opacity: 1; background: #c62828; }
-</style>
-
 <!-- Doctor Appointment Form -->
 <form id="patientForm" novalidate>
   <label for="doctor">Choose Doctor</label>
