@@ -1,0 +1,38 @@
+# doctors.yml
+# List of doctors for AskSurgeons
+# Each entry includes name, email, and phone number
+
+- id: DOC-1
+  name: "Dr Raja Ramesh"
+  email: "dr.rajaramesh.d@gmail.com"
+  phone: "+91 8886200062"
+
+- id: DOC-2
+  name: "Lakshmi Prasanna"
+  email: "medico.lax@gmail.com"
+  phone: "+91 9885737727"
+
+- id: DOC-3
+  name: "Dr G V Nagarjuna Reddy"
+  email: "drnagarjunareddyenthns@gmail.com"
+  phone: "+91 8374696321"
+
+- id: DOC-4
+  name: "Dr Pavani Pyreddy"
+  email: "dr.pavanipyreddy@gmail.com"
+  phone: "+91 8142535734"
+
+- id: DOC-5
+  name: "Dr K Monika Reddy"
+  email: "monikareddy046@gmail.com"
+  phone: "+91 8978747325"
+
+- id: DOC-6
+  name: "Dr Ashfa Neelofar"
+  email: "ashfaneelofar17@gmail.com"
+  phone: "+91 7207853970"
+
+- id: DOC-7
+  name: "Dr N V K N Karthik"
+  email: "nvknkarthik123@gmail.com"
+  phone: "+91 7889079001"
