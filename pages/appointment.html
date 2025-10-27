@@ -12,80 +12,118 @@ image: /assets/images/site-images/ask-surgeons-banner.jpeg
   <section class="as-appointment" aria-labelledby="appt-title">
     <h1 id="appt-title">Appointment Enquiry</h1>
 
-    <form id="patientForm" novalidate>
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required>
-      <div id="nameError" class="error-text">Name is required.</div>
+    <!-- Doctor Appointment Form -->
+<form id="patientForm" novalidate>
+  <label for="doctor">Choose Doctor</label>
+  <select id="doctor" name="doctor" required>
+    <option value="">— Select Doctor —</option>
+    {% for doc in site.data.appointment-doctors %}
+      <option value="{{ doc.id }}" 
+              data-name="{{ doc.name | escape }}" 
+              data-email="{{ doc.email | escape }}" 
+              data-phone="{{ doc.phone | escape }}">
+        {{ doc.id }} — {{ doc.name }}
+      </option>
+    {% endfor %}
+  </select>
+  <div id="doctorError" class="error-text">Please select a doctor.</div>
 
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" name="phone" required>
-      <div id="phoneError" class="error-text">Enter a valid 10-digit Indian phone number.</div>
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required autocomplete="name">
+  <div id="nameError" class="error-text">Name is required.</div>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email">
-      <div id="emailError" class="error-text">Please enter a valid email address.</div>
+  <label for="phone">Phone Number</label>
+  <input type="tel" id="phone" name="phone" required autocomplete="tel">
+  <div id="phoneError" class="error-text">Enter a valid 10-digit Indian phone number.</div>
 
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
-      <div id="messageError" class="error-text">Message is required.</div>
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" autocomplete="email">
+  <div id="emailError" class="error-text">Please enter a valid email address.</div>
 
-      <button type="submit" id="submitBtn" class="btn">Send Enquiry</button>
-    </form>
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="4" required></textarea>
+  <div id="messageError" class="error-text">Message is required.</div>
 
-    <div id="toast" role="status" aria-live="polite"></div>
-  </section>
-</main>
+  <!-- Honeypot field -->
+  <div style="position: absolute; left: -9999px;">
+    <label for="website">Leave this field blank</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+  </div>
 
- <script>
+  <button type="submit" id="submitBtn" class="btn">Send Enquiry</button>
+</form>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<style>
+  .error-text { display: none; color: #c62828; font-size: 0.9rem; margin-bottom: 8px; }
+  #toast { position: fixed; right: 20px; bottom: 20px; padding: 12px 16px; border-radius: 8px; opacity: 0; transition: opacity .25s; background: #333; color: #fff; z-index: 9999; }
+  #toast.show.success { opacity: 1; background: #2e7d32; }
+  #toast.show.error { opacity: 1; background: #c62828; }
+</style>
+
+<script>
+  (function() {
+    // 🔗 Replace this with your own Google Apps Script URL
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwSaJvddSKxyPmtUjpoECHXlEkVOd-J0SQv9bbKOs8rk7vFIqbmE1aKp8tlJ89awFUcqA/exec';
     const form = document.getElementById('patientForm');
     const btn = document.getElementById('submitBtn');
     const toast = document.getElementById('toast');
-    const whatsappBtn = document.querySelector('.whatsapp-float');
 
     function showToast(msg, type='success') {
       toast.textContent = msg;
       toast.className = `show ${type}`;
-      setTimeout(() => toast.className = toast.className.replace('show',''), 4000);
+      setTimeout(() => toast.className = '', 4000);
     }
+
+    function validPhone(v) { return /^[6-9]\d{9}$/.test(v); }
+    function validEmail(v) { return !v || /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v); }
 
     form.addEventListener('submit', e => {
       e.preventDefault();
       document.querySelectorAll('.error-text').forEach(el => el.style.display='none');
+
+      // 🐝 Honeypot check — stop bots silently
+      if (form.website.value.trim()) {
+        showToast('✅ Enquiry submitted!', 'success');
+        form.reset();
+        return;
+      }
+
       let valid = true;
-
-      if (!form.name.value.trim()) {
-        document.getElementById('nameError').style.display='block'; valid=false;
-      }
-      if (!/^[6-9]\d{9}$/.test(form.phone.value.trim())) {
-        document.getElementById('phoneError').style.display='block'; valid=false;
-      }
-      if (!form.message.value.trim()) {
-        document.getElementById('messageError').style.display='block'; valid=false;
-      }
-
-      const emailVal = form.email.value.trim();
-      if (emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
-        document.getElementById('emailError').style.display='block'; valid=false;
-      }
-
+      if (!form.doctor.value) { document.getElementById('doctorError').style.display='block'; valid = false; }
+      if (!form.name.value.trim()) { document.getElementById('nameError').style.display='block'; valid = false; }
+      if (!validPhone(form.phone.value.trim())) { document.getElementById('phoneError').style.display='block'; valid = false; }
+      if (!form.message.value.trim()) { document.getElementById('messageError').style.display='block'; valid = false; }
+      if (!validEmail(form.email.value.trim())) { document.getElementById('emailError').style.display='block'; valid = false; }
       if (!valid) return;
+
+      const selected = form.doctor.options[form.doctor.selectedIndex];
+      const payload = {
+        doctorId: form.doctor.value,
+        doctorName: selected.dataset.name,
+        doctorEmail: selected.dataset.email,
+        doctorPhone: selected.dataset.phone,
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim(),
+        page: window.location.href,
+        timestamp: new Date().toISOString()
+      };
 
       btn.disabled = true;
       btn.textContent = '⏳ Sending...';
 
-      fetch('https://script.google.com/macros/s/AKfycbxVT3_NEgcvGYZZAgEeOahRydyRZLkWLqTWJyZXRUl1okMJKRvW4TmldK4DxYKhgfvmrA/exec', {
-        method:'POST',
-        body: JSON.stringify({
-          name: form.name.value.trim(),
-          phone: form.phone.value.trim(),
-          email: form.email.value.trim(),
-          message: form.message.value.trim()
-        })
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       })
-      .then(res => res.text())
+      .then(r => r.text())
       .then(() => { showToast('✅ Enquiry submitted successfully!', 'success'); form.reset(); })
-      .catch(() => { showToast('❌ Submission failed. Please try again.', 'error'); })
+      .catch(() => showToast('❌ Submission failed. Please try again.', 'error'))
       .finally(() => { btn.disabled = false; btn.textContent = 'Send Enquiry'; });
     });
-
-  </script>
+  })();
+</script>
