@@ -584,12 +584,6 @@ footer{ background: #0f172a; color: #e2e8f0; border-top: 1px solid #0b1222; }
   }
 }
 
-/* ≥1280px (xl): loosen container padding slightly */
-@media (min-width: 1280px){
-  .container{ padding: 0 20px; }
-
-}
-
 /* === Site-wide custom bullet icon === */
 ul, ol {
   list-style: none;
