@@ -96,6 +96,11 @@
   border-color: #dc2626;
   box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
 }
+#appt-title {
+  text-align: center;
+  color: var(--theme);
+}
+
 
 /* Two-column responsive grid (if you wrap in .row) */
 @media (min-width: 700px) {
