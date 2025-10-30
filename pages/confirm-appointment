@@ -1,0 +1,297 @@
+---
+layout: basic
+title: Confirm Appointment
+permalink: /confirm-appointment/
+---
+<style>
+/* ===== AskSurgeons — Modern Glassmorphic Responsive Form (your provided CSS) ===== */
+#patientForm {
+  --field-bg: rgba(255, 255, 255, 0.78);
+  --field-border: rgba(231, 237, 245, 0.9);
+  --ring: rgba(51, 104, 198, 0.25);
+  --primary: #007BBF;
+  --text: #0f172a;
+  --muted: #9aa4b2;
+
+  display: grid;
+  display: block;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  gap: 16px;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 30px rgba(16, 24, 40, 0.08);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  transition: all 0.25s ease;
+}
+#patientForm label { font-weight: 600; color: var(--text); font-size: 0.95rem; display: block; margin-bottom: 6px; }
+#patientForm input[type="text"], #patientForm input[type="email"], #patientForm input[type="tel"], #patientForm input[type="number"], #patientForm input[type="date"], #patientForm select, #patientForm textarea {
+  width: 100%;
+  border: 1px solid var(--field-border);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--text);
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) inset;
+}
+#patientForm input:hover, #patientForm textarea:hover, #patientForm select:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(180, 196, 225, 0.9);
+}
+#patientForm input::placeholder, #patientForm textarea::placeholder { color: var(--muted); }
+#patientForm input:focus, #patientForm select:focus, #patientForm textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--ring);
+  background: #fff;
+}
+#patientForm textarea { min-height: 120px; resize: vertical; }
+#patientForm .error-text { display: none; color: #dc2626; font-size: 0.85rem; margin-top: 6px; }
+#patientForm input:invalid:focus, #patientForm textarea:invalid:focus { border-color: #dc2626; box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15); }
+#appt-title { text-align: center; color: var(--primary); }
+
+/* two-column on wider screens */
+@media (min-width: 700px) {
+  #patientForm .row { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  #patientForm { padding: 14px; border-radius: 14px; gap: 12px; backdrop-filter: blur(10px) saturate(140%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #patientForm, #patientForm * { transition: none !important; animation: none !important; }
+}
+
+/* small helpers */
+.form-note { color: #6b7280; font-size: 0.9rem; margin-top: 6px; }
+.btn { display:inline-block; padding:10px 14px; border-radius:8px; font-weight:600; text-decoration:none; border:0; cursor:pointer; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-ghost { background: transparent; border: 1px solid var(--field-border); color: var(--text); }
+.status-pill { display:inline-block; padding:6px 10px; border-radius:999px; font-weight:700; font-size:0.85rem; }
+#messageBox { padding:12px; border-radius:10px; display:none; margin-top:10px; }
+#messageBox.success { background: #ecfdf5; color:#065f46; border:1px solid #bbf7d0; display:block; }
+#messageBox.error { background: #fff1f2; color:#9f1239; border:1px solid #fecaca; display:block; }
+</style>
+
+<main>
+  <h1 id="appt-title">Confirm / Reschedule Appointment</h1>
+
+  <form id="patientForm" method="post" novalidate>
+    <!-- Hidden fields populated from URL / JS -->
+    <input type="hidden" name="appointmentId" id="appointmentId" value="">
+    <input type="hidden" name="token" id="token" value="">
+
+    <div class="row">
+      <div>
+        <label>Appointment ID</label>
+        <input type="text" id="displayAppointmentId" readonly placeholder="— appointment id —">
+        <div class="form-note">Will be sent to server so the private row can be updated.</div>
+      </div>
+
+      <div>
+        <label>Current status (public)</label>
+        <div id="currentStatus" class="status-pill">pending</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="newStatus">New status</label>
+        <select id="newStatus" name="newStatus">
+          <option value="">-- no change --</option>
+          <option value="confirmed">confirmed</option>
+          <option value="rescheduled">rescheduled</option>
+          <option value="cancelled">cancelled</option>
+        </select>
+        <div class="form-note">Choose "rescheduled" to change date/time, or "confirmed" when fixed.</div>
+      </div>
+
+      <div>
+        <label for="appDate">Appointment date</label>
+        <input id="appDate" name="appDate" type="date" placeholder="YYYY-MM-DD">
+        <div class="form-note">Pick a date (leave blank if not changing).</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="appTime">Appointment time</label>
+        <input id="appTime" name="appTime" type="time" placeholder="HH:MM">
+        <div class="form-note">24-hour time recommended (e.g. 09:30).</div>
+      </div>
+
+      <div>
+        <label for="auditNote">Note (audit)</label>
+        <input id="auditNote" name="auditNote" type="text" placeholder="Optional note for audit / reason">
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; align-items:center; margin-top:6px;">
+      <button id="saveBtn" type="button" class="btn btn-primary">Save / Send</button>
+      <button id="cancelBtn" type="button" class="btn btn-ghost">Clear</button>
+      <div style="flex:1"></div>
+      <a id="backLink" href="/" class="form-note">Back to site</a>
+    </div>
+
+    <div id="messageBox" role="status" aria-live="polite"></div>
+
+    <!-- For non-JS fallback: you can set action after deploying webapp -->
+    <noscript>
+      <div class="form-note">JavaScript is required to submit this form. Please enable JavaScript.</div>
+    </noscript>
+  </form>
+</main>
+
+<script>
+/*
+  Behavior:
+  - Reads appointmentId and token from URL query params and fills hidden inputs
+  - Reuses form CSS from page
+  - Submits POST to the Apps Script webapp URL as application/x-www-form-urlencoded
+  - Replace WEBAPP_URL constant below with your deployed Apps Script web app URL
+*/
+(function(){
+  const WEBAPP_URL = "https://script.google.com/macros/s/YOUR_WEBAPP_ID/exec"; // <-- replace this
+  const form = document.getElementById('patientForm');
+  const appointmentIdInput = document.getElementById('appointmentId');
+  const tokenInput = document.getElementById('token');
+  const displayAppointmentId = document.getElementById('displayAppointmentId');
+  const currentStatusPill = document.getElementById('currentStatus');
+  const saveBtn = document.getElementById('saveBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const messageBox = document.getElementById('messageBox');
+
+  function qParams() {
+    const s = location.search.substring(1);
+    const o = {};
+    if (!s) return o;
+    s.split("&").forEach(function(pair) {
+      const kv = pair.split("=");
+      const k = decodeURIComponent(kv[0] || "");
+      const v = decodeURIComponent(kv[1] || "");
+      if (k) o[k] = v;
+    });
+    return o;
+  }
+
+  function showMessage(text, type) {
+    messageBox.className = "";
+    if (type === "success") {
+      messageBox.classList.add("success");
+      messageBox.textContent = text;
+    } else {
+      messageBox.classList.add("error");
+      messageBox.textContent = text;
+    }
+    messageBox.style.display = 'block';
+    // keep visible for a while (no background tasks — user sees it immediately)
+  }
+
+  function clearMessage() {
+    messageBox.style.display = 'none';
+    messageBox.className = "";
+    messageBox.textContent = "";
+  }
+
+  // prefill from URL params
+  const params = qParams();
+  if (params.appointmentId) {
+    appointmentIdInput.value = params.appointmentId;
+    displayAppointmentId.value = params.appointmentId;
+  }
+  if (params.token) tokenInput.value = params.token;
+
+  // (Optional) if you want to show current status from URL (e.g., ?status=confirmed)
+  if (params.status) currentStatusPill.textContent = params.status;
+
+  // Clear button behaviour
+  cancelBtn.addEventListener('click', function(){
+    form.reset();
+    appointmentIdInput.value = params.appointmentId || "";
+    tokenInput.value = params.token || "";
+    displayAppointmentId.value = params.appointmentId || "";
+    clearMessage();
+  });
+
+  // Basic validation
+  function validateBeforeSubmit() {
+    if (!appointmentIdInput.value) {
+      showMessage("Missing appointmentId. The page must be opened with ?appointmentId=AS123", "error");
+      return false;
+    }
+    // if token required by your DoPost & config.USE_ACTION_TOKENS, ensure present
+    // We'll not force it here because some runs may not require tokens
+    return true;
+  }
+
+  // Submit handler uses fetch POST urlencoded
+  saveBtn.addEventListener('click', function(){
+    clearMessage();
+    if (!validateBeforeSubmit()) return;
+
+    const payload = {
+      appointmentId: appointmentIdInput.value,
+      token: tokenInput.value,
+      newStatus: document.getElementById('newStatus').value,
+      appDate: document.getElementById('appDate').value,
+      appTime: document.getElementById('appTime').value,
+      auditNote: document.getElementById('auditNote').value
+    };
+
+    // Visual feedback
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Sending...";
+
+    const body = Object.keys(payload).map(k => encodeURIComponent(k) + "=" + encodeURIComponent(payload[k]||"")).join("&");
+
+    fetch(WEBAPP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: body,
+      mode: 'cors', // Apps Script web apps support CORS for anonymous; if you have issues use form submission instead
+      cache: 'no-store'
+    }).then(function(res){
+      // Apps Script doPost in the code returns JSON via ContentService OR HtmlService
+      const ct = res.headers.get('content-type') || '';
+      if (ct.indexOf('application/json') !== -1) return res.json().then(j => ({ ok: true, json: j }));
+      return res.text().then(t => ({ ok: res.ok, text: t }));
+    }).then(function(r){
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Save / Send";
+      if (r.json) {
+        if (r.json.ok) {
+          showMessage(r.json.message || "Updated successfully.", "success");
+          // optionally mark token used UI
+        } else {
+          showMessage(r.json.message || "Server returned an error.", "error");
+        }
+      } else if (r.text) {
+        // server may return HTML success page (your doPost currently returns HtmlService output)
+        // detect success keywords
+        if (/updated|success|ok/i.test(r.text)) {
+          showMessage("Updated (server replied).", "success");
+        } else {
+          showMessage("Server response: " + r.text, "error");
+        }
+      } else {
+        showMessage("Unexpected server response.", "error");
+      }
+    }).catch(function(err){
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Save / Send";
+      showMessage("Network or CORS error: " + err.message, "error");
+    });
+  });
+
+  // Progressive enhancement: if JS available, set the form action to webapp as fallback
+  form.setAttribute('action', WEBAPP_URL);
+  form.setAttribute('method', 'post');
+
+})();
+</script>
