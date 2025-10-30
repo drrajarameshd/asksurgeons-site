@@ -1,8 +1,9 @@
 ---
 layout: basic
 title: Confirm Appointment
-permalink: /confirm-appointment/
+permalink: /update-appointment/
 ---
+
 <style>
 /* ==== AskSurgeons — Modern Glassmorphic Responsive Form (your provided CSS) ===== */
 #patientForm {
@@ -30,7 +31,7 @@ permalink: /confirm-appointment/
   transition: all 0.25s ease;
 }
 #patientForm label { font-weight: 600; color: var(--text); font-size: 0.95rem; display: block; margin-bottom: 6px; }
-#patientForm input[type="text"], #patientForm input[type="email"], #patientForm input[type="tel"], #patientForm input[type="number"], #patientForm input[type="date"], #patientForm select, #patientForm textarea {
+#patientForm input[type="text"], #patientForm input[type="email"], #patientForm input[type="tel"], #patientForm input[type="number"], #patientForm input[type="date"], #patientForm select, #patientForm textarea, #patientForm input[type="password"] {
   width: 100%;
   border: 1px solid var(--field-border);
   background: rgba(255, 255, 255, 0.9);
@@ -82,16 +83,15 @@ permalink: /confirm-appointment/
 <main>
   <h1 id="appt-title">Confirm / Reschedule Appointment</h1>
 
-  <form id="patientForm" method="post" novalidate>
+  <form id="patientForm" method="get" novalidate>
     <!-- Hidden fields populated from URL / JS -->
     <input type="hidden" name="appointmentId" id="appointmentId" value="">
-    <input type="hidden" name="token" id="token" value="">
 
     <div class="row">
       <div>
         <label>Appointment ID</label>
         <input type="text" id="displayAppointmentId" readonly placeholder="— appointment id —">
-        <div class="form-note">Will be sent to server so the private row can be updated.</div>
+        <div class="form-note">This is the appointment identifier; it will be sent to the update endpoint.</div>
       </div>
 
       <div>
@@ -102,6 +102,12 @@ permalink: /confirm-appointment/
 
     <div class="row">
       <div>
+        <label for="password">Doctor Password</label>
+        <input id="password" name="password" type="password" required placeholder="Enter your doctor password">
+        <div class="form-note">Your password authenticates you — it is hashed server-side before verification.</div>
+      </div>
+
+      <div>
         <label for="newStatus">New status</label>
         <select id="newStatus" name="newStatus">
           <option value="">-- no change --</option>
@@ -111,29 +117,31 @@ permalink: /confirm-appointment/
         </select>
         <div class="form-note">Choose "rescheduled" to change date/time, or "confirmed" when fixed.</div>
       </div>
+    </div>
 
+    <div class="row">
       <div>
         <label for="appDate">Appointment date</label>
         <input id="appDate" name="appDate" type="date" placeholder="YYYY-MM-DD">
         <div class="form-note">Pick a date (leave blank if not changing).</div>
       </div>
-    </div>
 
-    <div class="row">
       <div>
         <label for="appTime">Appointment time</label>
         <input id="appTime" name="appTime" type="time" placeholder="HH:MM">
         <div class="form-note">24-hour time recommended (e.g. 09:30).</div>
       </div>
+    </div>
 
-      <div>
+    <div class="row">
+      <div style="grid-column: 1 / -1;">
         <label for="auditNote">Note (audit)</label>
         <input id="auditNote" name="auditNote" type="text" placeholder="Optional note for audit / reason">
       </div>
     </div>
 
     <div style="display:flex; gap:8px; align-items:center; margin-top:6px;">
-      <button id="saveBtn" type="button" class="btn btn-primary">Save / Send</button>
+      <button id="saveBtn" type="button" class="btn btn-primary">Open Update (no CORS)</button>
       <button id="cancelBtn" type="button" class="btn btn-ghost">Clear</button>
       <div style="flex:1"></div>
       <a id="backLink" href="/" class="form-note">Back to site</a>
@@ -141,31 +149,36 @@ permalink: /confirm-appointment/
 
     <div id="messageBox" role="status" aria-live="polite"></div>
 
-    <!-- For non-JS fallback: you can set action after deploying webapp -->
     <noscript>
-      <div class="form-note">JavaScript is required to submit this form. Please enable JavaScript.</div>
+      <div class="form-note">JavaScript is required for best experience. Without JS, the form will do a normal GET submit.</div>
     </noscript>
   </form>
 </main>
 
 <script>
 /*
-  Behavior:
-  - Reads appointmentId and token from URL query params and fills hidden inputs
-  - Reuses form CSS from page
-  - Submits POST to the Apps Script webapp URL as application/x-www-form-urlencoded
-  - Replace WEBAPP_URL constant below with your deployed Apps Script web app URL
+  Updated update-appointment page script
+  - Reads appointmentId from URL query params and fills the form
+  - Sends updates by opening the Apps Script webapp URL with query params (GET) to avoid CORS
+  - Replace WEBAPP_URL with your Apps Script exec URL if needed
+  - NOTE: sending password in the URL exposes it in browser history/logs — consider POST if that is unacceptable
 */
 (function(){
-  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycby-MaxKBJvjDCUThFIP9JL3lwnKiFwufcy6Pm7jyqYqMe7PTjA1bWIb56KwPwo8Oe-Ywg/exec"; // <-- replace this
+  // Replace this with your Apps Script "Appointments" webapp exec URL
+  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycby-MaxKBJvjDCUThFIP9JL3lwnKiFwufcy6Pm7jyqYqMe7PTjA1bWIb56KwPwo8Oe-Ywg/exec";
+
   const form = document.getElementById('patientForm');
   const appointmentIdInput = document.getElementById('appointmentId');
-  const tokenInput = document.getElementById('token');
   const displayAppointmentId = document.getElementById('displayAppointmentId');
-  const currentStatusPill = document.getElementById('currentStatus');
+  const passwordInput = document.getElementById('password');
+  const newStatusInput = document.getElementById('newStatus');
+  const appDateInput = document.getElementById('appDate');
+  const appTimeInput = document.getElementById('appTime');
+  const auditNoteInput = document.getElementById('auditNote');
   const saveBtn = document.getElementById('saveBtn');
   const cancelBtn = document.getElementById('cancelBtn');
   const messageBox = document.getElementById('messageBox');
+  const currentStatusPill = document.getElementById('currentStatus');
 
   function qParams() {
     const s = location.search.substring(1);
@@ -190,7 +203,6 @@ permalink: /confirm-appointment/
       messageBox.textContent = text;
     }
     messageBox.style.display = 'block';
-    // keep visible for a while (no background tasks — user sees it immediately)
   }
 
   function clearMessage() {
@@ -199,99 +211,80 @@ permalink: /confirm-appointment/
     messageBox.textContent = "";
   }
 
-  // prefill from URL params
+  // Prefill fields from incoming link: ?appointmentId=AS6&status=pending&appDate=2025-10-30&appTime=09:30
   const params = qParams();
   if (params.appointmentId) {
     appointmentIdInput.value = params.appointmentId;
     displayAppointmentId.value = params.appointmentId;
   }
-  if (params.token) tokenInput.value = params.token;
-
-  // (Optional) if you want to show current status from URL (e.g., ?status=confirmed)
   if (params.status) currentStatusPill.textContent = params.status;
+  if (params.appDate) appDateInput.value = params.appDate;
+  if (params.appTime) appTimeInput.value = params.appTime;
 
-  // Clear button behaviour
+  // Clear button
   cancelBtn.addEventListener('click', function(){
     form.reset();
     appointmentIdInput.value = params.appointmentId || "";
-    tokenInput.value = params.token || "";
     displayAppointmentId.value = params.appointmentId || "";
+    appDateInput.value = params.appDate || "";
+    appTimeInput.value = params.appTime || "";
     clearMessage();
   });
 
   // Basic validation
-  function validateBeforeSubmit() {
-    if (!appointmentIdInput.value) {
-      showMessage("Missing appointmentId. The page must be opened with ?appointmentId=AS123", "error");
-      return false;
+  function validate() {
+    if (!appointmentIdInput.value) { showMessage("Missing appointmentId in URL (use ?appointmentId=AS6).", "error"); return false; }
+    if (!passwordInput.value) { showMessage("Password is required.", "error"); return false; }
+    if (!newStatusInput.value && !appDateInput.value && !appTimeInput.value && !auditNoteInput.value) {
+      showMessage("Nothing to update. Change status, date/time or add a note.", "error"); return false;
     }
-    // if token required by your DoPost & config.USE_ACTION_TOKENS, ensure present
-    // We'll not force it here because some runs may not require tokens
     return true;
   }
 
-  // Submit handler uses fetch POST urlencoded
+  // Build query string (skip empty values)
+  function toQuery(obj) {
+    return Object.keys(obj).filter(k => obj[k] !== undefined && obj[k] !== null && String(obj[k]).length > 0)
+      .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(String(obj[k])))
+      .join("&");
+  }
+
+  // Open the webapp URL with query params (GET) in a new tab to avoid CORS
   saveBtn.addEventListener('click', function(){
     clearMessage();
-    if (!validateBeforeSubmit()) return;
+    if (!validate()) return;
 
     const payload = {
       appointmentId: appointmentIdInput.value,
-      token: tokenInput.value,
-      newStatus: document.getElementById('newStatus').value,
-      appDate: document.getElementById('appDate').value,
-      appTime: document.getElementById('appTime').value,
-      auditNote: document.getElementById('auditNote').value
+      password: passwordInput.value,   // will be visible in URL
+      newStatus: newStatusInput.value,
+      appDate: appDateInput.value,
+      appTime: appTimeInput.value,
+      auditNote: auditNoteInput.value
     };
 
-    // Visual feedback
+    const qs = toQuery(payload);
+    const target = WEBAPP_URL + (qs ? ("?" + qs) : "");
+
     saveBtn.disabled = true;
-    saveBtn.textContent = "Sending...";
+    saveBtn.textContent = "Opening...";
 
-    const body = Object.keys(payload).map(k => encodeURIComponent(k) + "=" + encodeURIComponent(payload[k]||"")).join("&");
+    // Open in new tab — cannot read response due to cross-origin, instruct user to check new tab
+    const win = window.open(target, '_blank');
+    setTimeout(function(){ saveBtn.disabled = false; saveBtn.textContent = "Open Update (no CORS)"; }, 800);
 
-    fetch(WEBAPP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-      body: body,
-      mode: 'cors', // Apps Script web apps support CORS for anonymous; if you have issues use form submission instead
-      cache: 'no-store'
-    }).then(function(res){
-      // Apps Script doPost in the code returns JSON via ContentService OR HtmlService
-      const ct = res.headers.get('content-type') || '';
-      if (ct.indexOf('application/json') !== -1) return res.json().then(j => ({ ok: true, json: j }));
-      return res.text().then(t => ({ ok: res.ok, text: t }));
-    }).then(function(r){
-      saveBtn.disabled = false;
-      saveBtn.textContent = "Save / Send";
-      if (r.json) {
-        if (r.json.ok) {
-          showMessage(r.json.message || "Updated successfully.", "success");
-          // optionally mark token used UI
-        } else {
-          showMessage(r.json.message || "Server returned an error.", "error");
-        }
-      } else if (r.text) {
-        // server may return HTML success page (your doPost currently returns HtmlService output)
-        // detect success keywords
-        if (/updated|success|ok/i.test(r.text)) {
-          showMessage("Updated (server replied).", "success");
-        } else {
-          showMessage("Server response: " + r.text, "error");
-        }
-      } else {
-        showMessage("Unexpected server response.", "error");
-      }
-    }).catch(function(err){
-      saveBtn.disabled = false;
-      saveBtn.textContent = "Save / Send";
-      showMessage("Network or CORS error: " + err.message, "error");
-    });
+    if (win) {
+      showMessage("Update opened in a new tab. Enter password on the page if prompted and follow server response there.", "success");
+      try { win.focus(); } catch(e) {}
+    } else {
+      showMessage("Popup blocked — navigating this tab to the update URL.", "error");
+      window.location.href = target;
+    }
   });
 
-  // Progressive enhancement: if JS available, set the form action to webapp as fallback
+  // Progressive enhancement: set form action to WEBAPP_URL and method=get so non-JS fallback works
   form.setAttribute('action', WEBAPP_URL);
-  form.setAttribute('method', 'post');
+  form.setAttribute('method', 'get');
 
 })();
 </script>
+
