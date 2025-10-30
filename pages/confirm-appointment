@@ -4,7 +4,7 @@ title: Confirm Appointment
 permalink: /confirm-appointment/
 ---
 <style>
-/* ===== AskSurgeons — Modern Glassmorphic Responsive Form (your provided CSS) ===== */
+/* ==== AskSurgeons — Modern Glassmorphic Responsive Form (your provided CSS) ===== */
 #patientForm {
   --field-bg: rgba(255, 255, 255, 0.78);
   --field-border: rgba(231, 237, 245, 0.9);
