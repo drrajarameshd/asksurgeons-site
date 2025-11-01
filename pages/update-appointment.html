@@ -83,7 +83,8 @@ permalink: /update-appointment/
 <main>
   <h1 id="appt-title">Confirm / Reschedule Appointment</h1>
 
-  <form id="patientForm" method="get" novalidate>
+  <!-- set action to proxy so non-JS fallback posts there -->
+  <form id="patientForm" method="post" action="https://api.asksurgeons.com/appointments" novalidate>
     <!-- Hidden fields populated from URL / JS -->
     <input type="hidden" name="appointmentId" id="appointmentId" value="">
 
@@ -141,7 +142,7 @@ permalink: /update-appointment/
     </div>
 
     <div style="display:flex; gap:8px; align-items:center; margin-top:6px;">
-      <button id="saveBtn" type="button" class="btn btn-primary">Open Update (no CORS)</button>
+      <button id="saveBtn" type="button" class="btn btn-primary">Send Update (POST)</button>
       <button id="cancelBtn" type="button" class="btn btn-ghost">Clear</button>
       <div style="flex:1"></div>
       <a id="backLink" href="/" class="form-note">Back to site</a>
@@ -150,7 +151,7 @@ permalink: /update-appointment/
     <div id="messageBox" role="status" aria-live="polite"></div>
 
     <noscript>
-      <div class="form-note">JavaScript is required for best experience. Without JS, the form will do a normal GET submit.</div>
+      <div class="form-note">JavaScript is required for best experience. Without JS, the form will post to the proxy and show raw JSON.</div>
     </noscript>
   </form>
 </main>
@@ -159,13 +160,12 @@ permalink: /update-appointment/
 /*
   Updated update-appointment page script
   - Reads appointmentId from URL query params and fills the form
-  - Sends updates by opening the Apps Script webapp URL with query params (GET) to avoid CORS
-  - Replace WEBAPP_URL with your Apps Script exec URL if needed
-  - NOTE: sending password in the URL exposes it in browser history/logs — consider POST if that is unacceptable
+  - Sends updates by POSTing to your proxy endpoint (https://api.asksurgeons.com/appointments)
+  - This sends password in POST body (not in URL)
+  - The form action is set to proxy so non-JS fallback posts there
 */
 (function(){
-  // Replace this with your Apps Script "Appointments" webapp exec URL
-  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycby-MaxKBJvjDCUThFIP9JL3lwnKiFwufcy6Pm7jyqYqMe7PTjA1bWIb56KwPwo8Oe-Ywg/exec";
+  const PROXY_URL = "https://api.asksurgeons.com/appointments";
 
   const form = document.getElementById('patientForm');
   const appointmentIdInput = document.getElementById('appointmentId');
@@ -241,50 +241,73 @@ permalink: /update-appointment/
     return true;
   }
 
-  // Build query string (skip empty values)
-  function toQuery(obj) {
-    return Object.keys(obj).filter(k => obj[k] !== undefined && obj[k] !== null && String(obj[k]).length > 0)
-      .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(String(obj[k])))
-      .join("&");
+  // Helper to POST form-encoded data
+  async function postForm(url, dataObj) {
+    const body = new URLSearchParams(dataObj).toString();
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body
+    });
+    const text = await resp.text();
+    try {
+      return { ok: true, status: resp.status, json: JSON.parse(text) };
+    } catch (e) {
+      return { ok: resp.ok, status: resp.status, raw: text };
+    }
   }
 
-  // Open the webapp URL with query params (GET) in a new tab to avoid CORS
-  saveBtn.addEventListener('click', function(){
+  // Send update via POST to proxy
+  saveBtn.addEventListener('click', async function(){
     clearMessage();
     if (!validate()) return;
 
     const payload = {
       appointmentId: appointmentIdInput.value,
-      password: passwordInput.value,   // will be visible in URL
+      password: passwordInput.value,
       newStatus: newStatusInput.value,
       appDate: appDateInput.value,
       appTime: appTimeInput.value,
       auditNote: auditNoteInput.value
     };
 
-    const qs = toQuery(payload);
-    const target = WEBAPP_URL + (qs ? ("?" + qs) : "");
-
     saveBtn.disabled = true;
-    saveBtn.textContent = "Opening...";
+    saveBtn.textContent = "Sending...";
 
-    // Open in new tab — cannot read response due to cross-origin, instruct user to check new tab
-    const win = window.open(target, '_blank');
-    setTimeout(function(){ saveBtn.disabled = false; saveBtn.textContent = "Open Update (no CORS)"; }, 800);
-
-    if (win) {
-      showMessage("Update opened in a new tab. Enter password on the page if prompted and follow server response there.", "success");
-      try { win.focus(); } catch(e) {}
-    } else {
-      showMessage("Popup blocked — navigating this tab to the update URL.", "error");
-      window.location.href = target;
+    try {
+      const res = await postForm(PROXY_URL, payload);
+      if (res.json) {
+        if (res.json.ok) {
+          showMessage(res.json.message || "Appointment updated successfully.", "success");
+          // optional: clear password
+          passwordInput.value = "";
+        } else {
+          showMessage(res.json.message || ("Update failed — server returned status " + res.status), "error");
+        }
+      } else {
+        // fallback when response wasn't JSON
+        if (res.ok) {
+          showMessage("Update sent. Server returned: " + (res.raw || res.status), "success");
+          passwordInput.value = "";
+        } else {
+          showMessage("Update failed. Server returned: " + (res.raw || res.status), "error");
+        }
+      }
+    } catch (err) {
+      showMessage("Network error: " + err.message, "error");
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Send Update (POST)";
     }
   });
 
-  // Progressive enhancement: set form action to WEBAPP_URL and method=get so non-JS fallback works
-  form.setAttribute('action', WEBAPP_URL);
-  form.setAttribute('method', 'get');
+  // Keep the form action/method for non-JS fallback (posts directly to proxy)
+  form.setAttribute('action', PROXY_URL);
+  form.setAttribute('method', 'post');
 
 })();
 </script>
+
 
