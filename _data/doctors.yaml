@@ -51,12 +51,12 @@
     - Fever, infections & dengue care
     - Preventive health check-ups
     - ECG & cardiac risk assessment
-  location: Attapur
+  location: Bowenpally
   gender: male
   experience: 10
   languages: [Telugu, English, Hindi]
   tags: [assessment, cardiac, diabetes, ecg, fever, general medicine, hypertension, lipid, management, md (osmania), preventive, risk, thyroid]
-  profile_url: /doctors/attapur/dr-mahesh-swamy
+  profile_url: /doctors/bowenpally/dr-mahesh-swamy
 
 - id: TR-1
   name: Dr. Karthik N.V.K.N
