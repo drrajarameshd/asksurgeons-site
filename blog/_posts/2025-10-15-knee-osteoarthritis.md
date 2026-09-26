@@ -2,7 +2,7 @@
 layout: post
 title: "Knee Osteoarthritis — From Prevention to Modern Knee Replacement"
 date: 2025-10-15 11:00:00 +0530
-author: "Dr. Khaleelullah"
+author: "Dr. S. Lohitesh"
 author-id: ORTHO-1
 excerpt: "Knee Osteoarthritis causes pain, stiffness, and mobility issues that affect daily life. Dr. Khaleelullah explains how exercise, physiotherapy, and modern Total Knee Replacement (TKR) can restore independence and quality of life."
 tags: [knee pain, osteoarthritis, physiotherapy, exercise, knee replacement, orthopedics, Dr. Khaleelullah]
