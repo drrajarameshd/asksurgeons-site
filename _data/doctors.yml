@@ -427,17 +427,17 @@
   profile_url: /doctors/attapur/dr-aditya
 
 - id: ORTHO-1
-  name: Dr. Khaleelullah
-  degree: [MS(Nims), Mch(Ortho)]
+  name: Dr. S. Lohitesh
+  degree: [MS, Mch(AIMS)]
   speciality: Orthopedician & Joint Replacement Surgeon
   department: Orthopedics
-  image: /assets/images/doctor-images/dr-khaleelullah.webp
+  image: /assets/images/doctor-images/dr-s-lohitesh.webp
   bio: Senior Orthopedic surgeon focused on joint replacement, fracture care, and sports injury management.
   education:
-    - degree: Mch (Ortho)
-      institute: ''
+    - degree: Mch (AIMS)
+      institute: 'AIMS'
       year: ''
-    - degree: MS (Nims)
+    - degree: MS
       institute: ''
       year: ''
     - degree: MBBS
@@ -449,12 +449,12 @@
     - Sports injuries & arthroscopy
     - Arthritis & back pain management
     - Spine & deformity evaluation
-  location: Attapur
+  location: Mehdipatnam
   gender: male
-  experience: 15
+  experience: 14
   languages: [Telugu, English, Hindi]
   tags: [arthritis, fracture, joint replacement, orthopedics, sports injuries, spine, trauma]
-  profile_url: /doctors/attapur/dr-khaleelullah
+  profile_url: /doctors/mehdipatnam/dr-s-lohitesh
 
 - id: PATH-1
   name: Dr. P. A. Sanjuktha
