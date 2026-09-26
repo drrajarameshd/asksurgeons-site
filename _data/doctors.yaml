@@ -506,3 +506,43 @@
   languages: [Telugu, English, Hindi]
   tags: [fertility, frm, mrcog, iui, ivf, oocyte pickup, embryo transfer, hysteroscopy, pregnancy, gynecology, counseling, ovulation induction, obstetrics]
   profile_url: /doctors/attapur/dr-monika-reddy
+
+  - id: OBG-3
+  name: Dr. Aakriti Shukla
+  degree: [MBBS, MS, MRCOG (UK), DMAS, FMAS, FIH]
+  speciality: Obstetrician & Gynaecologist
+  department: Obstetrics & Gynecology
+  image: /assets/images/doctor-images/dr-aakriti-shukla.webp
+  bio: Senior Consultant Obstetrician & Gynaecologist with 13+ years of clinical experience, providing comprehensive women's healthcare from adolescence through pregnancy and postmenopausal care.
+  education:
+    - degree: MBBS
+      institute: ''
+      year: ''
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: MRCOG (UK)
+      institute: ''
+      year: ''
+    - degree: DMAS
+      institute: ''
+      year: ''
+    - degree: FMAS
+      institute: ''
+      year: ''
+    - degree: FIH
+      institute: ''
+      year: ''
+  services:
+    - Obstetric care
+    - Adolescent gynaecological care
+    - Postmenopausal care
+    - Gynaecological procedures
+    - Laparoscopic procedures
+    - Infertility management
+  location: Mehdipatnam
+  gender: female
+  experience: 13
+  languages: [Telugu, English, Hindi]
+  tags: [adolescent gynecology, obstetrics, postmenopausal, gynecology, laparoscopic, infertility, mbbs, ms, mrcog, dmas, fmas, fih]
+  profile_url: /doctors/mehdipatnam/dr-aakriti-shukla
