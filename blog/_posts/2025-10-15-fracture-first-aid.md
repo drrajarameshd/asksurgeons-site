@@ -108,7 +108,7 @@ Timely **first aid and immobilization** greatly improve recovery and reduce comp
 
 ---
 
-## 🧑‍⚕️ Dr. Khaleelullah’s Advice
+## 🧑‍⚕️ Dr. Lohitesh’s Advice
 
 > “First aid doesn’t replace medical care — it prevents further harm until expert help arrives.”
 
