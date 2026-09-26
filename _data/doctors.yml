@@ -243,7 +243,7 @@
     - General & emergency surgical procedures
   location: Mehdipatnam
   gender: male
-  experience: 15
+  experience: 10
   languages: [English, Hindi, Telugu, Tamil]
   tags: [adrenalectomy, abdomen, breast, diaphragmatic hernia, emergency surgery, FAIS, FMAS, general surgery, gastrointestinal, hernia, hysterectomy, IPOM, laparoscopic, minimal access, oncology, parotid, splenectomy, TAPP, TEP, thyroid, upper GI]
   profile_url: /doctors/mehdipatnam/dr-s-nagulan
@@ -313,7 +313,7 @@
     - Infertility management
   location: Mehdipatnam
   gender: female
-  experience: 13
+  experience: 12
   languages: [Telugu, English, Hindi]
   tags: [adolescent gynecology, obstetrics, postmenopausal, gynecology, laparoscopic, infertility, mbbs, ms, mrcog, dmas, fmas, fih]
   profile_url: /doctors/mehdipatnam/dr-aakriti-shukla
@@ -451,7 +451,7 @@
     - Spine & deformity evaluation
   location: Mehdipatnam
   gender: male
-  experience: 14
+  experience: 13
   languages: [Telugu, English, Hindi]
   tags: [arthritis, fracture, joint replacement, orthopedics, sports injuries, spine, trauma]
   profile_url: /doctors/mehdipatnam/dr-s-lohitesh
@@ -573,7 +573,7 @@
     - Thymic tumors
   location: Mehdipatnam
   gender: male
-  experience: ''
+  experience: '18'
   languages: []
   tags:
     - cardiothoracic surgery
