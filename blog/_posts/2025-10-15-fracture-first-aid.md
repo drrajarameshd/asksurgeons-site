@@ -2,7 +2,7 @@
 layout: post
 title: "10 First Aid Tips for Fractures — What to Do Before You Reach the Hospital"
 date: 2025-10-15 11:45:00 +0530
-author: "Dr. Khaleelullah"
+author: "Dr. S. Lohitesh"
 author-id: ORTHO-1
 excerpt: "Fractures can happen anytime — from road accidents to home falls. Dr. Khaleelullah explains the 10 essential first aid steps everyone should know to prevent further injury before reaching the hospital."
 tags: [fracture, trauma, first aid, orthopedics, bone injury, Dr. Khaleelullah]
