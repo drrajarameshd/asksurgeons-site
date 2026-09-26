@@ -545,3 +545,50 @@
   languages: [Telugu, English, Hindi]
   tags: [endoscopic, infertility, kidney, mch (nims), ms, prostate, urinary, urology, uti]
   profile_url: /doctors/attapur/dr-vinay
+
+- id: CTVS-1
+  name: Dr. CH. Praveen
+  degree: [MS, MCh (CTVS)]
+  speciality: Cardiothoracic & Vascular Surgeon
+  department: Cardiothoracic & Vascular Surgery
+  image: /assets/images/doctor-images/dr-ch-praveen.webp
+  bio: Cardiothoracic & Vascular Surgeon providing surgical care for coronary artery disease, valvular heart disease, aortic diseases, congenital heart defects, and a range of thoracic and cardiothoracic conditions.
+  education:
+    - degree: MS
+      institute: ''
+      year: ''
+    - degree: MCh (CTVS)
+      institute: ''
+      year: ''
+  services:
+    - Coronary artery disease (CAD)
+    - Valvular heart disease
+    - Aortic aneurysms and dissections
+    - Thoracic aortic aneurysms
+    - Congenital heart defects
+    - Tracheal and bronchial disorders
+    - Esophageal disorders
+    - Lung cancer
+    - Pericardial diseases
+    - Thymic tumors
+  location: Mehdipatnam
+  gender: male
+  experience: ''
+  languages: []
+  tags:
+    - cardiothoracic surgery
+    - vascular surgery
+    - cardiac surgery
+    - coronary artery disease
+    - valvular heart disease
+    - aortic aneurysm
+    - aortic dissection
+    - congenital heart defects
+    - thoracic surgery
+    - lung cancer
+    - esophageal disorders
+    - pericardial diseases
+    - thymic tumors
+    - ms
+    - mch ctvs
+  profile_url: /doctors/mehdipatnam/dr-ch-praveen
